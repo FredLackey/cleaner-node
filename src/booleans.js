@@ -1,3 +1,21 @@
-module.exports = {
+const TRUE_STRINGS = ['true', 'yes', 'on', '1']
+const FALSE_STRINGS = ['false', 'no', 'off', '0']
 
-};
+const parse = (value, strict = true) => {
+  if (typeof value === 'boolean') { return value }
+  if (typeof value === 'string') {
+    if (TRUE_STRINGS.indexOf(value.toLowerCase())) { return true }
+    if (FALSE_STRINGS.indexOf(value.toLowerCase())) { return false }
+    return undefined
+  }
+  if (typeof value === 'number') {
+    if (value === 1) { return true }
+    if (value === 0) { return false }
+    return undefined
+  }
+  return strict ? undefined : !!value
+}
+
+module.exports = {
+  parse
+}
