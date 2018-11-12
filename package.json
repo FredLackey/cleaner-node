@@ -1,0 +1,39 @@
+{
+  "name": "cleaner-node",
+  "version": "0.0.0",
+  "description": "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FredLackey/cleaner-node.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "clean",
+    "clean",
+    "code",
+    "utils",
+    "utility",
+    "utilities",
+    "lodash",
+    "alternative",
+    "underscore",
+    "alternative"
+  ],
+  "author": "Fred Lackey <fred.lackey@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/FredLackey/cleaner-node/issues"
+  },
+  "homepage": "https://github.com/FredLackey/cleaner-node#readme",
+  "dependencies": {
+    "email-addresses": "^3.0.3",
+    "know-your-http-well": "^0.5.0",
+    "moment": "^2.22.2",
+    "uuid": "^3.3.2"
+  }
+}
