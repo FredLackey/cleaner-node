@@ -16,6 +16,16 @@ const parse = (value, strict = true) => {
   return strict ? undefined : !!value
 }
 
+const isValid = (value, strict = true) => {
+  return ([true, false].indexOf(parse(value, strict)) >= 0)
+}
+
+const ifValid = (value, defaultValue, strict = true) => {
+  return (isValid(value, strict)) ? value : defaultValue
+}
+
 module.exports = {
-  parse
+  parse,
+  isValid,
+  ifValid
 }
