@@ -1,33 +1,143 @@
+const uuidV1 = require('uuid/v1');
+const uuidV3 = require('uuid/v3');
+const uuidV4 = require('uuid/v4');
+const uuidV5 = require('uuid/v5');
+
+const validate = require('uuid-validate');
+const strings = require('./strings');
 const constants = require('./constants');
+const { ALPHANUMERIC } = constants.strings;
 
 const EMPTY_GUID = '00000000-0000-0000-0000-000000000000';
 const EMPTY_UID = '00000000000000000000000000000000';
 
-const isUuidFormat = value => {
-  return (
-    typeof value === 'string' &&
-    value.length === EMPTY_UID.length &&
-    value.toLowerCase().split('').filter(x => (constants.strings.ALPHANUMERIC.toLowerCase()).length === 32)
-  );
+const isGuidFormat = value => {
+  if (!strings.isValidChars(value, ALPHANUMERIC + '-', false)) {
+    console.log('not guid format');
+    console.log(value);
+    console.log(ALPHANUMERIC);
+    return false;
+  }
+  const emptyParts = EMPTY_GUID.split('-');
+  const parts = value.split('-');
+  if (emptyParts.length !== parts.length) { return false; }
+  for (let i = 0; i < parts.length; i += 1) {
+    if (parts[i].length !== emptyParts[i].length) { return false; }
+    if (!strings.isAlphanumeric(parts[i], false)) { return false; }
+  }
+  return true;
 };
 
-const isGuidFormat = value => {
-  if (typeof value !== 'string') { return false; }
-  if (value.length !== EMPTY_GUID.length) { return false; }
-  if (value !== value.toLowerCase().split('').filter(ch => ((constants.strings.ALPHANUMERIC + '-').toLowerCase().indexOf(ch) >= 0)).join('-')) { return false; }
-  const parts = value.split('-');
-  return (parts.length === 5 &&
-    parts[0].length === 8 &&
-    parts[1].length === 4 &&
-    parts[2].length === 4 &&
-    parts[3].length === 4 &&
-    parts[4].length === 12);
+const isUidFormat = value => {
+  return strings.isValidChars(value, ALPHANUMERIC, false) && value.length === EMPTY_UID.length;
+};
+
+const isValidFormat = value => {
+  return isGuidFormat(value) || isUidFormat(value);
+};
+
+const toGuidFormat = value => {
+  if (isGuidFormat(value)) { return value; }
+  if (!isUidFormat(value)) { return undefined; }
+  return [
+    value.substr(0, 8),
+    value.substr(8, 4),
+    value.substr(12, 4),
+    value.substr(16, 4),
+    value.substr(20)
+  ].join('-').toLowerCase();
+};
+
+const toUidFormat = value => {
+  if (isUidFormat(value)) { return value; }
+  if (!isGuidFormat(value)) { return undefined; }
+  return value.split('-').join('').toUpperCase();
+};
+
+const version = value => {
+  value = toGuidFormat(value);
+  if (!value) { return undefined; }
+  try {
+    return validate.version(value);
+  } catch (ex) {
+    return undefined;
+  }
+};
+
+const isValidGuid = (value, isEmptyOkay = false) => {
+  if (isEmptyOkay && value === EMPTY_GUID) { return true; }
+  if (!isEmptyOkay && value === EMPTY_GUID) { return false; }
+  if (!isGuidFormat(value)) { return false; }
+  return validate(value);
+};
+
+const isValidUid = (value, isEmptyOkay = false) => {
+  if (isEmptyOkay && value === EMPTY_UID) { return true; }
+  if (!isEmptyOkay && value === EMPTY_UID) { return false; }
+  if (!isUidFormat(value)) { return false; }
+  return isValidGuid(toGuidFormat(value), isEmptyOkay);
+};
+
+const isValid = (value, isEmptyOkay = false) => {
+  return isValidGuid(value, isEmptyOkay) || isValidUid(value, isEmptyOkay);
+}
+
+const initGuid = version => {
+  if (typeof version === 'undefined') { version = 4; }
+  switch (version) {
+    case '1':
+    case 1:
+      return uuidV1();
+    case '3':
+    case 3:
+      return uuidV3();
+    case '4':
+    case 4:
+      return uuidV4();
+    case '5':
+    case 5:
+      return uuidV5();
+    default:
+      return undefined;
+  }
+};
+
+const initUid = version => {
+  const guid = initGuid(version);
+  if (typeof guid !== 'string') { return undefined; }
+  return guid.split('-').join('').toUpperCase();
+};
+
+const unique = values => {
+  const result = [];
+  const cache = [];
+  [].concat(values).filter(isValid).forEach(function (x) {
+    if (x && cache.indexOf(toUidFormat(x)) < 0) {
+      cache.push(toUidFormat(x));
+      result.push(x);
+    }
+  });
+  return result;
 };
 
 module.exports = {
   EMPTY_GUID,
   EMPTY_UID,
 
-  isUuidFormat,
-  isGuidFormat
+  initGuid,
+  initUid,
+
+  isGuidFormat,
+  isUidFormat,
+  isValidFormat,
+
+  isValid,
+  isValidGuid,
+  isValidUid,
+
+  toGuidFormat,
+  toUidFormat,
+
+  unique,
+  version
 };

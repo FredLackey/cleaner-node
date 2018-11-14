@@ -1,6 +1,7 @@
 const cc = require('camelcase');
 const semver = require('semver');
 const arrays = require('./arrays');
+const isHTML = require('is-html');
 
 const { ALPHA, DIGITS, ALPHANUMERIC } = require('./constants');
 
@@ -135,6 +136,8 @@ const findPrefix = values => {
 };
 
 module.exports = {
+  isHtml: isHTML,
+
   has,
   clean,
   cleanDigits,

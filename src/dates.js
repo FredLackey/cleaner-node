@@ -1,15 +1,25 @@
-const numbers = require('./numbers');
+const moment = require('moment');
 
-const fromUnixTimestamp = (value) => {
-  const digits = numbers.toDigits(value);
-  if (typeof digits !== 'string' || digits.length === 0) {
-    return null;
-  }
-  return new Date(Number(digits) * 1000);
+const add = (value, quantity, duration) => {
+  return moment(value).add(quantity, duration).toDate();
+};
+const subtract = (value, quantity, duration) => {
+  return moment(value).subtract(quantity, duration).toDate();
+};
+
+const toUnixDateStamp = value => moment(value).unix();
+
+const fromUnixDateStamp = value => {
+  if (isNaN(value)) { return undefined; }
+  return new Date(value * 1000);
 };
 
 module.exports = {
-  fromUnixTimestamp,
+  add,
+  subtract,
 
-  fromUnix: fromUnixTimestamp
+  toUnixDateStamp,
+  toUnix: toUnixDateStamp,
+  fromUnixDateStamp,
+  fromUnix: fromUnixDateStamp
 };
