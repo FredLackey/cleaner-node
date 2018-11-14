@@ -4,7 +4,8 @@
   "description": "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --fix src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -31,10 +32,12 @@
   },
   "homepage": "https://github.com/FredLackey/cleaner-node#readme",
   "dependencies": {
+    "camelcase": "^5.0.0",
     "email-addresses": "^3.0.3",
     "gravatar": "^1.6.0",
     "know-your-http-well": "^0.5.0",
     "moment": "^2.22.2",
+    "semver": "^5.6.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-const wells = require('know-your-http-well')
+const wells = require('know-your-http-well');
 
 const me = {
   strings: {
@@ -12,6 +12,6 @@ const me = {
       phrases: wells.statusPhrasesToCodes
     }
   }
-}
+};
 
-module.exports = me
+module.exports = me;
