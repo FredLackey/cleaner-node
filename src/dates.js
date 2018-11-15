@@ -1,5 +1,11 @@
 const moment = require('moment');
 
+const parse = value => {
+  const date = moment(value);
+  if (!date.isValid()) { return undefined; }
+  return date.toDate();
+}
+
 const add = (value, quantity, duration) => {
   return moment(value).add(quantity, duration).toDate();
 };
@@ -15,9 +21,9 @@ const fromUnixDateStamp = value => {
 };
 
 module.exports = {
+  parse,
   add,
   subtract,
-
   toUnixDateStamp,
   toUnix: toUnixDateStamp,
   fromUnixDateStamp,

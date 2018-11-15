@@ -40,7 +40,8 @@
     "know-your-http-well": "^0.5.0",
     "moment": "^2.22.2",
     "semver": "^5.6.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "uuid-validate": "0.0.3"
   },
   "devDependencies": {
     "eslint": "^5.9.0",

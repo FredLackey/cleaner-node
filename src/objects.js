@@ -4,8 +4,7 @@ const getId = item => {
   const typeName = (typeof item);
   if (['number', 'string'].indexOf(typeName) >= 0) { return item; }
   return undefined;
-};
-
+}
 const getIds = items => {
   items = [].concat(items);
   const result = [];
@@ -16,14 +15,13 @@ const getIds = items => {
     }
   });
   return result;
-};
+}
 
 const getUid = item => {
   if (item && item.uid) { return item.uid; }
   if (typeof item === 'string') { return item; }
   return undefined;
-};
-
+}
 const getUids = items => {
   items = [].concat(items);
   const result = [];
@@ -34,7 +32,7 @@ const getUids = items => {
     }
   });
   return result;
-};
+}
 
 const findOne = (obj, key, cache) => {
 
@@ -65,7 +63,7 @@ const findOne = (obj, key, cache) => {
   }
 
   return undefined;
-};
+}
 
 const isDefined = value => (typeof value !== 'undefined');
 const notDefined = value => (typeof value === 'undefined');
