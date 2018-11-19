@@ -2,6 +2,13 @@ const constants = require('./constants');
 
 const DIGITS = constants.strings.DIGITS;
 
+const sortAscending = (a, b) => {
+  return (a - b);
+}
+const sortDescending = (a, b) => {
+  return (b - a);
+}
+
 const toDigits = value => {
   if (typeof value === 'number') {
     return value.toString().split('').filter(x => DIGITS.indexOf(x) >= 0);
@@ -22,7 +29,34 @@ const unique = values => {
   return results;
 }
 
+const ascending = values => {
+  values = [].concat(values).filter(x => (!isNaN(x))).map(x => (Number(x)));
+  values.sort(sortAscending);
+  return values;
+}
+const descending = values => {
+  values = [].concat(values).filter(x => (!isNaN(x))).map(x => (Number(x)));
+  values.sort(sortDescending);
+  return values;
+}
+
+const max = values => {
+  values = descending(values);
+  return (values.length > 0) ? values[0] : undefined;
+}
+const min = values => {
+  values = ascending(values);
+  return (values.length > 0) ? values[0] : undefined;
+}
+
+
 module.exports = {
   toDigits,
-  unique
+  unique,
+  ascending,
+  descending,
+  sortAscending,
+  sortDescending,
+  max,
+  min
 }

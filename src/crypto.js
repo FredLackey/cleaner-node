@@ -1,12 +1,12 @@
 const crypto = require('crypto');
 const constants = require('./constants');
+const strings = require('./strings');
 
 const SALT_OPTION = 'base64';
 const HMAC_OPTION = 'sha1';
 const DIGEST_OPTION = 'hex';
-const ALPHANUMERIC = constants.strings.ALPHANUMERIC;
 
-function createCode (totalLength, chars = ALPHANUMERIC) {
+const createCode = (totalLength, chars = constants.strings.ALPHANUMERIC) => {
   const rnd = crypto.randomBytes(totalLength);
   const value = new Array(totalLength);
   const len = chars.length;
@@ -18,17 +18,24 @@ function createCode (totalLength, chars = ALPHANUMERIC) {
   return value.join('');
 }
 
-function createSalt (byteCount, slatOption = SALT_OPTION) {
+const createSalt = (byteCount, slatOption = SALT_OPTION) => {
   return crypto.randomBytes(byteCount).toString(slatOption);
 }
 
-function hash (value, salt, hmacOption = HMAC_OPTION, digestOption = DIGEST_OPTION) {
-  var hmac = crypto.createHmac(hmacOption, salt);
+const hash = (value, salt, hmacOption = HMAC_OPTION, digestOption = DIGEST_OPTION) => {
+  const hmac = crypto.createHmac(hmacOption, salt);
   return hmac.update(value).digest(digestOption);
+}
+
+const hashString = value => {
+  if (!strings.isValid(value, true)) { return undefined; }
+  value = strings.trimToUndefined(value);
+  return crypto.createHash('md5').update(value).digest('hex');
 }
 
 module.exports = {
   createCode,
   createSalt,
-  hash
+  hash,
+  hashString
 };

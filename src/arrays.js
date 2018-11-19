@@ -15,10 +15,16 @@ const first = value => (count(value) > 0 ? value[0] : undefined);
 const last = value => (count(value) > 0 ? value[value.length - 1] : undefined);
 const single = value => (count(value) === 1 ? value[0] : undefined);
 
+const toArray = valueOrValues => ([].concat(valueOrValues).filter(x => (typeof x !== 'undefined')));
+
 module.exports = {
   count,
   isValid,
   first,
   last,
-  single
+  single,
+
+  toArray,
+  init: toArray,
+  parse: toArray
 }

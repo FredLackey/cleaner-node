@@ -110,9 +110,20 @@ const longest = values => {
   return values.filter(x => (x.length === length));
 }
 
-const trim = valueOrValues => {
-  const results = [].concat(valueOrValues).map(value => (isValid(value, true) ? value.trim() : value));
-  return returnValue(valueOrValues, results);
+const trim = (valueOrValues, toUndefined = false) => {
+  const values = [].concat(valueOrValues);
+  for (let i = 0; i < values.length; i += 1) {
+    if (typeof values[i] !== 'string') { continue; }
+    values[i] = values[i].trim();
+    if (values[i].length === 0 && toUndefined) {
+      values[i] = undefined;
+    }
+  }
+  return returnValue(valueOrValues, values);
+}
+
+const trimToUndefined = valueOrValues => {
+  return trim(valueOrValues, true);
 }
 
 const isPrefix = (prefix, values) => {
@@ -164,6 +175,7 @@ module.exports = {
   isAlphanumeric,
   isPrefix,
   trim,
+  trimToUndefined,
   undouble,
   longest
 };

@@ -10,6 +10,7 @@ const errors = require('./errors');
 const jwt = require('./jwt');
 const numbers = require('./numbers');
 const objects = require('./objects');
+const phoneNumber = require('./phone-number');
 const strings = require('./strings');
 const uuids = require('./uuids');
 
@@ -26,6 +27,7 @@ module.exports = {
   jwt,
   numbers,
   objects,
+  phoneNumber,
   strings,
   uuids
 };

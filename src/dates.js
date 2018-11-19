@@ -20,6 +20,26 @@ const fromUnixDateStamp = value => {
   return new Date(value * 1000);
 };
 
+const min = values => {
+  values = [].concat(values).filter(x => (x && x instanceof Date));
+  if (values.length === 0) { return undefined; }
+  let result = values[0];
+  values.forEach(v => {
+    if (result > v) { result = v; }
+  });
+  return result;
+}
+
+const max = values => {
+  values = [].concat(values).filter(x => (x && x instanceof Date));
+  if (values.length === 0) { return undefined; }
+  let result = values[0];
+  values.forEach(v => {
+    if (result < v) { result = v; }
+  });
+  return result;
+}
+
 module.exports = {
   parse,
   add,
@@ -27,5 +47,7 @@ module.exports = {
   toUnixDateStamp,
   toUnix: toUnixDateStamp,
   fromUnixDateStamp,
-  fromUnix: fromUnixDateStamp
+  fromUnix: fromUnixDateStamp,
+  min,
+  max
 };
