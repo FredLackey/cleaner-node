@@ -13,9 +13,6 @@ const EMPTY_UID = '00000000000000000000000000000000';
 
 const isGuidFormat = value => {
   if (!strings.isValidChars(value, ALPHANUMERIC + '-', false)) {
-    console.log('not guid format')
-    console.log(value);
-    console.log(ALPHANUMERIC)
     return false;
   }
   const emptyParts = EMPTY_GUID.split('-');

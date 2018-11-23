@@ -1,9 +1,7 @@
 const constants = require('./constants');
 const util = require('util');
 
-util.inherits(ApiError, Error);
-
-function ApiError (message, status, context) {
+function ApiError(message, status, context) {
   this.name = 'ApiError';
 
   this.message = message || '';
@@ -11,8 +9,9 @@ function ApiError (message, status, context) {
 
   Error.captureStackTrace(this, (context || ApiError));
 }
+util.inherits(ApiError, Error);
 
-function init (errorOrMessage, status) {
+function init(errorOrMessage, status) {
   errorOrMessage = errorOrMessage || '';
 
   var message = (typeof errorOrMessage === 'string')

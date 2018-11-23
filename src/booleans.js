@@ -13,7 +13,7 @@ const parse = (value, strict = true) => {
     if (value === 0) { return false; }
     return undefined;
   }
-  return strict ? undefined : !!value;
+  return strict ? undefined : Boolean(value);
 };
 
 const isValid = (value, strict = true) => {
