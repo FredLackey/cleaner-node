@@ -20,12 +20,17 @@ const single = value => (count(value) === 1 ? value[0] : undefined);
 const toArray = valueOrValues => ([].concat(valueOrValues).filter(x => (typeof x !== 'undefined')));
 
 const join = (values, delimeter = ',') => {
-  values = [].concat(values)
-    .filter(x => (x && ['undefined', 'object', 'function', 'symbol'].indexOf(typeof x) < 0))
-    .map(x => strings.removeSuffix(strings.removePrefix(String(x), delimeter), delimeter))
-    .filter(strings.isValid);
+  values = [].concat(values).map(x => String(x)).filter(x => (x && strings.isValid(x, true)));
   if (values.length === 0) { return ''; }
-  return values.join(delimeter);
+  for (let i = 0; i < values.length; i += 1) {
+    if (i !== 0) {
+      values[i] = strings.removePrefix(String(values[i]), delimeter);
+    }
+    if (i !== (values.length - 1)) {
+      values[i] = strings.removeSuffix(String(values[i]), delimeter);
+    }
+  }
+  return values.filter(x => (x.length > 0)).join(delimeter);
 }
 
 module.exports = {
