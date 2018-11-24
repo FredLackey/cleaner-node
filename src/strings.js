@@ -150,6 +150,51 @@ const findPrefix = values => {
   return isValid(prefix, false) ? prefix : undefined;
 }
 
+// -----
+
+const startsWith = (value, prefix, isCaseSensitive = true) => {
+  if (!isValid(value, true) || !isValid(prefix, true)) { return false; }
+  if (value.length < prefix.length) { return false; }
+  if (isCaseSensitive) {
+    return (value.indexOf(prefix) === 0);
+  } else {
+    return (value.toLowerCase().indexOf(prefix.toLowerCase()) === 0);
+  }
+}
+const removePrefix = (value, prefix, isCaseSensitive = true) => {
+  if (!isValid(value, true) || !isValid(prefix, true)) { return value; }
+  while (startsWith(value, prefix, isCaseSensitive)) {
+    if (value.length === prefix.length) {
+      value = '';
+    } else {
+      value = value.substr(prefix.length);
+    }
+  }
+  return value;
+}
+
+const endsWith = (value, prefix, isCaseSensitive = true) => {
+  if (!isValid(value, true) || !isValid(prefix, true)) { return false; }
+  if (value.length < prefix.length) { return false; }
+  if (isCaseSensitive) {
+    return value.endsWith(prefix);
+  } else {
+    return (value.toLowerCase().endsWith(prefix.toLowerCase()));
+  }
+}
+const removeSuffix = (value, suffix, isCaseSensitive = true) => {
+  if (!isValid(value, true) || !isValid(suffix, true)) { return value; }
+  while (endsWith(value, suffix, isCaseSensitive)) {
+    if (value.length === suffix.length) {
+      value = '';
+    } else {
+      value = value.substr(0, (value.length - suffix.length));
+    }
+  }
+  return value;
+}
+
+
 module.exports = {
   isHtml: isHTML,
 
@@ -177,5 +222,10 @@ module.exports = {
   trim,
   trimToUndefined,
   undouble,
-  longest
+  longest,
+
+  startsWith,
+  removePrefix,
+  endsWith,
+  removeSuffix
 };

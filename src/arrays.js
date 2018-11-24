@@ -1,3 +1,5 @@
+const strings = require('./strings');
+
 const count = (value) => {
   return (typeof value === 'object' && value instanceof Array)
     ? value.length
@@ -17,12 +19,22 @@ const single = value => (count(value) === 1 ? value[0] : undefined);
 
 const toArray = valueOrValues => ([].concat(valueOrValues).filter(x => (typeof x !== 'undefined')));
 
+const join = (values, delimeter = ',') => {
+  values = [].concat(values)
+    .filter(x => (x && ['undefined', 'object', 'function', 'symbol'].indexOf(typeof x) < 0))
+    .map(x => strings.removeSuffix(strings.removePrefix(String(x), delimeter), delimeter))
+    .filter(strings.isValid);
+  if (values.length === 0) { return ''; }
+  return values.join(delimeter);
+}
+
 module.exports = {
   count,
   isValid,
   first,
   last,
   single,
+  join,
 
   toArray,
   init: toArray,
