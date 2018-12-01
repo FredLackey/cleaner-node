@@ -1,4 +1,12 @@
 const moment = require('moment');
+const { padLeft } = require('strings');
+
+const isValid = value => {
+  return (typeof value !== 'undefined' && value instanceof Date);
+}
+const ifValid = (value, defaultValue) => {
+  return isValid(value) ? value : defaultValue;
+}
 
 const parse = value => {
   const date = moment(value);
@@ -40,10 +48,28 @@ const max = values => {
   return result;
 }
 
+const toBlockDate = (value, includeMilliseconds = true) => {
+  const date = ifValid(value, (new Date()));
+  const result = [
+    String(date.getFullYear()),
+    padLeft(date.getMonth() + 1),
+    padLeft(date.getDate()),
+    padLeft(date.getHours()),
+    padLeft(date.getMinutes()),
+    padLeft(date.getSeconds()),
+    '.',
+    padLeft(date.getMilliseconds(), 3)
+  ].join('');
+  return includeMilliseconds ? result : result.split('.')[0];
+}
+
 module.exports = {
+  isValid,
+  ifValid,
   parse,
   add,
   subtract,
+  toBlockDate,
   toUnixDateStamp,
   toUnix: toUnixDateStamp,
   fromUnixDateStamp,
