@@ -6,6 +6,10 @@ const { first } = require('./arrays');
 const { returnValue } = require('./common');
 const { ALPHA, DIGITS, ALPHANUMERIC } = require('./constants');
 
+const isPossible = value => {
+  return ['string', 'number', 'boolean', 'undefined'].indexOf(typeof value) >= 0;
+}
+
 const has = (value, target, isCaseSensitive = false) => {
   if (typeof value !== 'string') { return false; }
   if (typeof target !== 'string') { return false; }
@@ -194,6 +198,14 @@ const removeSuffix = (value, suffix, isCaseSensitive = true) => {
   return value;
 }
 
+const padLeft = (value, length = 2, character = '0') => {
+  if (!isPossible(value)) { return value; }
+  let padding = '';
+  while ((padding + String(value)).length < length) {
+    padding += character;
+  }
+  return `${padding}${String(value)}`;
+}
 
 module.exports = {
   isHtml: isHTML,
@@ -211,6 +223,7 @@ module.exports = {
   toLowerCase,
   toUpperCase,
   unique,
+  isPossible,
   isValid,
   isValidChars,
   isValidLength,
@@ -227,5 +240,7 @@ module.exports = {
   startsWith,
   removePrefix,
   endsWith,
-  removeSuffix
+  removeSuffix,
+
+  padLeft
 };
