@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { padLeft } = require('strings');
+const { padLeft } = require('./strings');
 
 const isValid = value => {
   return (typeof value !== 'undefined' && value instanceof Date);
