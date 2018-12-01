@@ -48,19 +48,18 @@ const max = values => {
   return result;
 }
 
-const toBlockDate = (value, includeMilliseconds = true) => {
+const toBlockDate = (value, deliminator = '', includeMilliseconds = true) => {
   const date = ifValid(value, (new Date()));
-  const result = [
+  const dateString = [
     String(date.getFullYear()),
     padLeft(date.getMonth() + 1),
     padLeft(date.getDate()),
     padLeft(date.getHours()),
     padLeft(date.getMinutes()),
-    padLeft(date.getSeconds()),
-    '.',
-    padLeft(date.getMilliseconds(), 3)
-  ].join('');
-  return includeMilliseconds ? result : result.split('.')[0];
+    padLeft(date.getSeconds())
+  ].join(deliminator);
+  if (!includeMilliseconds) { return dateString; }
+  return [dateString, padLeft(date.getMilliseconds(), 3)].join('.');
 }
 
 module.exports = {
