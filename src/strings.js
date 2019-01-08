@@ -4,7 +4,7 @@ const isHTML = require('is-html');
 
 const { first } = require('./arrays');
 const { returnValue } = require('./common');
-const { ALPHA, DIGITS, ALPHANUMERIC } = require('./constants');
+const { ALPHA, DIGITS, ALPHANUMERIC } = require('./constants').strings;
 
 const isPossible = value => {
   return ['string', 'number', 'boolean', 'undefined'].indexOf(typeof value) >= 0;
