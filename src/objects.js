@@ -1,3 +1,5 @@
+const strings = require('./strings');
+
 const getId = item => {
   if (typeof item === 'object' && item instanceof Array) { return undefined; }
   if (item && item.id) { return item.id; }
@@ -68,6 +70,27 @@ const findOne = (obj, key, cache) => {
 const isDefined = value => (typeof value !== 'undefined');
 const notDefined = value => (typeof value === 'undefined');
 
+const toDto = value => {
+  if (typeof value === 'undefined') { return value; }
+  if (value instanceof Array) { return value; }
+  const copy = JSON.parse(JSON.stringify(value));
+  const all = Object.keys(copy).filter(strings.isValid);
+  // eslint-disable-next-line no-eq-null
+  const toRemove = all.filter(k => (copy[k] == null));
+  if (toRemove.includes('id') && !toRemove.includes('uid') && Object.keys(copy).includes('uid')) {
+    toRemove('id');
+  }
+  toRemove.forEach(key => {
+    Reflect.deleteProperty(copy, key);
+  });
+  return copy
+}
+const toDtos = values => {
+  return [].concat(values)
+    .filter(v => (typeof v !== 'undefined'))
+    .map(v => (toDto(v)));
+}
+
 module.exports = {
   findOne,
   getId,
@@ -75,5 +98,7 @@ module.exports = {
   getUid,
   getUids,
   isDefined,
-  notDefined
+  notDefined,
+  toDto,
+  toDtos
 };

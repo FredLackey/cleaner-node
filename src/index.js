@@ -12,6 +12,7 @@ const numbers = require('./numbers');
 const objects = require('./objects');
 const phoneNumber = require('./phone-number');
 const strings = require('./strings');
+const urls  = require('./urls');
 const uuids = require('./uuids');
 
 module.exports = {
@@ -29,5 +30,6 @@ module.exports = {
   objects,
   phoneNumber,
   strings,
+  urls,
   uuids
 };

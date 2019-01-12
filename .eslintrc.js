@@ -101,7 +101,7 @@ module.exports = {
     "indent-legacy": "off",
     "init-declarations": "error",
     "jsx-quotes": "error",
-    "key-spacing": "error",
+    "key-spacing": "off",
     "keyword-spacing": [
       "error",
       {
@@ -126,7 +126,7 @@ module.exports = {
     "max-params": "off",
     "max-statements": "off",
     "max-statements-per-line": "off",
-    "multiline-comment-style": "error",
+    "multiline-comment-style": "off",
     "new-cap": "error",
     "new-parens": "error",
     "newline-after-var": "off",
@@ -174,7 +174,7 @@ module.exports = {
     "no-mixed-operators": "error",
     "no-mixed-requires": "error",
     "no-multi-assign": "error",
-    "no-multi-spaces": "error",
+    "no-multi-spaces": "off",
     "no-multi-str": "error",
     "no-multiple-empty-lines": "error",
     "no-native-reassign": "error",

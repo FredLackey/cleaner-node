@@ -62,6 +62,11 @@ const toBlockDate = (value, deliminator = '', includeMilliseconds = true) => {
   return [dateString, padLeft(date.getMilliseconds(), 3)].join('.');
 }
 
+const isUnix = value => {
+  if (isNaN(value)) { return false; }
+  return isValid(fromUnixDateStamp(value));
+}
+
 module.exports = {
   isValid,
   ifValid,
@@ -69,6 +74,8 @@ module.exports = {
   add,
   subtract,
   toBlockDate,
+  isUnix,
+  isEpoch : isUnix,
   toUnixDateStamp,
   toUnix: toUnixDateStamp,
   fromUnixDateStamp,

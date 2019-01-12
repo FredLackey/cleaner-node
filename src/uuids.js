@@ -132,7 +132,9 @@ module.exports = {
   isValidGuid,
   isValidUid,
 
+  toGuid : toGuidFormat,
   toGuidFormat,
+  toUid : toUidFormat,
   toUidFormat,
 
   unique,
