@@ -207,6 +207,12 @@ const padLeft = (value, length = 2, character = '0') => {
   return `${padding}${String(value)}`;
 }
 
+const getByteCount = (value, trimFirst) => {
+  if (typeof value !== 'string') { return null; }
+  return Buffer.byteLength((trimFirst ? value.trim() : value), 'utf8')
+}
+
+
 module.exports = {
   isHtml: isHTML,
 
@@ -216,6 +222,7 @@ module.exports = {
   cleanAlphanumeric,
   cleanVersion,
   findPrefix,
+  getByteCount,
   isLowerCase,
   isUpperCase,
   toCamelCase,
