@@ -15,7 +15,7 @@ const isFile = itemPath => {
 }
 const isFolder = itemPath => {
   const stats = getStats(itemPath);
-  return stats && stats.isFolder;
+  return stats && stats.isFolder();
 }
 const folderContents = folderPath => {
   try {
