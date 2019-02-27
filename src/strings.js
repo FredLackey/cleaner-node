@@ -24,7 +24,7 @@ const isValid = (value, isEmptyOkay = false) => {
 
 const isValidLength = (value, min = 0, max = 0, trim = false) => {
   if (!isValid(value)) { return false; }
-  const length = (trim ? value.trim() : value).length;
+  const { length } = (trim ? value.trim() : value);
   if (min > 0 && length < min) { return false; }
   if (max > 0 && length > max) { return false; }
   return true;
@@ -117,7 +117,9 @@ const longest = values => {
 const trim = (valueOrValues, toUndefined = false) => {
   const values = [].concat(valueOrValues);
   for (let i = 0; i < values.length; i += 1) {
-    if (typeof values[i] !== 'string') { continue; }
+    if (typeof values[i] !== 'string') { 
+      continue; 
+    }
     values[i] = values[i].trim();
     if (values[i].length === 0 && toUndefined) {
       values[i] = undefined;
@@ -161,9 +163,8 @@ const startsWith = (value, prefix, isCaseSensitive = true) => {
   if (value.length < prefix.length) { return false; }
   if (isCaseSensitive) {
     return (value.indexOf(prefix) === 0);
-  } else {
-    return (value.toLowerCase().indexOf(prefix.toLowerCase()) === 0);
   }
+  return (value.toLowerCase().indexOf(prefix.toLowerCase()) === 0);
 }
 const removePrefix = (value, prefix, isCaseSensitive = true) => {
   if (!isValid(value, true) || !isValid(prefix, true)) { return value; }
@@ -182,9 +183,8 @@ const endsWith = (value, prefix, isCaseSensitive = true) => {
   if (value.length < prefix.length) { return false; }
   if (isCaseSensitive) {
     return value.endsWith(prefix);
-  } else {
-    return (value.toLowerCase().endsWith(prefix.toLowerCase()));
   }
+  return (value.toLowerCase().endsWith(prefix.toLowerCase()));
 }
 const removeSuffix = (value, suffix, isCaseSensitive = true) => {
   if (!isValid(value, true) || !isValid(suffix, true)) { return value; }

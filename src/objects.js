@@ -13,7 +13,7 @@ const getId = item => {
 const getIds = items => {
   items = [].concat(items);
   const result = [];
-  items.forEach(function (item) {
+  items.forEach(item => {
     const id = getId(item);
     if (typeof id !== 'undefined') {
       result.push(id);
@@ -30,7 +30,7 @@ const getUid = item => {
 const getUids = items => {
   items = [].concat(items);
   const result = [];
-  items.forEach(function (item) {
+  items.forEach(item => {
     const id = getUid(item);
     if (typeof id !== 'undefined') {
       result.push(id);
@@ -96,7 +96,7 @@ const toDtos = values => {
 
 // --- getValue ... from singular property
 
-function getValue (item, keyOrPath) {
+function getValue(item, keyOrPath) {
   const keys = keyOrPath.split('.');
   const used = [];
   while (keys.length > 0) {
@@ -109,7 +109,7 @@ function getValue (item, keyOrPath) {
   }
   return item[keys[0]];
 }
-function getValues (items, keyOrPath, allowDuplicates) {
+function getValues(items, keyOrPath, allowDuplicates) {
   const result = [];
   [].concat(items).filter(isValid).forEach(item => {
     const value = getValue(item, keyOrPath);
@@ -122,7 +122,7 @@ function getValues (items, keyOrPath, allowDuplicates) {
 
 // --- setValue
 
-function setValue (obj = {}, path, value) {
+function setValue(obj = {}, path, value) {
   const keys = path.split('.');
   const used = [];
   while (keys.length > 1) {

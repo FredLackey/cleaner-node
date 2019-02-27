@@ -12,7 +12,7 @@ const EMPTY_GUID = '00000000-0000-0000-0000-000000000000';
 const EMPTY_UID = '00000000000000000000000000000000';
 
 const isGuidFormat = value => {
-  if (!strings.isValidChars(value, ALPHANUMERIC + '-', false)) {
+  if (!strings.isValidChars(value, `${ALPHANUMERIC}-`, false)) {
     return false;
   }
   const emptyParts = EMPTY_GUID.split('-');
@@ -26,7 +26,7 @@ const isGuidFormat = value => {
 }
 
 const isUidFormat = value => {
-  return strings.isValidChars(value, ALPHANUMERIC, false) && value.length == EMPTY_UID.length;
+  return strings.isValidChars(value, ALPHANUMERIC, false) && value.length === EMPTY_UID.length;
 }
 
 const isValidFormat = value => {
@@ -108,7 +108,7 @@ const initUid = version => {
 const unique = values => {
   const result = [];
   const cache = [];
-  [].concat(values).filter(isValid).forEach(function (x) {
+  [].concat(values).filter(isValid).forEach(x => {
     if (x && cache.indexOf(toUidFormat(x)) < 0) {
       cache.push(toUidFormat(x));
       result.push(x);

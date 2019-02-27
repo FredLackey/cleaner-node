@@ -80,4 +80,4 @@ module.exports = {
   toPayload,
   toToken,
   isValidPayload
-}
+};

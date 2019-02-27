@@ -15,7 +15,7 @@ const isValid = value => {
 const getText = value => {
   if (!isValid(value)) { return undefined; }
   const address = email.parseOneAddress(value);
-  return (address.local + '@' + address.domain);
+  return `${address.local}'@'${address.domain}`;
 };
 
 const isValidText = value => {

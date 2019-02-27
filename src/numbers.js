@@ -1,6 +1,6 @@
 const constants = require('./constants');
 
-const DIGITS = constants.strings.DIGITS;
+const { DIGITS } = constants.strings;
 
 const sortAscending = (a, b) => {
   return (a - b);
@@ -12,11 +12,11 @@ const sortDescending = (a, b) => {
 const toDigits = value => {
   if (typeof value === 'number') {
     return value.toString().split('').filter(x => DIGITS.indexOf(x) >= 0);
-  } else if (typeof value === 'string') {
-    return value.split('').filter(x => DIGITS.indexOf(x) >= 0);
-  } else {
-    return null;
   }
+  if (typeof value === 'string') {
+    return value.split('').filter(x => DIGITS.indexOf(x) >= 0);
+  }
+  return null;
 }
 
 const unique = values => {
