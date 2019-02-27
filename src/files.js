@@ -1,7 +1,7 @@
 const fs    = require('fs');
 const path  = require('path');
 
-const stats = itemPath => {
+const getStats = itemPath => {
   try {
     const stats = fs.lstatSync(itemPath);
     return stats;
@@ -10,11 +10,11 @@ const stats = itemPath => {
   }
 }
 const isFile = itemPath => {
-  const stats = stats(itemPath);
+  const stats = getStats(itemPath);
   return stats && stats.isFile();
 }
 const isFolder = itemPath => {
-  const stats = stats(itemPath);
+  const stats = getStats(itemPath);
   return stats && stats.isFolder;
 }
 const folderContents = folderPath => {
@@ -49,7 +49,7 @@ const walk = (folderPath) => {
 };
 
 module.exports = {
-  stats,
+  getStats,
   isFile,
   isFolder,
   folderContents,
