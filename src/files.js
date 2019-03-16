@@ -1,11 +1,20 @@
 const fs    = require('fs');
 const path  = require('path');
+const md5File = requires('md5-file');
 const { isValid: isValidString } = require('./strings');
 
 const LOCK_SUFFIX = '.lock';
 
 // ----- GENERAL
 
+const checksum = filePath => {
+  try {
+    const value = md5File.sync(filePath);
+    return value;
+  } catch (ex) {
+    return undefined;
+  }
+}
 const getStats = itemPath => {
   try {
     const stats = fs.lstatSync(itemPath);
@@ -100,6 +109,47 @@ const walk = (folderPath) => {
   return results;
 };
 
+const folderStructureChildren = (parent, parentPath, childNames) => {
+  [].concat(childNames).filter(name => (isValidString(name))).forEach(childName => {
+    const childPath = path.join(parentPath, childName);
+    const stats = getStats(childPath);
+    if (stats && (stats.isDirectory() || stats.isFile())) {
+      const child = {
+        name      : childName,
+        type      : (stats.isDirectory() ? 'D' : 'F'),
+        size      : stats.size,
+        modified  : stats.mtime,
+        created   : stats.ctime
+      };
+      if (child.type === 'F') {
+        child.checksum = checksum(childPath);
+      }
+
+      parent.children = parent.children || [];
+      parent.children.push(child);
+
+      if (child.type === 'D') {
+        const children = folderContents(childPath);
+        folderStructureChildren(childd, childPath, children);
+      }
+    }
+  });
+}
+const folderStructure = (folderPath, calculateChecksums = true) => {
+  const stats = getStats(folderPath);
+  if (!stats || !stats.isDirectory()) { return undefined; }
+  const root = {
+    path      : folderPath,
+    name      : stats.name,
+    type      : 'D',
+    size      : stats.size,
+    modified  : stats.mtime,
+    created   : stats.ctime
+  };
+  const children = folderContents(folderPath);
+  folderStructureChildren(root, folderPath, children);
+}
+
 /**
 ┌─────────────────────┬────────────┐
 │          dir        │    base    │
@@ -146,6 +196,7 @@ const cleanLock = filePath => {
 }
 
 module.exports = {
+  checksum,
   getStats,
   toPath,
   isFile,
@@ -157,6 +208,7 @@ module.exports = {
   deleteFile,
 
   walk,
+  folderStructure,
 
   isLocked,
   lock,
