@@ -12,3 +12,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.4.3  |  2019/03/16  |  Add `folderStructure` to `files` for producing a object graph from a single folder path.  |
 |  0.4.4  |  2019/03/16  |  Add `isSemver` to `strings` for determining if a string is a valid semver format.  |
 |  0.4.7  |  2019/03/17  |  Add `getName` to `email` for extracting cosmetic name from verbose email address.  |
+|  0.4.8  |  2019/03/17  |  Add `.isBracketted`, `.getBracket`, and `.trimBrackets` to `strings`.  |

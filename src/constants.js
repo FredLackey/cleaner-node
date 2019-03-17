@@ -6,6 +6,15 @@ const me = {
     DIGITS      : '0123456789',
     ALPHANUMERIC: 'abcdefghijklmnopqrstuvwxyz0123456789',
     CLEAR_CODE  : 'ACDEFGHJKLMNPRTVWXY0123456789',
+    BRACKETS  : [
+      { open: '<', close: '/>' },
+      { open: '<', close: '>' },
+      { open: '[', close: ']' },
+      { open: '{', close: '}' },
+      { open: '(', close: ')' },
+      { open: '%', close: '%' },
+      { open: '_', close: '_' }
+    ]
   },
   http: {
     status: {

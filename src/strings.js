@@ -4,7 +4,7 @@ const isHTML = require('is-html');
 
 const { first } = require('./arrays');
 const { returnValue } = require('./common');
-const { ALPHA, DIGITS, ALPHANUMERIC } = require('./constants').strings;
+const { ALPHA, DIGITS, ALPHANUMERIC, BRACKETS } = require('./constants').strings;
 
 const isPossible = value => {
   return ['string', 'number', 'boolean', 'undefined'].indexOf(typeof value) >= 0;
@@ -221,6 +221,29 @@ const isSemver = value => {
   return isDigits(parts[0]) && isDigits(parts[1]) && isDigits(parts[2]);
 }
 
+// ----- BRACKETS
+const getBracket = value => {
+  if (!isValid(value)) { return false; }
+  return BRACKETS.find(b => {
+    return value.startsWith(b.open) && value.endsWith(b.close)
+  });
+}
+const isBracketted = value => {
+  const bracket = getBracket(value);
+  return (bracket && isValid(value));
+}
+const trimBrackets = value => {
+  while (isBracketted(value)) {
+    const bracket = getBracket(value);
+    if (value.length <= (bracket.open.length + bracket.close.length)) {
+      return '';
+    }
+    value = value.substr(bracket.open.length);
+    value = value.substr(0, value.length - bracket.close.length);
+  }
+  return value;
+}
+
 module.exports = {
   isHtml: isHTML,
 
@@ -258,5 +281,9 @@ module.exports = {
   endsWith,
   removeSuffix,
 
-  padLeft
+  padLeft,
+
+  getBracket,
+  isBracketted,
+  trimBrackets
 };
