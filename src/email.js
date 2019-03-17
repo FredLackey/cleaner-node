@@ -12,6 +12,12 @@ const isValid = value => {
   } catch (err) { return false; }
 };
 
+const getName = value => {
+  if (!isValid(value)) { return undefined; }
+  const address = email.parseOneAddress(value);
+  return address.name;
+};
+
 const getText = value => {
   if (!isValid(value)) { return undefined; }
   const address = email.parseOneAddress(value);
@@ -59,6 +65,7 @@ module.exports = {
   getLocalPart,
   getDomainName,
   getText,
+  getName,
 
   toGravatarUrl
 };
