@@ -109,7 +109,7 @@ const walk = (folderPath) => {
   return results;
 };
 
-const folderStructureChildren = (parent, parentPath, childNames) => {
+const folderStructureChildren = (parent, parentPath, childNames, calculateChecksums) => {
   [].concat(childNames).filter(name => (isValidString(name))).forEach(childName => {
     const childPath = path.join(parentPath, childName);
     const stats = getStats(childPath);
@@ -121,7 +121,7 @@ const folderStructureChildren = (parent, parentPath, childNames) => {
         modified  : stats.mtime,
         created   : stats.ctime
       };
-      if (child.type === 'F') {
+      if (child.type === 'F' && calculateChecksums) {
         child.checksum = checksum(childPath);
       }
 
@@ -130,7 +130,7 @@ const folderStructureChildren = (parent, parentPath, childNames) => {
 
       if (child.type === 'D') {
         const children = folderContents(childPath);
-        folderStructureChildren(childd, childPath, children);
+        folderStructureChildren(child, childPath, children);
       }
     }
   });
@@ -147,7 +147,8 @@ const folderStructure = (folderPath, calculateChecksums = true) => {
     created   : stats.ctime
   };
   const children = folderContents(folderPath);
-  folderStructureChildren(root, folderPath, children);
+  folderStructureChildren(root, folderPath, children, calculateChecksums);
+  return root;
 }
 
 /**
