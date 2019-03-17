@@ -1,6 +1,6 @@
 const fs    = require('fs');
 const path  = require('path');
-const md5File = requires('md5-file');
+const md5File = require('md5-file');
 const { isValid: isValidString } = require('./strings');
 
 const LOCK_SUFFIX = '.lock';
@@ -27,8 +27,8 @@ const toPath = value => {
   if (!isValidString(value)) { return undefined; }
   try {
     const result = path.parse(value);
-    return (result && 
-      isValidString(result.root) && 
+    return (result &&
+      isValidString(result.root) &&
       (isValidString(result.dir) || isValidString(result.base))) ? result : undefined;
   } catch (ex) {
     return undefined;
