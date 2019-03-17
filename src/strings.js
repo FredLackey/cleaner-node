@@ -212,6 +212,14 @@ const getByteCount = (value, trimFirst) => {
   return Buffer.byteLength((trimFirst ? value.trim() : value), 'utf8')
 }
 
+const isSemver = value => {
+  // const clean = (value, valid = ALPHANUMERIC, invalid = '', isCaseSensitive = false) => {
+  const test = clean(value, `${DIGITS}.`);
+  if (value !== test) { return false; }
+  const parts = test.split('.');
+  if (parts.length !== 3) { return false; }
+  return isDigits(parts[0]) && isDigits(parts[1]) && isDigits(parts[2]);
+}
 
 module.exports = {
   isHtml: isHTML,
@@ -239,6 +247,7 @@ module.exports = {
   isDigits,
   isAlphanumeric,
   isPrefix,
+  isSemver,
   trim,
   trimToUndefined,
   undouble,
