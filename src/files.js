@@ -1,4 +1,5 @@
 const fs    = require('fs');
+const fsx   = require('fs-extra');
 const path  = require('path');
 const md5File = require('md5-file');
 const { isValid: isValidString } = require('./strings');
@@ -43,6 +44,15 @@ const isFolder = itemPath => {
   if (!isValidString(itemPath)) { return false; }
   const stats = getStats(itemPath);
   return stats && stats.isDirectory();
+}
+
+const ensureFolder = folderPath => {
+  try {
+    fsx.ensureDirSync(folderPath);
+  } catch (ex) {
+    return false;
+  }
+  return isFolder(folderPath);
 }
 
 // ----- CONTENTS
@@ -202,7 +212,8 @@ module.exports = {
   toPath,
   isFile,
   isFolder,
-
+  ensureFolder,
+  
   fileContents,
   folderContents,
   writeFile,
