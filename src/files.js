@@ -54,6 +54,14 @@ const ensureFolder = folderPath => {
   }
   return isFolder(folderPath);
 }
+const emptyFolder = folderPath => {
+  try {
+    fsx.emptyDirSync(folderPath);
+  } catch (ex) {
+    return false;
+  }
+  return isFolder(folderPath);
+}
 
 // ----- CONTENTS
 
@@ -213,6 +221,7 @@ module.exports = {
   isFile,
   isFolder,
   ensureFolder,
+  emptyFolder,
   
   fileContents,
   folderContents,
