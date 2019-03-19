@@ -127,13 +127,12 @@ const walk = (folderPath) => {
   return results;
 };
 
-const folderStructureChildren = (parent, parentPath, childNames, calculateChecksums) => {
-  [].concat(childNames).filter(name => (isValidString(name))).forEach(childName => {
-    const childPath = path.join(parentPath, childName);
+const folderStructureChildren = (parent, childPaths, calculateChecksums) => {
+  [].concat(childPaths).filter(name => (isValidString(name))).forEach(childPath => {
     const stats = getStats(childPath);
     if (stats && (stats.isDirectory() || stats.isFile())) {
       const child = {
-        name      : childName,
+        name      : path.basename(childPath),
         type      : (stats.isDirectory() ? 'D' : 'F'),
         size      : stats.size,
         modified  : stats.mtime,
@@ -148,7 +147,7 @@ const folderStructureChildren = (parent, parentPath, childNames, calculateChecks
 
       if (child.type === 'D') {
         const children = folderContents(childPath);
-        folderStructureChildren(child, childPath, children);
+        folderStructureChildren(child, children, calculateChecksums);
       }
     }
   });
@@ -158,14 +157,14 @@ const folderStructure = (folderPath, calculateChecksums = true) => {
   if (!stats || !stats.isDirectory()) { return undefined; }
   const root = {
     path      : folderPath,
-    name      : stats.name,
+    name      : path.basename(folderPath),
     type      : 'D',
     size      : stats.size,
     modified  : stats.mtime,
     created   : stats.ctime
   };
-  const children = folderContents(folderPath);
-  folderStructureChildren(root, folderPath, children, calculateChecksums);
+  const childPaths = folderContents(folderPath);
+  folderStructureChildren(root, childPaths, calculateChecksums);
   return root;
 }
 
