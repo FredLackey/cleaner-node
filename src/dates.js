@@ -2,7 +2,7 @@ const moment = require('moment');
 const { padLeft } = require('./strings');
 
 const isValid = value => {
-  return (typeof value !== 'undefined' && value instanceof Date);
+  return (typeof value === 'object' && value instanceof Date && !isNaN(value.getTime()));
 }
 const ifValid = (value, defaultValue) => {
   return isValid(value) ? value : defaultValue;
