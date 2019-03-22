@@ -1,5 +1,4 @@
 const fs    = require('fs');
-const fsx   = require('fs-extra');
 const path  = require('path');
 const md5File = require('md5-file');
 const { isValid: isValidString } = require('./strings');
@@ -44,23 +43,6 @@ const isFolder = itemPath => {
   if (!isValidString(itemPath)) { return false; }
   const stats = getStats(itemPath);
   return stats && stats.isDirectory();
-}
-
-const ensureFolder = folderPath => {
-  try {
-    fsx.ensureDirSync(folderPath);
-  } catch (ex) {
-    return false;
-  }
-  return isFolder(folderPath);
-}
-const emptyFolder = folderPath => {
-  try {
-    fsx.emptyDirSync(folderPath);
-  } catch (ex) {
-    return false;
-  }
-  return isFolder(folderPath);
 }
 
 // ----- CONTENTS
@@ -157,14 +139,14 @@ const folderStructure = (folderPath, calculateChecksums = true) => {
   if (!stats || !stats.isDirectory()) { return undefined; }
   const root = {
     path      : folderPath,
-    name      : path.basename(folderPath),
+    name      : stats.name,
     type      : 'D',
     size      : stats.size,
     modified  : stats.mtime,
     created   : stats.ctime
   };
-  const childPaths = folderContents(folderPath);
-  folderStructureChildren(root, childPaths, calculateChecksums);
+  const children = folderContents(folderPath);
+  folderStructureChildren(root, children, calculateChecksums);
   return root;
 }
 
@@ -219,9 +201,7 @@ module.exports = {
   toPath,
   isFile,
   isFolder,
-  ensureFolder,
-  emptyFolder,
-  
+
   fileContents,
   folderContents,
   writeFile,
