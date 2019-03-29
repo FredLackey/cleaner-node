@@ -16,6 +16,27 @@ const me = {
       { open: '_', close: '_' }
     ]
   },
+  durations: {
+    YEAR        : 'years',
+    QUARTER     : 'quarters',
+    MONTH       : 'months',
+    WEEK        : 'weeks',
+    DAY         : 'days',
+    HOUR        : 'hours',
+    MINUTE      : 'minutes',
+    SECOND      : 'seconds',
+    MILLISECOND : 'milliseconds',
+
+    YEARS        : 'years',
+    QUARTERS     : 'quarters',
+    MONTHS       : 'months',
+    WEEKS        : 'weeks',
+    DAYS         : 'days',
+    HOURS        : 'hours',
+    MINUTES      : 'minutes',
+    SECONDS      : 'seconds',
+    MILLISECONDS : 'milliseconds',
+  },
   http: {
     status: {
       codes: wells.statusPhrasesToCodes,

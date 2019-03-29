@@ -82,6 +82,27 @@ const createSync = async (model, details) => {
   return item;
 }
 
+const update = (model, criteria, changes) => {
+  return Promise((resolve, reject) => {
+    model.update(changes, criteria)
+    .then(result => {
+      resolve(result);
+    })
+    .catch(error => {
+      reject(error);
+    });
+  })
+}
+const updateSync = async (model, criteria, changes) => {
+  let result = null;
+  try {
+    result = await update(model, criteria, changes);
+  } catch (err) {
+    console.error(err);
+  }
+  return result;
+}
+
 module.exports = {
   findMany,
   findManySync,
@@ -90,5 +111,7 @@ module.exports = {
   bulkCreate,
   bulkCreateSync,
   create,
-  createSync
+  createSync,
+  update,
+  updateSync
 };
