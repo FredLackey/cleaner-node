@@ -12,6 +12,7 @@ const jwt           = require('./jwt');
 const numbers       = require('./numbers');
 const objects       = require('./objects');
 const phoneNumber   = require('./phone-number');
+const sequelize     = require('./sequelize');
 const strings       = require('./strings');
 const urls          = require('./urls');
 const uuids         = require('./uuids');
@@ -31,6 +32,7 @@ module.exports = {
   numbers,
   objects,
   phoneNumber,
+  sequelize,
   strings,
   urls,
   uuids
