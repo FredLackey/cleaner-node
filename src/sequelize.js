@@ -15,11 +15,16 @@ const findManySync = async (model, query) => {
   let items = null;
   try {
     items = await findMany(model, query);
-    return items;
-  } catch (err) {
-    console.error(err);
+    return {
+      success: true,
+      items
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error
+    };
   }
-  return items;
 }
 const findOne = (model, query) => {
   return new Promise((resolve, reject) => {
@@ -36,10 +41,16 @@ const findOneSync = async (model, query) => {
   let item = null;
   try {
     item = await findOne(model, query);
-  } catch (err) {
-    console.error(err);
+    return {
+      success: true,
+      item
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error
+    };
   }
-  return item;
 }
 const bulkCreate = (model, detailsArray) => {
   return new Promise((resolve, reject) => {
@@ -56,10 +67,16 @@ const bulkCreateSync = async (model, detailsArray) => {
   let items = null;
   try {
     items = await bulkCreate(model, detailsArray);
-  } catch (err) {
-    console.error(err);
+    return {
+      success: true,
+      items
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error
+    };
   }
-  return items;
 }
 const create = (model, details) => {
   return new Promise((resolve, reject) => {
@@ -76,10 +93,16 @@ const createSync = async (model, details) => {
   let item = null;
   try {
     item = await create(model, details);
-  } catch (err) {
-    console.error(err);
+    return {
+      success: true,
+      item
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error
+    };
   }
-  return item;
 }
 
 const update = (model, criteria, changes) => {
@@ -97,10 +120,16 @@ const updateSync = async (model, criteria, changes) => {
   let result = null;
   try {
     result = await update(model, criteria, changes);
-  } catch (err) {
-    console.error(err);
+    return {
+      success: true,
+      result
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error
+    };
   }
-  return result;
 }
 
 module.exports = {
