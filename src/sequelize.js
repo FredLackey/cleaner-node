@@ -1,7 +1,7 @@
 const arrays = require('./arrays');
 
 const findMany = (model, query) => {
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     model.findAll(query)
       .then(items => {
         resolve(arrays.init(items));
@@ -22,7 +22,7 @@ const findManySync = async (model, query) => {
   return items;
 }
 const findOne = (model, query) => {
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     model.findOne(query)
       .then(item => {
         resolve(item);
@@ -42,7 +42,7 @@ const findOneSync = async (model, query) => {
   return item;
 }
 const bulkCreate = (model, detailsArray) => {
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     model.bulkCreate(detailsArray, { returning: true })
       .then(items => {
         resolve(arrays.init(items));
@@ -62,7 +62,7 @@ const bulkCreateSync = async (model, detailsArray) => {
   return items;
 }
 const create = (model, details) => {
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     model.create(details, { returning: true })
     .then(item => {
       resolve(item);
@@ -83,7 +83,7 @@ const createSync = async (model, details) => {
 }
 
 const update = (model, criteria, changes) => {
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     model.update(changes, criteria)
     .then(result => {
       resolve(result);
