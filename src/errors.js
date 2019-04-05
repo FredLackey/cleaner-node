@@ -14,6 +14,13 @@ util.inherits(ApiError, Error);
 function init(errorOrMessage, status) {
   errorOrMessage = errorOrMessage || '';
 
+  if (typeof errorOrMessage === 'number' && typeof status === 'string') {
+    const num = errorOrMessage;
+    const msg = status;
+    status = num;
+    errorOrMessage = msg;
+  }
+
   const message = (typeof errorOrMessage === 'string')
     ? errorOrMessage
     : errorOrMessage.message;
