@@ -11,7 +11,7 @@ const findMany = (model, query) => {
       });
   })
 };
-const findManySync = async (model, query) => {
+const findManySync = async (model, query, suppressError) => {
   let items = null;
   try {
     items = await findMany(model, query);
@@ -20,10 +20,13 @@ const findManySync = async (model, query) => {
       items
     };
   } catch (error) {
-    return {
-      success: false,
-      error
-    };
+    if (suppressError) {
+      return {
+        success: false,
+        error
+      };
+    }
+    throw error;
   }
 }
 const findOne = (model, query) => {
@@ -37,7 +40,7 @@ const findOne = (model, query) => {
       });
   })
 };
-const findOneSync = async (model, query) => {
+const findOneSync = async (model, query, suppressError) => {
   let item = null;
   try {
     item = await findOne(model, query);
@@ -46,10 +49,13 @@ const findOneSync = async (model, query) => {
       item
     };
   } catch (error) {
-    return {
-      success: false,
-      error
-    };
+    if (suppressError) {
+      return {
+        success: false,
+        error
+      };
+    }
+    throw error;
   }
 }
 const bulkCreate = (model, detailsArray) => {
@@ -63,7 +69,7 @@ const bulkCreate = (model, detailsArray) => {
       });
   });
 }
-const bulkCreateSync = async (model, detailsArray) => {
+const bulkCreateSync = async (model, detailsArray, suppressError) => {
   let items = null;
   try {
     items = await bulkCreate(model, detailsArray);
@@ -72,10 +78,13 @@ const bulkCreateSync = async (model, detailsArray) => {
       items
     };
   } catch (error) {
-    return {
-      success: false,
-      error
-    };
+    if (suppressError) {
+      return {
+        success: false,
+        error
+      };
+    }
+    throw error;
   }
 }
 const create = (model, details) => {
@@ -89,7 +98,7 @@ const create = (model, details) => {
     });
   })
 }
-const createSync = async (model, details) => {
+const createSync = async (model, details, suppressError) => {
   let item = null;
   try {
     item = await create(model, details);
@@ -98,10 +107,13 @@ const createSync = async (model, details) => {
       item
     };
   } catch (error) {
-    return {
-      success: false,
-      error
-    };
+    if (suppressError) {
+      return {
+        success: false,
+        error
+      };
+    }
+    throw error;
   }
 }
 
@@ -116,7 +128,7 @@ const update = (model, criteria, changes) => {
     });
   })
 }
-const updateSync = async (model, criteria, changes) => {
+const updateSync = async (model, criteria, changes, suppressError) => {
   let result = null;
   try {
     result = await update(model, criteria, changes);
@@ -125,10 +137,13 @@ const updateSync = async (model, criteria, changes) => {
       result
     };
   } catch (error) {
-    return {
-      success: false,
-      error
-    };
+    if (suppressError) {
+      return {
+        success: false,
+        error
+      };
+    }
+    throw error;
   }
 }
 
