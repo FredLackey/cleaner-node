@@ -7,6 +7,7 @@ const crypto        = require('./crypto');
 const dates         = require('./dates');
 const email         = require('./email');
 const errors        = require('./errors');
+const express       = require('./exxpress');
 const files         = require('./files');
 const jwt           = require('./jwt');
 const numbers       = require('./numbers');
@@ -27,6 +28,7 @@ module.exports = {
   dates,
   email,
   errors,
+  express,
   files,
   jwt,
   numbers,

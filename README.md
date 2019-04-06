@@ -14,3 +14,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.4.7  |  2019/03/17  |  Add `getName` to `email` for extracting cosmetic name from verbose email address.  |
 |  0.4.8  |  2019/03/17  |  Add `.isBracketted`, `.getBracket`, and `.trimBrackets` to `strings`.  |
 |  0.5.0  |  2019/03/28  |  Add `sequelize` helper functions.  |
+|  0.6.0  |  2019/04/06  |  Add `express` area with `.asyncMiddleware` wrapper / function.  |
