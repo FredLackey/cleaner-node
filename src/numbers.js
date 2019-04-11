@@ -2,6 +2,10 @@ const constants = require('./constants');
 
 const { DIGITS } = constants.strings;
 
+const isNumber = (value) => {
+  return !isNaN(parseFloat(value)) && isFinite(value);
+}
+
 const sortAscending = (a, b) => {
   return (a - b);
 }
@@ -51,6 +55,7 @@ const min = values => {
 
 
 module.exports = {
+  isNumber,
   toDigits,
   unique,
   ascending,

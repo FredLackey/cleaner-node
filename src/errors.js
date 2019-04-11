@@ -1,5 +1,7 @@
-const constants = require('./constants');
 const util = require('util');
+const constants = require('./constants');
+const { isNumber } = require('./numbers');
+const { isValid: isValidString } = require('./strings');
 
 function ApiError(message, status, context) {
   this.name = 'ApiError';
@@ -14,8 +16,8 @@ util.inherits(ApiError, Error);
 function init(errorOrMessage, status) {
   errorOrMessage = errorOrMessage || '';
 
-  if (typeof errorOrMessage === 'number' && typeof status === 'string') {
-    const num = errorOrMessage;
+  if (isValidString(status) && isNumber(errorOrMessage)) {
+    const num = Number(errorOrMessage);
     const msg = status;
     status = num;
     errorOrMessage = msg;
