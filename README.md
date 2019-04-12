@@ -15,3 +15,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.4.8  |  2019/03/17  |  Add `.isBracketted`, `.getBracket`, and `.trimBrackets` to `strings`.  |
 |  0.5.0  |  2019/03/28  |  Add `sequelize` helper functions.  |
 |  0.6.0  |  2019/04/06  |  Add `express` area with `.asyncMiddleware` wrapper / function.  |
+|  0.6.4  |  2019/04/12  |  Add `.isJSON` to `strings`.  |

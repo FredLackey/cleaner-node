@@ -244,6 +244,19 @@ const trimBrackets = value => {
   return value;
 }
 
+const isJSON = value => {
+  if (!isValid(value)) { return false; }
+  if (value.length < 2) { return false; }
+  if (!(value.startsWith('"') && value.endsWith('"')) &&
+      !(value.startsWith('{') && value.endsWith('}'))) { return false; }
+  try {
+    const obj = JSON.parse(value);
+    return (typeof obj === 'object');
+  } catch (ex) {
+    return false;
+  }
+}
+
 module.exports = {
   isHtml: isHTML,
 
@@ -285,5 +298,7 @@ module.exports = {
 
   getBracket,
   isBracketted,
-  trimBrackets
+  trimBrackets,
+
+  isJSON
 };
