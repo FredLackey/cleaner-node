@@ -256,6 +256,10 @@ const isJSON = value => {
     return false;
   }
 }
+const getSize = (value, encoding = 'utf8') => {
+  if (!isValid(value, true)) { return -1; }
+  return Buffer.byteLength(value, encoding)
+}
 
 module.exports = {
   isHtml: isHTML,
@@ -300,5 +304,6 @@ module.exports = {
   isBracketted,
   trimBrackets,
 
-  isJSON
+  isJSON,
+  getSize
 };
