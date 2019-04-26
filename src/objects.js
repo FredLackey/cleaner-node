@@ -140,44 +140,49 @@ function setValue(obj = {}, path, value) {
 }
 
 // ----- reduce
-const reduceObject = (itemOrItems) => {
-  [].concat(itemOrItems).filter(x => (typeof x === 'object' && !(x instanceof Array))).forEach(obj => {
-    const toRemove = Object.keys(obj)
-      .filter(isValidString)
-      .filter(key => (typeof obj[key] === 'object'))
-      .filter(key => (
-       (obj[key] instanceof Array && obj[key].length === 0) ||
-       (!(obj[key] instanceof Array) && Object.keys(obj[key]).length === 0)));
-    toRemove.forEach(key => {
+const reduce = obj => {
+  if (typeof obj !== 'object') { return; }
+  if (obj instanceof Array) { return; }
+
+  const keys = Object.keys(obj).filter(isValidString);
+
+  // Child Objects
+  keys.filter(key => (typeof obj[key] === 'object' && !(obj[key] instanceof Array)))
+    .forEach(key => {
+      reduce(obj[key]);
+    });    
+
+  // Child Arrays
+  keys.filter(key => (typeof obj[key] === 'object' && (obj[key] instanceof Array)))
+    .forEach(key => {
+      obj[key].forEach(o => {
+        reduce(o);
+      })
+    });   
+
+  // Empty Strings
+  keys.filter(key => (typeof obj[key] === 'string' && obj[key].trim().length === 0))
+    .forEach(key => {
       Reflect.deleteProperty(obj, key);
     });
-    const toProcess = Object.keys(obj)
-      .filter(isValidString)
-      .filter(key => (typeof obj[key] === 'object'));
-    toProcess.forEach(key => {
-      reduceObject(obj[key]);
-    })
-  });
-}
-const reduce = (itemOrItems, reduceObjects = false) => {
-  [].concat(itemOrItems).filter(x => (typeof x === 'object')).forEach(obj => {
-    if (obj instanceof Array) {
-      obj.forEach(child => {
-        reduce(child);
-      })
-    } else {
-      const keys = Object.keys(obj).filter(key => (
-        (obj[key] != null) ||
-        (typeof obj[key] === 'string' && obj[key].trim().length === 0) ||
-        (obj[key] === null)));
-      keys.forEach(key => {
-        Reflect.deleteProperty(obj, key);
-      });
-    }
-  });
-  if (reduceObjects) {
-    reduceObject(itemOrItems);
-  }
+
+  // Undefined
+  keys.filter(key => (typeof obj[key] === 'undefined'))
+    .forEach(key => {
+      Reflect.deleteProperty(obj, key);
+    });
+
+  // Empty Arrays
+  keys.filter(key => (typeof obj[key] === 'object' && (obj[key] instanceof Array) && obj[key].length === 0))
+    .forEach(key => {
+      Reflect.deleteProperty(obj, key);
+    });    
+
+  // Empty Objects
+  keys.filter(key => (typeof obj[key] === 'object' && !(obj[key] instanceof Array) && Object.keys(obj[key]).filter(isValidString).length === 0))
+    .forEach(key => {
+      Reflect.deleteProperty(obj, key);
+    });
 }
 
 module.exports = {
