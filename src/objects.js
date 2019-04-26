@@ -143,6 +143,7 @@ function setValue(obj = {}, path, value) {
 const reduce = obj => {
   if (typeof obj !== 'object') { return; }
   if (obj instanceof Array) { return; }
+  if (obj instanceof Date) { return; }
 
   const keys = Object.keys(obj).filter(isValidString);
 
