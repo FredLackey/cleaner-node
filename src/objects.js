@@ -167,7 +167,7 @@ const reduce = (itemOrItems, reduceObjects = false) => {
       })
     } else {
       const keys = Object.keys(obj).filter(key => (
-        (typeof obj[key] === 'undefined') ||
+        (obj[key] != null) ||
         (typeof obj[key] === 'string' && obj[key].trim().length === 0) ||
         (obj[key] === null)));
       keys.forEach(key => {
