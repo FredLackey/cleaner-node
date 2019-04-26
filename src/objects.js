@@ -148,7 +148,7 @@ const reduce = obj => {
   const keys = Object.keys(obj).filter(isValidString);
 
   // Child Objects
-  keys.filter(key => (typeof obj[key] === 'object' && !(obj[key] instanceof Array)))
+  keys.filter(key => (typeof obj[key] === 'object' && !(obj[key] instanceof Array) && !(obj[key] instanceof Date)))
     .forEach(key => {
       reduce(obj[key]);
     });    
@@ -180,7 +180,7 @@ const reduce = obj => {
     });    
 
   // Empty Objects
-  keys.filter(key => (typeof obj[key] === 'object' && !(obj[key] instanceof Array) && Object.keys(obj[key]).filter(isValidString).length === 0))
+  keys.filter(key => (typeof obj[key] === 'object' && !(obj[key] instanceof Array) && !(obj[key] instanceof Date) && Object.keys(obj[key]).filter(isValidString).length === 0))
     .forEach(key => {
       Reflect.deleteProperty(obj, key);
     });
