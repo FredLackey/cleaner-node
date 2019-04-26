@@ -139,6 +139,47 @@ function setValue(obj = {}, path, value) {
   return obj;
 }
 
+// ----- reduce
+const reduceObject = (itemOrItems) => {
+  [].concat(itemOrItems).filter(x => (typeof x === 'object' && !(x instanceof Array))).forEach(obj => {
+    const toRemove = Object.keys(obj)
+      .filter(isValidString)
+      .filter(key => (typeof obj[key] === 'object'))
+      .filter(key => (
+       (obj[key] instanceof Array && obj[key].length === 0) ||
+       (!(obj[key] instanceof Array) && Object.keys(obj[key]).length === 0)));
+    toRemove.forEach(key => {
+      Reflect.deleteProperty(obj, key);
+    });
+    const toProcess = Object.keys(obj)
+      .filter(isValidString)
+      .filter(key => (typeof obj[key] === 'object'));
+    toProcess.forEach(key => {
+      reduceObject(obj[key]);
+    })
+  });
+}
+const reduce = (itemOrItems, reduceObjects = false) => {
+  [].concat(itemOrItems).filter(x => (typeof x === 'object')).forEach(obj => {
+    if (obj instanceof Array) {
+      obj.forEach(child => {
+        reduce(child);
+      })
+    } else {
+      const keys = Object.keys(obj).filter(key => (
+        (typeof obj[key] === 'undefined') ||
+        (typeof obj[key] === 'string' && obj[key].trim().length === 0) ||
+        (obj[key] === null)));
+      keys.forEach(key => {
+        Reflect.deleteProperty(obj, key);
+      });
+    }
+  });
+  if (reduceObjects) {
+    reduceObject(itemOrItems);
+  }
+}
+
 module.exports = {
   findOne,
   getId,
@@ -152,5 +193,6 @@ module.exports = {
   notDefined,
   setValue,
   toDto,
-  toDtos
+  toDtos,
+  reduce
 };
