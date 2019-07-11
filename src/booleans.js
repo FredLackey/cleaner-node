@@ -4,8 +4,8 @@ const FALSE_STRINGS = ['false', 'no', 'off', '0'];
 const parse = (value, strict = true) => {
   if (typeof value === 'boolean') { return value; }
   if (typeof value === 'string') {
-    if (TRUE_STRINGS.indexOf(value.toLowerCase())) { return true; }
-    if (FALSE_STRINGS.indexOf(value.toLowerCase())) { return false; }
+    if (TRUE_STRINGS.includes(value.toLowerCase())) { return true; }
+    if (FALSE_STRINGS.includes(value.toLowerCase())) { return false; }
     return undefined;
   }
   if (typeof value === 'number') {
