@@ -8,6 +8,7 @@ const count = (value) => {
 const isValid = (value, isEmptyOkay = false) => {
   return (
     (typeof value === 'object') &&
+    (value !== null) &&
     (value instanceof Array) &&
     (isEmptyOkay || value.length > 0)
   );
@@ -17,7 +18,7 @@ const first = value => (count(value) > 0 ? value[0] : undefined);
 const last = value => (count(value) > 0 ? value[value.length - 1] : undefined);
 const single = value => (count(value) === 1 ? value[0] : undefined);
 
-const toArray = valueOrValues => ([].concat(valueOrValues).filter(x => (typeof x !== 'undefined')));
+const toArray = valueOrValues => ([].concat(valueOrValues).filter(x => (typeof x !== 'undefined' && x !== null)));
 
 const join = (values, delimeter = ',') => {
   values = [].concat(values).map(x => String(x)).filter(x => (x && strings.isValid(x, true)));
