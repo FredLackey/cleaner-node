@@ -2,6 +2,14 @@ const { isValid: isValidString } = require('./strings');
 const { count } = require('./arrays');
 
 const isValid = value => (typeof value === 'object' && !(value instanceof Array));
+const isEmpty = value => {
+  if (!isValid(value)) { return false; }
+  return Object.keys(value).filter(key => {
+    return (key && 
+      key.trim().length > 0 &&
+      (typeof value[key] !== 'undefined'));
+  }).length === 0;
+}
 
 const getId = item => {
   if (typeof item === 'object' && item instanceof Array) { return undefined; }
@@ -195,6 +203,7 @@ module.exports = {
   getValue,
   getValues,
   isDefined,
+  isEmpty,
   isValid,
   notDefined,
   setValue,

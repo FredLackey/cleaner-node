@@ -18,3 +18,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.6.4  |  2019/04/12  |  Add `.isJSON` to `strings`.  |
 |  0.6.5  |  2019/04/16  |  Add `.getSize` to `strings`.  |
 |  0.6.7  |  2019/04/26  |  Add `.reduce` to `objects` to remove useless properties.  |
+|  0.6.12  |  2019/10/01  |  Add `.isEmpty` to `objects` to differentiate between empty and invalid.  |
