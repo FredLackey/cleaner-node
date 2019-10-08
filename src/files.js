@@ -45,6 +45,21 @@ const isFolder = itemPath => {
   return stats && stats.isDirectory();
 }
 
+// ----- FOLDERS
+
+const createPath = value => {
+  if (!isValidString(value)) { return false; }
+  if (isFolder(value)) { return true; }
+  try {
+    fs.mkdirSync(value, {
+      recursive: true
+    })
+  } catch (ex) {
+    console.error(ex);
+  }
+  return isFolder(value);
+}
+
 // ----- CONTENTS
 
 const folderContents = folderPath => {
@@ -201,7 +216,8 @@ module.exports = {
   toPath,
   isFile,
   isFolder,
-
+  createPath,
+  
   fileContents,
   folderContents,
   writeFile,
