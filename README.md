@@ -21,3 +21,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.6.12  |  2019/10/01  |  Add `.isEmpty` to `objects` to differentiate between empty and invalid.  |
 |  0.6.13  |  2019/10/08  |  Add `.createPath` to `files` to create folder path with clean boolean feedback.  |  
 |  0.6.14  |  2019/10/08  |  Extended `.writeFile` in `files` to create folder path (optional).  |
+|  0.7.0  |  2019/10/08  |  Enhanced file locking operations within `files`.  |

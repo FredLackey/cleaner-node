@@ -1,7 +1,7 @@
 const fs    = require('fs');
 const path  = require('path');
 const md5File = require('md5-file');
-const { isValid: isValidString } = require('./strings');
+const { isValid: isValidString, isJSON } = require('./strings');
 
 const LOCK_SUFFIX = '.lock';
 
@@ -186,30 +186,53 @@ const folderStructure = (folderPath, calculateChecksums = true) => {
 
 // --- LOCKING ---
 
+const getLockPath = filePath => {
+  if (isFile(filePath)) { return undefined; }
+  return filePath + LOCK_SUFFIX;
+}
 const isLocked = filePath => {
   if (!isValidString(filePath)) { return false; }
-  return (isFile(filePath) && isFile(filePath + LOCK_SUFFIX));
+  return (isFile(filePath) && isFile(getLockPath(filePath)));
 }
-const lock = filePath => {
-  if (!isValidString(filePath)) { return false; }
-  if (!isFile(filePath)) { return false; }
-  if (isFile(filePath + LOCK_SUFFIX)) { return true; }
-  writeFile(filePath + LOCK_SUFFIX, (new Date()).toISOString());
-  return isLocked(filePath);
-}
-const unlock = filePath => {
-  if (!isValidString(filePath)) { return false; }
-  if (!isFile(filePath + LOCK_SUFFIX)) { return true; }
-  deleteFile(filePath + LOCK_SUFFIX);
+const forceUnlock = filePath => {
+  if (!isLocked(filePath)) { return true; }
+  deleteFile(getLockPath(filePath));
   return !isLocked(filePath);
 }
-const cleanLock = filePath => {
-  if (!isValidString(filePath)) { return; }
-  const info = toPath(filePath);
-  if (!info) { return; }
-  if (isFile(filePath + LOCK_SUFFIX) && !isFile(filePath)) {
-    deleteFile(filePath + LOCK_SUFFIX);
+const getLockOwner = filePath => {
+  if (!isLocked(filePath)) { return undefined; }
+  const contents = fileContents(getLockPath(filePath));
+  if (!isJSON(contents)) { return undefined; }
+  return JSON.parse(contents).owner;
+}
+const verifyLockOwner = (filePath, ownerSignature) => {
+  if (!isValidString(ownerSignature)) { return false; }
+  const currentOwner = getLockOwner(filePath);
+  return isValidString(currentOwner) && currentOwner.trim().toLowerCase() === ownerSignature.trim().toLowerCase();
+}
+const unlock = (filePath, ownerSignature) => {
+  if (!isLocked(filePath)) { return true; }
+  if (!verifyLockOwner(filePath, ownerSignature)) { return false; }
+  deleteFile(getLockPath(filePath));
+  return !isLocked(filePath);
+}
+const lock = (filePath, ownerSignature) => {
+  if (!isValidString(filePath)) { return false; }
+  if (!isValidString(ownerSignature)) { return false; }
+  if (isLocked(filePath)) {
+    return verifyLockOwner(filePath, ownerSignature);
   }
+  if (!isFile(filePath)) { return false; }
+  const newFile = writeFile({
+    filePath: getLockPath(filePath),
+    contents: JSON.stringify({
+      date  : (new Date()).toUTCString(),
+      owner : ownerSignature
+    }),
+    createPath: true, 
+    overwrite : false
+  })
+  return newFile && isLocked(filePath) && verifyLockOwner(filePath, ownerSignature);
 }
 
 module.exports = {
@@ -228,8 +251,11 @@ module.exports = {
   walk,
   folderStructure,
 
+  getLockPath,
+  getLockOwner,
   isLocked,
+  forceUnlock,
+  verifyLockOwner,
   lock,
-  unlock,
-  cleanLock
+  unlock
 };
