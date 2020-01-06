@@ -18,8 +18,10 @@ const has = (value, target, isCaseSensitive = false) => {
 };
 
 const isValid = (value, isEmptyOkay = false) => {
-  return (typeof value === 'string' &&
-    (isEmptyOkay || value.trim().length > 0));
+  if (typeof value !== 'string') {
+    return false;
+  }
+  return (isEmptyOkay || value.trim().length > 0);
 }
 
 const isValidLength = (value, min = 0, max = 0, trim = false) => {
@@ -38,7 +40,7 @@ const clean = (value, valid = ALPHANUMERIC, invalid = '', isCaseSensitive = fals
 }
 
 const isValidChars = (value, valid = ALPHANUMERIC, invalid = '', isCaseSensitive = false) => {
-  return (value === clean(value, valid, invalid, isCaseSensitive));
+  return isValid(value, false) && (value === clean(value, valid, invalid, isCaseSensitive));
 }
 
 const cleanDigits = value => (clean(value, DIGITS));
