@@ -1,7 +1,7 @@
 const { isValid: isValidString } = require('./strings');
 const { count } = require('./arrays');
 
-const isValid = value => (typeof value === 'object' && !(value instanceof Array));
+const isValid = value => (typeof value === 'object' && value !== null && !(value instanceof Array));
 const isEmpty = value => {
   if (!isValid(value)) { return false; }
   return Object.keys(value).filter(key => {

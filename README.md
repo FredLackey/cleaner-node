@@ -23,3 +23,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.6.14  |  2019/10/08  |  Extended `.writeFile` in `files` to create folder path (optional).  |
 |  0.7.0  |  2019/10/08  |  Enhanced file locking operations within `files`.  |
 |  0.7.1  |  2020/01/06  |  Fix to `strings.isValidChars`.  |
+|  0.7.2  |  2020/01/06  |  Fix to `objects.isValid`.  |
