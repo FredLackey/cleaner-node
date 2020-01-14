@@ -8,12 +8,12 @@ const toUrl = (value, baseUrl) => {
   } catch (ex) {
     return undefined;
   }
-}
+};
 
 const isUrl = value => {
   const url = toUrl(value);
   return (url && strings.isValid(url.protocol));
-}
+};
 
 module.exports = {
   toUrl,

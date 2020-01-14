@@ -9,7 +9,7 @@ const decode = (token, secret, ignoreExpiration = true) => {
   } catch (er) {
     return undefined;
   }
-}
+};
 
 const sign = (payload, certOrSecret, options) => {
   return jwt.sign(payload, certOrSecret, options);
@@ -17,18 +17,18 @@ const sign = (payload, certOrSecret, options) => {
 
 const toPayload = token => {
   return jwt.decode(token);
-}
+};
 
 const toId = value => {
   if (typeof value === 'undefined') { return undefined; }
   if (!isNaN(value)) { return Number(value); }
   if (strings.isValid(value)) { return value; }
   return undefined;
-}
+};
 const toDate = value => {
   if (isNaN(value)) { return undefined; }
   return dates.fromUnix(value);
-}
+};
 
 const toDetails = payloadOrToken => {
   const payload = (typeof payloadOrToken === 'string')
@@ -42,7 +42,7 @@ const toDetails = payloadOrToken => {
     created    : toDate(payload.iat),
     expiry     : toDate(payload.exp)
   };
-}
+};
 
 const isValidPayload = value => {
   return (
@@ -54,7 +54,7 @@ const isValidPayload = value => {
     (typeof value.iat !== 'undefined' && !isNaN(value.iat)) &&
     (typeof value.exp !== 'undefined' && !isNaN(value.exp))
   );
-}
+};
 
 const toToken = (userId, accountId, sessionId, createdDate, expiryDate, secret) => {
   if (typeof secret === 'undefined' && typeof accountId !== 'undefined') {
@@ -71,7 +71,7 @@ const toToken = (userId, accountId, sessionId, createdDate, expiryDate, secret) 
     exp : dates.toUnix(expiryDate)
   };
   return jwt.sign(payload, secret);
-}
+};
 
 module.exports = {
   decode,

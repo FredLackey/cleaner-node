@@ -24,3 +24,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.7.0  |  2019/10/08  |  Enhanced file locking operations within `files`.  |
 |  0.7.1  |  2020/01/06  |  Fix to `strings.isValidChars`.  |
 |  0.7.2  |  2020/01/06  |  Fix to `objects.isValid`.  |
+|  0.7.3  |  2020/01/14  |  Add `objects.likeKeys` and `likeKey` to find keys of an object where case or format is unknown.  |  

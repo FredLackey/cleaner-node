@@ -8,7 +8,7 @@ const { ALPHA, DIGITS, ALPHANUMERIC, BRACKETS } = require('./constants').strings
 
 const isPossible = value => {
   return ['string', 'number', 'boolean', 'undefined'].indexOf(typeof value) >= 0;
-}
+};
 
 const has = (value, target, isCaseSensitive = false) => {
   if (typeof value !== 'string') { return false; }
@@ -22,7 +22,7 @@ const isValid = (value, isEmptyOkay = false) => {
     return false;
   }
   return (isEmptyOkay || value.trim().length > 0);
-}
+};
 
 const isValidLength = (value, min = 0, max = 0, trim = false) => {
   if (!isValid(value)) { return false; }
@@ -30,18 +30,18 @@ const isValidLength = (value, min = 0, max = 0, trim = false) => {
   if (min > 0 && length < min) { return false; }
   if (max > 0 && length > max) { return false; }
   return true;
-}
+};
 
 const clean = (value, valid = ALPHANUMERIC, invalid = '', isCaseSensitive = false) => {
   if (!isValid(value, true)) { return undefined; }
   return value.split('').filter(ch => ((!valid || has(valid, ch, isCaseSensitive)) &&
     (!invalid || !has(invalid, ch, isCaseSensitive))
   )).join('');
-}
+};
 
 const isValidChars = (value, valid = ALPHANUMERIC, invalid = '', isCaseSensitive = false) => {
   return isValid(value, false) && (value === clean(value, valid, invalid, isCaseSensitive));
-}
+};
 
 const cleanDigits = value => (clean(value, DIGITS));
 const cleanAlphanumeric = value => (clean(value, ALPHA + ALPHANUMERIC));
@@ -53,7 +53,7 @@ const cleanVersion = value => {
   } catch (ex) {
     return undefined;
   }
-}
+};
 
 const isUpperCase = value => (isValid(value) && (value === value.toUpperCase()));
 const isLowerCase = value => (isValid(value) && (value === value.toLowerCase()));
@@ -61,23 +61,23 @@ const isLowerCase = value => (isValid(value) && (value === value.toLowerCase()))
 const toCamelCase = valueOrValues => {
   const results = [].concat(valueOrValues).filter(isValid).map(value => (cc(value)));
   return returnValue(valueOrValues, results);
-}
+};
 const toPascalCase = valueOrValues => {
   const results = [].concat(valueOrValues).filter(isValid).map(value => (cc(value, { pascalCase: true })));
   return returnValue(valueOrValues, results);
-}
+};
 const toLowerCase = valueOrValues => {
   const results = [].concat(valueOrValues).filter(isValid).map(value => (value.toLowerCase()));
   return returnValue(valueOrValues, results);
-}
+};
 const toUpperCase = valueOrValues => {
   const results = [].concat(valueOrValues).filter(isValid).map(value => (value.toUpperCase()));
   return returnValue(valueOrValues, results);
-}
+};
 
 const ifValid = (value, defaultValue) => {
   return isValid(value) ? value : defaultValue;
-}
+};
 
 const isAlpha = value => (isValidChars(value, ALPHA, undefined, false));
 const isDigits = value => (isValidChars(value, DIGITS, undefined, false));
@@ -93,7 +93,7 @@ const undouble = value => {
     }
   });
   return result;
-}
+};
 
 const unique = (values, isCaseSensitive = false, trim = true) => {
   const result = [];
@@ -106,7 +106,7 @@ const unique = (values, isCaseSensitive = false, trim = true) => {
     }
   });
   return result;
-}
+};
 const longest = values => {
   let length = 0;
   values = [].concat(values).filter(isValid);
@@ -114,7 +114,7 @@ const longest = values => {
     if (x.trim().length > length) { length = x.trim(); }
   });
   return values.filter(x => (x.length === length));
-}
+};
 
 const trim = (valueOrValues, toUndefined = false) => {
   const values = [].concat(valueOrValues);
@@ -128,18 +128,18 @@ const trim = (valueOrValues, toUndefined = false) => {
     }
   }
   return returnValue(valueOrValues, values);
-}
+};
 
 const trimToUndefined = valueOrValues => {
   return trim(valueOrValues, true);
-}
+};
 
 const isPrefix = (prefix, values) => {
   if (!isValid(prefix, true)) { return false; }
   values = [].concat(values).filter(x => (isValid(x, true)));
   if (values.length === 0) { return false; }
   return (values.length === values.filter(x => (x.indexOf(prefix) === 0)).length);
-}
+};
 const findPrefix = values => {
   values = [].concat(values).filter(isValid);
   const item = first(longest(values));
@@ -156,7 +156,7 @@ const findPrefix = values => {
   });
 
   return isValid(prefix, false) ? prefix : undefined;
-}
+};
 
 // -----
 
@@ -167,7 +167,7 @@ const startsWith = (value, prefix, isCaseSensitive = true) => {
     return (value.indexOf(prefix) === 0);
   }
   return (value.toLowerCase().indexOf(prefix.toLowerCase()) === 0);
-}
+};
 const removePrefix = (value, prefix, isCaseSensitive = true) => {
   if (!isValid(value, true) || !isValid(prefix, true)) { return value; }
   while (startsWith(value, prefix, isCaseSensitive)) {
@@ -178,7 +178,7 @@ const removePrefix = (value, prefix, isCaseSensitive = true) => {
     }
   }
   return value;
-}
+};
 
 const endsWith = (value, prefix, isCaseSensitive = true) => {
   if (!isValid(value, true) || !isValid(prefix, true)) { return false; }
@@ -187,7 +187,7 @@ const endsWith = (value, prefix, isCaseSensitive = true) => {
     return value.endsWith(prefix);
   }
   return (value.toLowerCase().endsWith(prefix.toLowerCase()));
-}
+};
 const removeSuffix = (value, suffix, isCaseSensitive = true) => {
   if (!isValid(value, true) || !isValid(suffix, true)) { return value; }
   while (endsWith(value, suffix, isCaseSensitive)) {
@@ -198,7 +198,7 @@ const removeSuffix = (value, suffix, isCaseSensitive = true) => {
     }
   }
   return value;
-}
+};
 
 const padLeft = (value, length = 2, character = '0') => {
   if (!isPossible(value)) { return value; }
@@ -207,12 +207,12 @@ const padLeft = (value, length = 2, character = '0') => {
     padding += character;
   }
   return `${padding}${String(value)}`;
-}
+};
 
 const getByteCount = (value, trimFirst) => {
   if (typeof value !== 'string') { return null; }
-  return Buffer.byteLength((trimFirst ? value.trim() : value), 'utf8')
-}
+  return Buffer.byteLength((trimFirst ? value.trim() : value), 'utf8');
+};
 
 const isSemver = value => {
   // const clean = (value, valid = ALPHANUMERIC, invalid = '', isCaseSensitive = false) => {
@@ -221,19 +221,19 @@ const isSemver = value => {
   const parts = test.split('.');
   if (parts.length !== 3) { return false; }
   return isDigits(parts[0]) && isDigits(parts[1]) && isDigits(parts[2]);
-}
+};
 
 // ----- BRACKETS
 const getBracket = value => {
   if (!isValid(value)) { return false; }
   return BRACKETS.find(b => {
-    return value.startsWith(b.open) && value.endsWith(b.close)
+    return value.startsWith(b.open) && value.endsWith(b.close);
   });
-}
+};
 const isBracketted = value => {
   const bracket = getBracket(value);
   return (bracket && isValid(value));
-}
+};
 const trimBrackets = value => {
   while (isBracketted(value)) {
     const bracket = getBracket(value);
@@ -244,7 +244,7 @@ const trimBrackets = value => {
     value = value.substr(0, value.length - bracket.close.length);
   }
   return value;
-}
+};
 
 const isJSON = value => {
   if (!isValid(value)) { return false; }
@@ -257,11 +257,11 @@ const isJSON = value => {
   } catch (ex) {
     return false;
   }
-}
+};
 const getSize = (value, encoding = 'utf8') => {
   if (!isValid(value, true)) { return -1; }
-  return Buffer.byteLength(value, encoding)
-}
+  return Buffer.byteLength(value, encoding);
+};
 
 module.exports = {
   isHtml: isHTML,

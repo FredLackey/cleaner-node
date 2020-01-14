@@ -9,7 +9,7 @@ const findMany = (model, query) => {
       .catch(error => {
         reject(error);
       });
-  })
+  });
 };
 const findManySync = async (model, query, suppressError) => {
   let items = null;
@@ -28,7 +28,7 @@ const findManySync = async (model, query, suppressError) => {
     }
     throw error;
   }
-}
+};
 const findOne = (model, query) => {
   return new Promise((resolve, reject) => {
     model.findOne(query)
@@ -38,7 +38,7 @@ const findOne = (model, query) => {
       .catch(error => {
         reject(error);
       });
-  })
+  });
 };
 const findOneSync = async (model, query, suppressError) => {
   let item = null;
@@ -57,7 +57,7 @@ const findOneSync = async (model, query, suppressError) => {
     }
     throw error;
   }
-}
+};
 const bulkCreate = (model, detailsArray) => {
   return new Promise((resolve, reject) => {
     model.bulkCreate(detailsArray, { returning: true })
@@ -68,7 +68,7 @@ const bulkCreate = (model, detailsArray) => {
         reject(error);
       });
   });
-}
+};
 const bulkCreateSync = async (model, detailsArray, suppressError) => {
   let items = null;
   try {
@@ -86,7 +86,7 @@ const bulkCreateSync = async (model, detailsArray, suppressError) => {
     }
     throw error;
   }
-}
+};
 const create = (model, details) => {
   return new Promise((resolve, reject) => {
     model.create(details, { returning: true })
@@ -96,8 +96,8 @@ const create = (model, details) => {
     .catch(error => {
       reject(error);
     });
-  })
-}
+  });
+};
 const createSync = async (model, details, suppressError) => {
   let item = null;
   try {
@@ -115,7 +115,7 @@ const createSync = async (model, details, suppressError) => {
     }
     throw error;
   }
-}
+};
 
 const update = (model, criteria, changes) => {
   return new Promise((resolve, reject) => {
@@ -126,8 +126,8 @@ const update = (model, criteria, changes) => {
     .catch(error => {
       reject(error);
     });
-  })
-}
+  });
+};
 const updateSync = async (model, criteria, changes, suppressError) => {
   let result = null;
   try {
@@ -145,7 +145,7 @@ const updateSync = async (model, criteria, changes, suppressError) => {
     }
     throw error;
   }
-}
+};
 
 module.exports = {
   findMany,

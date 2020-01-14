@@ -4,14 +4,14 @@ const { DIGITS } = constants.strings;
 
 const isNumber = (value) => {
   return !isNaN(parseFloat(value)) && isFinite(value);
-}
+};
 
 const sortAscending = (a, b) => {
   return (a - b);
-}
+};
 const sortDescending = (a, b) => {
   return (b - a);
-}
+};
 
 const toDigits = value => {
   if (typeof value === 'number') {
@@ -21,7 +21,7 @@ const toDigits = value => {
     return value.split('').filter(x => DIGITS.indexOf(x) >= 0);
   }
   return null;
-}
+};
 
 const unique = values => {
   const results = [];
@@ -29,29 +29,29 @@ const unique = values => {
     if (results.indexOf(Number(x)) < 0) {
       results.push(Number(x));
     }
-  })
+  });
   return results;
-}
+};
 
 const ascending = values => {
   values = [].concat(values).filter(x => (!isNaN(x))).map(x => (Number(x)));
   values.sort(sortAscending);
   return values;
-}
+};
 const descending = values => {
   values = [].concat(values).filter(x => (!isNaN(x))).map(x => (Number(x)));
   values.sort(sortDescending);
   return values;
-}
+};
 
 const max = values => {
   values = descending(values);
   return (values.length > 0) ? values[0] : undefined;
-}
+};
 const min = values => {
   values = ascending(values);
   return (values.length > 0) ? values[0] : undefined;
-}
+};
 
 
 module.exports = {
@@ -64,4 +64,4 @@ module.exports = {
   sortDescending,
   max,
   min
-}
+};

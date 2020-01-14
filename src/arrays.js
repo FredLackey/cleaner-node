@@ -4,7 +4,7 @@ const count = (value) => {
   return (typeof value === 'object' && value instanceof Array)
     ? value.length
     : -1;
-}
+};
 const isValid = (value, isEmptyOkay = false) => {
   return (
     (typeof value === 'object') &&
@@ -12,7 +12,7 @@ const isValid = (value, isEmptyOkay = false) => {
     (value instanceof Array) &&
     (isEmptyOkay || value.length > 0)
   );
-}
+};
 
 const first = value => (count(value) > 0 ? value[0] : undefined);
 const last = value => (count(value) > 0 ? value[value.length - 1] : undefined);
@@ -32,7 +32,7 @@ const join = (values, delimeter = ',') => {
     }
   }
   return values.filter(x => (x.length > 0)).join(delimeter);
-}
+};
 
 module.exports = {
   count,
@@ -45,4 +45,4 @@ module.exports = {
   toArray,
   init: toArray,
   parse: toArray
-}
+};

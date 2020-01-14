@@ -33,7 +33,6 @@ module.exports = {
     "no-underscore-dangle": "off",
     "no-unused-vars": "off",
     "object-curly-newline": "off",
-    "semi": "off",
     "no-multiple-empty-lines": "off",
     "linebreak-style": "off",
     "operator-linebreak": "off",

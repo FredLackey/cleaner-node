@@ -1,4 +1,4 @@
-const { isValid: isValidString } = require('./strings');
+const { isValid: isValidString, toCamelCase } = require('./strings');
 const { count } = require('./arrays');
 
 const isValid = value => (typeof value === 'object' && value !== null && !(value instanceof Array));
@@ -9,7 +9,7 @@ const isEmpty = value => {
       key.trim().length > 0 &&
       (typeof value[key] !== 'undefined'));
   }).length === 0;
-}
+};
 
 const getId = item => {
   if (typeof item === 'object' && item instanceof Array) { return undefined; }
@@ -17,7 +17,7 @@ const getId = item => {
   const typeName = (typeof item);
   if (['number', 'string'].indexOf(typeName) >= 0) { return item; }
   return undefined;
-}
+};
 const getIds = items => {
   items = [].concat(items);
   const result = [];
@@ -28,13 +28,13 @@ const getIds = items => {
     }
   });
   return result;
-}
+};
 
 const getUid = item => {
   if (item && item.uid) { return item.uid; }
   if (typeof item === 'string') { return item; }
   return undefined;
-}
+};
 const getUids = items => {
   items = [].concat(items);
   const result = [];
@@ -45,12 +45,28 @@ const getUids = items => {
     }
   });
   return result;
-}
+};
+
+const likeKeys = (item, targetName, extended = false) => {
+  if (!isValid(item)) { return undefined; }
+  if (!isValidString(targetName)) { return undefined; }
+  return Object.keys(item)
+    .filter(isValidString)
+    .filter(key => (extended 
+        ? ((key.trim().toLowerCase() === targetName.trim().toLowerCase()) || 
+          (toCamelCase(key.trim.toLowerCase()) === toCamelCase(targetName.trim().toLowerCase())))
+        : (key.trim().toLowerCase() === targetName.trim().toLowerCase())
+    ));
+};
+const likeKey = (item, targetName, extended = false) => {
+  const keys = [].concat(likeKeys(item, targetName, extended)).filter(isValidString);
+  return keys.length === 1 ? keys[0] : undefined;
+};
 
 const findOne = (obj, key, cache) => {
 
   if (typeof obj !== 'object') { return undefined; }
-  if (typeof key !== 'string' || key.trim().length === 0) { return undefined; }
+  if (!isValidString(key)) { return undefined; }
 
   cache = cache || { items: [] };
   if (cache.items.indexOf(obj) >= 0) { return undefined; }
@@ -76,7 +92,7 @@ const findOne = (obj, key, cache) => {
   }
 
   return undefined;
-}
+};
 
 const isDefined = value => (typeof value !== 'undefined');
 const notDefined = value => (typeof value === 'undefined');
@@ -94,13 +110,13 @@ const toDto = value => {
   toRemove.forEach(key => {
     Reflect.deleteProperty(copy, key);
   });
-  return copy
-}
+  return copy;
+};
 const toDtos = values => {
   return [].concat(values)
     .filter(v => (typeof v !== 'undefined'))
     .map(v => (toDto(v)));
-}
+};
 
 // --- getValue ... from singular property
 
@@ -124,7 +140,7 @@ function getValues(items, keyOrPath, allowDuplicates) {
     if (allowDuplicates || !result.includes(value)) {
       result.push(value);
     }
-  })
+  });
   return result;
 }
 
@@ -166,7 +182,7 @@ const reduce = obj => {
     .forEach(key => {
       obj[key].forEach(o => {
         reduce(o);
-      })
+      });
     });   
 
   // Empty Strings
@@ -192,10 +208,14 @@ const reduce = obj => {
     .forEach(key => {
       Reflect.deleteProperty(obj, key);
     });
-}
+};
 
 module.exports = {
   findOne,
+
+  likeKey,
+  likeKeys,
+
   getId,
   getIds,
   getUid,

@@ -3,16 +3,16 @@ const { padLeft } = require('./strings');
 
 const isValid = value => {
   return (typeof value === 'object' && value instanceof Date && !isNaN(value.getTime()));
-}
+};
 const ifValid = (value, defaultValue) => {
   return isValid(value) ? value : defaultValue;
-}
+};
 
 const parse = value => {
   const date = moment(value);
   if (!date.isValid()) { return undefined; }
   return date.toDate();
-}
+};
 
 const add = (value, quantity, duration) => {
   return moment(value).add(quantity, duration).toDate();
@@ -36,7 +36,7 @@ const min = values => {
     if (result > v) { result = v; }
   });
   return result;
-}
+};
 
 const max = values => {
   values = [].concat(values).filter(x => (x && x instanceof Date));
@@ -46,7 +46,7 @@ const max = values => {
     if (result < v) { result = v; }
   });
   return result;
-}
+};
 
 const toBlockDate = (value, deliminator = '', includeMilliseconds = true) => {
   const date = ifValid(value, (new Date()));
@@ -60,12 +60,12 @@ const toBlockDate = (value, deliminator = '', includeMilliseconds = true) => {
   ].join(deliminator);
   if (!includeMilliseconds) { return dateString; }
   return [dateString, padLeft(date.getMilliseconds(), 3)].join('.');
-}
+};
 
 const isUnix = value => {
   if (isNaN(value)) { return false; }
   return isValid(fromUnixDateStamp(value));
-}
+};
 
 module.exports = {
   isValid,

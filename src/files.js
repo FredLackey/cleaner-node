@@ -14,7 +14,7 @@ const checksum = filePath => {
   } catch (ex) {
     return undefined;
   }
-}
+};
 const getStats = itemPath => {
   try {
     const stats = fs.lstatSync(itemPath);
@@ -22,7 +22,7 @@ const getStats = itemPath => {
   } catch (ex) {
     return undefined;
   }
-}
+};
 const toPath = value => {
   if (!isValidString(value)) { return undefined; }
   try {
@@ -33,17 +33,17 @@ const toPath = value => {
   } catch (ex) {
     return undefined;
   }
-}
+};
 const isFile = itemPath => {
   if (!isValidString(itemPath)) { return false; }
   const stats = getStats(itemPath);
   return stats && stats.isFile();
-}
+};
 const isFolder = itemPath => {
   if (!isValidString(itemPath)) { return false; }
   const stats = getStats(itemPath);
   return stats && stats.isDirectory();
-}
+};
 
 // ----- FOLDERS
 
@@ -53,12 +53,12 @@ const createPath = value => {
   try {
     fs.mkdirSync(value, {
       recursive: true
-    })
+    });
   } catch (ex) {
     console.error(ex);
   }
   return isFolder(value);
-}
+};
 
 // ----- CONTENTS
 
@@ -70,7 +70,7 @@ const folderContents = folderPath => {
   } catch (ex) {
     return undefined;
   }
-}
+};
 const fileContents = (filePath, options) => {
   if (!isValidString(filePath)) { return undefined; }
   try {
@@ -79,7 +79,7 @@ const fileContents = (filePath, options) => {
   } catch (ex) {
     return undefined;
   }
-}
+};
 const writeFile = (filePath, contents = '', createPath = true, overwrite = false) => {
   if (isFile(filePath) && !overwrite) { return false; }
   if (!isFolder(path.dirname(filePath) && 
@@ -90,7 +90,7 @@ const writeFile = (filePath, contents = '', createPath = true, overwrite = false
     return false;
   }
   return isFile(filePath);
-}
+};
 const deleteFile = filePath => {
   if (!isFile(filePath)) { return true; }
   try {
@@ -99,7 +99,7 @@ const deleteFile = filePath => {
     return !isFile(filePath);
   }
   return !isFile(filePath);
-}
+};
 
 // ----- WALKING
 
@@ -150,7 +150,7 @@ const folderStructureChildren = (parent, childPaths, calculateChecksums) => {
       }
     }
   });
-}
+};
 const folderStructure = (folderPath, calculateChecksums = true) => {
   const stats = getStats(folderPath);
   if (!stats || !stats.isDirectory()) { return undefined; }
@@ -165,7 +165,7 @@ const folderStructure = (folderPath, calculateChecksums = true) => {
   const children = folderContents(folderPath);
   folderStructureChildren(root, children, calculateChecksums);
   return root;
-}
+};
 
 /**
 ┌─────────────────────┬────────────┐
@@ -189,33 +189,33 @@ const folderStructure = (folderPath, calculateChecksums = true) => {
 const getLockPath = filePath => {
   if (isFile(filePath)) { return undefined; }
   return filePath + LOCK_SUFFIX;
-}
+};
 const isLocked = filePath => {
   if (!isValidString(filePath)) { return false; }
   return (isFile(filePath) && isFile(getLockPath(filePath)));
-}
+};
 const forceUnlock = filePath => {
   if (!isLocked(filePath)) { return true; }
   deleteFile(getLockPath(filePath));
   return !isLocked(filePath);
-}
+};
 const getLockOwner = filePath => {
   if (!isLocked(filePath)) { return undefined; }
   const contents = fileContents(getLockPath(filePath));
   if (!isJSON(contents)) { return undefined; }
   return JSON.parse(contents).owner;
-}
+};
 const verifyLockOwner = (filePath, ownerSignature) => {
   if (!isValidString(ownerSignature)) { return false; }
   const currentOwner = getLockOwner(filePath);
   return isValidString(currentOwner) && currentOwner.trim().toLowerCase() === ownerSignature.trim().toLowerCase();
-}
+};
 const unlock = (filePath, ownerSignature) => {
   if (!isLocked(filePath)) { return true; }
   if (!verifyLockOwner(filePath, ownerSignature)) { return false; }
   deleteFile(getLockPath(filePath));
   return !isLocked(filePath);
-}
+};
 const lock = (filePath, ownerSignature) => {
   if (!isValidString(filePath)) { return false; }
   if (!isValidString(ownerSignature)) { return false; }
@@ -231,9 +231,9 @@ const lock = (filePath, ownerSignature) => {
     }),
     createPath: true, 
     overwrite : false
-  })
+  });
   return newFile && isLocked(filePath) && verifyLockOwner(filePath, ownerSignature);
-}
+};
 
 module.exports = {
   checksum,

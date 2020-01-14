@@ -1,11 +1,11 @@
 {
   "name": "cleaner-node",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint --fix src/**/*.js"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix src/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",

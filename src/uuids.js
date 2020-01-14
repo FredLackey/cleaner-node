@@ -23,15 +23,15 @@ const isGuidFormat = value => {
     if (!strings.isAlphanumeric(parts[i], false)) { return false; }
   }
   return true;
-}
+};
 
 const isUidFormat = value => {
   return strings.isValidChars(value, ALPHANUMERIC, false) && value.length === EMPTY_UID.length;
-}
+};
 
 const isValidFormat = value => {
   return isGuidFormat(value) || isUidFormat(value);
-}
+};
 
 const toGuidFormat = value => {
   if (isGuidFormat(value)) { return value; }
@@ -43,13 +43,13 @@ const toGuidFormat = value => {
     value.substr(16, 4),
     value.substr(20)
   ].join('-').toLowerCase();
-}
+};
 
 const toUidFormat = value => {
   if (isUidFormat(value)) { return value; }
   if (!isGuidFormat(value)) { return undefined; }
   return value.split('-').join('').toUpperCase();
-}
+};
 
 const version = value => {
   value = toGuidFormat(value);
@@ -59,25 +59,25 @@ const version = value => {
   } catch (ex) {
     return undefined;
   }
-}
+};
 
 const isValidGuid = (value, isEmptyOkay = false) => {
   if (isEmptyOkay && value === EMPTY_GUID) { return true; }
   if (!isEmptyOkay && value === EMPTY_GUID) { return false; }
   if (!isGuidFormat(value)) { return false; }
   return validate(value);
-}
+};
 
 const isValidUid = (value, isEmptyOkay = false) => {
   if (isEmptyOkay && value === EMPTY_UID) { return true; }
   if (!isEmptyOkay && value === EMPTY_UID) { return false; }
   if (!isUidFormat(value)) { return false; }
   return isValidGuid(toGuidFormat(value), isEmptyOkay);
-}
+};
 
 const isValid = (value, isEmptyOkay = false) => {
   return isValidGuid(value, isEmptyOkay) || isValidUid(value, isEmptyOkay);
-}
+};
 
 const initGuid = version => {
   if (typeof version === 'undefined') { version = 4; }
@@ -97,13 +97,13 @@ const initGuid = version => {
     default:
       return undefined;
   }
-}
+};
 
 const initUid = version => {
   const guid = initGuid(version);
   if (typeof guid !== 'string') { return undefined; }
   return guid.split('-').join('').toUpperCase();
-}
+};
 
 const unique = values => {
   const result = [];
@@ -115,7 +115,7 @@ const unique = values => {
     }
   });
   return result;
-}
+};
 
 module.exports = {
   EMPTY_GUID,

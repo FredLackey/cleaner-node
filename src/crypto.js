@@ -16,22 +16,22 @@ const createCode = (totalLength, chars = constants.strings.ALPHANUMERIC) => {
   }
 
   return value.join('');
-}
+};
 
 const createSalt = (byteCount, slatOption = SALT_OPTION) => {
   return crypto.randomBytes(byteCount).toString(slatOption);
-}
+};
 
 const hash = (value, salt, hmacOption = HMAC_OPTION, digestOption = DIGEST_OPTION) => {
   const hmac = crypto.createHmac(hmacOption, salt);
   return hmac.update(value).digest(digestOption);
-}
+};
 
 const hashString = value => {
   if (!strings.isValid(value, true)) { return undefined; }
   value = strings.trimToUndefined(value);
   return crypto.createHash('md5').update(value).digest('hex');
-}
+};
 
 module.exports = {
   createCode,
