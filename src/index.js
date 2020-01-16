@@ -6,6 +6,7 @@ const constants     = require('./constants');
 const crypto        = require('./crypto');
 const dates         = require('./dates');
 const email         = require('./email');
+const env           = require('./env');
 const errors        = require('./errors');
 const express       = require('./express');
 const files         = require('./files');
@@ -27,6 +28,7 @@ module.exports = {
   crypto,
   dates,
   email,
+  env,
   errors,
   express,
   files,
