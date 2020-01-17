@@ -11,6 +11,7 @@ module.exports = {
   "rules": {
     "arrow-parens": "off",
     "arrow-body-style": "off",
+    "brace-style": "off",
     "camelcase": "off",
     "comma-dangle": "off",
     "consistent-return": "off",

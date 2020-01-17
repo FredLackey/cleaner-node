@@ -27,3 +27,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.7.3  |  2020/01/14  |  Add `objects.likeKeys` and `likeKey` to find keys of an object where case or format is unknown.  |  
 |  0.8.0  |  2020/01/16  |  Add `env` methods.  |  
 |  0.8.1  |  2020/01/17  |  Add `.print` and `.toPrintable` to `object`.  |  
+|  0.8.2  |  2020/01/17  |  Add `MODULE_PATH`, `PACKAGE`, and `PACKAGES` to `env`.  |  
