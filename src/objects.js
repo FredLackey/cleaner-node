@@ -210,6 +210,56 @@ const reduce = obj => {
     });
 };
 
+const _toPrintable = (value, valuePath, results) => {
+  if (typeof value === 'undefined') {
+    results.items.push({
+      key: valuePath,
+      value: undefined
+    });
+  } else if (value === null) {
+    results.items.push({
+      key: valuePath,
+      value: null
+    });
+  } else if (['string', 'number', 'boolean'].includes(typeof value)) {
+    results.items.push({
+      key: valuePath,
+      value
+    });
+  } else if (typeof value === 'object' && value instanceof Array) {
+    for (let i = 0; i < value.length; i += 1) {
+      if (results.cache.includes(value[i])) { return; }
+      results.cache.push(value[i]);
+      _toPrintable(value[i], `${valuePath}[${i}]`, results);
+    }
+  } else if (isValid(value)) {
+    if (results.cache.includes(value)) { return; }
+    results.cache.push(value);
+    const keys = Object.keys(value).filter(isValidString);
+    keys.sort();
+    keys.forEach(key => {
+      const keyPath = [].concat(valuePath.split('.'), key).filter(isValidString).join('.');
+      _toPrintable(value[key], keyPath, results);
+    });
+  }
+};
+
+const toPrintable = (value) => {
+  if (!isValid(value)) { throw new Error('Value passed to toPrintable is not an object.'); }
+  const results = {
+    items: [],
+    cache: []
+  };
+  _toPrintable(value, '', results);
+  return results.items;
+};
+const print = value => {
+  if (!isValid(value)) { throw new Error('Value passed to print is not an object.'); }
+  toPrintable(value).filter(isValid).forEach(item => {
+    console.log(`${item.key} : ${item.value}`);
+  });
+};
+
 module.exports = {
   findOne,
 
@@ -229,5 +279,7 @@ module.exports = {
   setValue,
   toDto,
   toDtos,
+  toPrintable,
+  print,
   reduce
 };
