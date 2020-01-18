@@ -1,6 +1,7 @@
 const cc = require('camelcase');
 const semver = require('semver');
 const isHTML = require('is-html');
+const htmlToText = require('html-to-text');
 
 const { first } = require('./arrays');
 const { returnValue } = require('./common');
@@ -263,8 +264,13 @@ const getSize = (value, encoding = 'utf8') => {
   return Buffer.byteLength(value, encoding);
 };
 
+const fromHtml = value => {
+  return isHTML(value) ? htmlToText.fromString(value) : undefined;
+};
+
 module.exports = {
   isHtml: isHTML,
+  fromHtml,
 
   has,
   clean,
