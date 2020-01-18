@@ -6,7 +6,6 @@ const NODE_ENV = `${process.env.NODE_ENV}`.trim() || 'development';
 const NODE_DEBUG = `${process.env.NODE_DEBUG}`.trim() || 'false';
 const IS_DEV = NODE_ENV.trim().toUpperCase().startsWith('DEV');
 const IS_DEBUG = NODE_DEBUG.trim().toUpperCase() === 'TRUE';
-
 const MODULE_PATH = process.mainModule.filename;
 
 const _packages = (curPath, results) => {
@@ -45,7 +44,11 @@ const getPackage = () => {
   const result = PACKAGES.find(p => (p.length === length));
   return result;
 };
-const PACKAGE = getPackage();
+const PACKAGE_PATH = getPackage();
+const PACKAGE = require(PACKAGE_PATH);
+const MODULE_NAME = PACKAGE.name;
+const MODULE_DESC = PACKAGE.description || PACKAGE.name;
+const MODULE_VER  = PACKAGE.version;
 
 module.exports = {
   NODE_ENV,
@@ -54,6 +57,13 @@ module.exports = {
   IS_DEBUG,
   
   MODULE_PATH,
+  PACKAGE_PATH,
   PACKAGES,
-  PACKAGE
+  PACKAGE,
+
+  MODULE_NAME,
+  MODULE_DESC,
+  MODULE_DESCRIPTION : MODULE_DESC,
+  MODULE_VER,
+  MODULE_VERSION : MODULE_VER
 };
