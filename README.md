@@ -22,8 +22,6 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.6.13  |  2019/10/08  |  Add `.createPath` to `files` to create folder path with clean boolean feedback.  |  
 |  0.6.14  |  2019/10/08  |  Extended `.writeFile` in `files` to create folder path (optional).  |
 |  0.7.0  |  2019/10/08  |  Enhanced file locking operations within `files`.  |
-|  0.7.1  |  2020/01/06  |  Fix to `strings.isValidChars`.  |
-|  0.7.2  |  2020/01/06  |  Fix to `objects.isValid`.  |
 |  0.7.3  |  2020/01/14  |  Add `objects.likeKeys` and `likeKey` to find keys of an object where case or format is unknown.  |  
 |  0.8.0  |  2020/01/16  |  Add `env` methods.  |  
 |  0.8.1  |  2020/01/17  |  Add `.print` and `.toPrintable` to `object`.  |  

@@ -1,9 +1,10 @@
 const path = require('path');
 const { isFile, isFolder } = require('./files');
+const { ifValid: ifValidString } = require('./strings');
 const { min } = require('./numbers');
 
-const NODE_ENV = `${process.env.NODE_ENV}`.trim() || 'development';
-const NODE_DEBUG = `${process.env.NODE_DEBUG}`.trim() || 'false';
+const NODE_ENV = ifValidString(process.env.NODE_ENV, 'development');
+const NODE_DEBUG = ifValidString(process.env.NODE_DEBUG, 'false');
 const IS_DEV = NODE_ENV.trim().toUpperCase().startsWith('DEV');
 const IS_DEBUG = NODE_DEBUG.trim().toUpperCase() === 'TRUE';
 const MODULE_PATH = process.mainModule.filename;
