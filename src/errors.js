@@ -1,34 +1,23 @@
-const util = require('util');
-const constants = require('./constants');
 const { isNumber } = require('./numbers');
 const { isValid: isValidString } = require('./strings');
+const { INTERNAL_SERVER_ERROR } = require('./constants').http.status.codes;
 
-function ApiError(message, status, context) {
-  this.name = 'ApiError';
+class ApiError extends Error {
+  constructor (message, status = INTERNAL_SERVER_ERROR) {
+    super(message);
+    this.name   = this.constructor.name;
+    this.status = status;
 
-  this.message = message || '';
-  this.status = status || constants.http.status.codes.INTERNAL_SERVER_ERROR;
-
-  Error.captureStackTrace(this, (context || ApiError));
-}
-util.inherits(ApiError, Error);
-
-function init(errorOrMessage, status) {
-  errorOrMessage = errorOrMessage || '';
-
-  if (isValidString(status) && isNumber(errorOrMessage)) {
-    const num = Number(errorOrMessage);
-    const msg = status;
-    status = num;
-    errorOrMessage = msg;
+    Error.captureStackTrace(this, this.constructor);
   }
-
-  const message = (typeof errorOrMessage === 'string')
-    ? errorOrMessage
-    : errorOrMessage.message;
-
-  return (new ApiError(message, status, init));
 }
+
+const init = (status, message) => {
+  const reverse   = (isValidString(status) && isNumber(message));
+  const _message  = reverse ? status : message;
+  const _status   = reverse ? message : status;
+  return new ApiError(_message, _status);
+};
 
 module.exports = {
   ApiError,

@@ -29,3 +29,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.8.3  |  2020/01/18  |  Add `MODULE_NAME`, `MODULE_DESC`, and `MODULE_VER` to `env`.  |  
 |  0.8.5  |  2020/01/18  |  Add `fromHtml` to `strings`.  |  
 |  0.8.6  |  2020/01/18  |  Improve `booleans` logic.  |  
+|  0.8.7  |  2020/01/21  |  Improve `errors` logic.  |  
