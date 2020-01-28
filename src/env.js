@@ -1,17 +1,30 @@
 const path = require('path');
+const { isValid: isValidBool, ifValid: ifValidBool } = require('./booleans');
 const { isFile, isFolder } = require('./files');
+const { isNumber } = require('./numbers');
 const { ifValid: ifValidString, isValid: isValidString } = require('./strings');
 const { min } = require('./numbers');
 
-const NODE_ENV = ifValidString(process.env.NODE_ENV, ''); 
-const IS_NODE_ENV_SET = isValidString(NODE_ENV);
-const IS_DEV = NODE_ENV.trim().toUpperCase().startsWith('DEV');
-const IS_PROD = NODE_ENV.trim().toUpperCase().startsWith('PROD');
+const me = { };
 
-const NODE_DEBUG = ifValidString(process.env.NODE_DEBUG, '');
-const IS_DEBUG = NODE_DEBUG.trim().toUpperCase() === 'TRUE';
+Object.keys((process.env || {}))
+  .filter(key => (isValidString(key) && key === key.toUpperCase()))
+  .filter(key => (isValidString(process.env[key]) || isNumber(process.env[key]) || isValidBool(process.env[key])))
+  .forEach(key => {
+    if (isValidBool(process.env[key])) { me[key] = ifValidBool(process.env[key]); }
+    else if (isNumber(process.env[key])) { me[key] = Number(process.env[key]); }
+    else { me[key] = process.env[key].trim(); }
+  });
 
-const MODULE_PATH = ifValidString((process.mainModule || {}).filename, '');
+me.NODE_ENV = isValidString(process.env.NODE_ENV, '');
+me.IS_NODE_ENV_SET = isValidString(me.NODE_ENV);
+me.IS_DEV = me.NODE_ENV.trim().toUpperCase().startsWith('DEV');
+me.IS_PROD = me.NODE_ENV.trim().toUpperCase().startsWith('PROD');
+
+me.NODE_DEBUG = ifValidString(process.env.NODE_DEBUG, '');
+me.IS_DEBUG = me.NODE_DEBUG.trim().toUpperCase() === 'TRUE';
+
+me.MODULE_PATH = ifValidString((process.mainModule || {}).filename, '');
 
 const _packages = (curPath, results) => {
 
@@ -33,45 +46,31 @@ const _packages = (curPath, results) => {
     const nextDir = path.dirname(curDir);
     _packages(nextDir, results);
   } catch (ex) {
-    if (IS_DEV || IS_DEBUG) { console.error(ex); }
+    if (me.IS_DEV || me.IS_DEBUG) { console.error(ex); }
   }
 
 };
 const getPackages = () => {
   const results = { items: [] };
-  _packages(MODULE_PATH, results);
+  _packages(me.MODULE_PATH, results);
   return results.items;
 };
-const PACKAGES = getPackages().filter(x => (x && x.trim().length > 0));
+
+me.PACKAGES = getPackages().filter(x => (x && x.trim().length > 0));
 
 const getPackage = () => {
-  if (PACKAGES.length === 0) { return undefined; }
-  const length = min(PACKAGES.map(x => (x.length)));
-  const result = PACKAGES.find(p => (p.length === length));
+  if (me.PACKAGES.length === 0) { return undefined; }
+  const length = min(me.PACKAGES.map(x => (x.length)));
+  const result = me.PACKAGES.find(p => (p.length === length));
   return result;
 };
-const PACKAGE_PATH = getPackage();
-const PACKAGE = isFile(PACKAGE_PATH) ? require(PACKAGE_PATH) : undefined;
-const MODULE_NAME = (PACKAGE || {}).name;
-const MODULE_DESC = (PACKAGE || {}).description || (PACKAGE || {}).name;
-const MODULE_VER  = (PACKAGE || {}).version;
+me.PACKAGE_PATH = getPackage();
+me.PACKAGE = isFile(me.PACKAGE_PATH) ? require(me.PACKAGE_PATH) : undefined;
+me.MODULE_NAME = (me.PACKAGE || {}).name;
+me.MODULE_DESC = (me.PACKAGE || {}).description || (me.PACKAGE || {}).name;
+me.MODULE_VER  = (me.PACKAGE || {}).version;
 
-module.exports = {
-  NODE_ENV,
-  NODE_DEBUG,
-  IS_DEV,
-  IS_DEBUG,
-  IS_PROD,
-  IS_NODE_ENV_SET,
-  
-  MODULE_PATH,
-  PACKAGE_PATH,
-  PACKAGES,
-  PACKAGE,
+me.MODULE_DESCRIPTION = me.MODULE_DESC;
+me.MODULE_VERSION = me.MODULE_VER;
 
-  MODULE_NAME,
-  MODULE_DESC,
-  MODULE_DESCRIPTION : MODULE_DESC,
-  MODULE_VER,
-  MODULE_VERSION : MODULE_VER
-};
+module.exports = me;

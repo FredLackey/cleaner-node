@@ -31,3 +31,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.8.6  |  2020/01/18  |  Improve `booleans` logic.  |  
 |  0.8.8  |  2020/01/21  |  Improve `errors` logic.  |  
 |  0.8.9  |  2020/01/27  |  Fix `.env` logic for test cases.  |  
+|  0.8.10  |  2020/01/28  |  Improve `env` logic.  |  
