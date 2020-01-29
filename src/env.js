@@ -16,7 +16,7 @@ Object.keys((process.env || {}))
     else { me[key] = process.env[key].trim(); }
   });
 
-me.NODE_ENV = isValidString(process.env.NODE_ENV, '');
+me.NODE_ENV = ifValidString(process.env.NODE_ENV, '');
 me.IS_NODE_ENV_SET = isValidString(me.NODE_ENV);
 me.IS_DEV = me.NODE_ENV.trim().toUpperCase().startsWith('DEV');
 me.IS_PROD = me.NODE_ENV.trim().toUpperCase().startsWith('PROD');
