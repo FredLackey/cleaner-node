@@ -251,6 +251,7 @@ const isJSON = value => {
   if (!isValid(value)) { return false; }
   if (value.length < 2) { return false; }
   if (!(value.startsWith('"') && value.endsWith('"')) &&
+      !(value.startsWith('[') && value.endsWith(']')) &&
       !(value.startsWith('{') && value.endsWith('}'))) { return false; }
   try {
     const obj = JSON.parse(value);
