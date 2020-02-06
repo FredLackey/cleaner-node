@@ -73,4 +73,18 @@ me.MODULE_VER  = (me.PACKAGE || {}).version;
 me.MODULE_DESCRIPTION = me.MODULE_DESC;
 me.MODULE_VERSION = me.MODULE_VER;
 
+me.apply = (defaults, includeProcess = true) => {
+  if (typeof defaults !== 'object' || defaults instanceof Array) { return; }
+  Object.keys(defaults)
+    .filter(key => (isValidString(key) && key === key.toUpperCase()))
+    .filter(key => (isValidString(defaults[key]) || isNumber(defaults[key]) || isValidBool(defaults[key])))
+    .filter(key => (typeof me[key] === 'undefined' && typeof process.env[key] === 'undefined'))
+    .forEach(key => {
+      if (isValidBool(defaults[key])) { me[key] = ifValidBool(defaults[key]); }
+      else if (isNumber(defaults[key])) { me[key] = Number(defaults[key]); }
+      else { me[key] = defaults[key].trim(); }
+      if (includeProcess) { process.env[key] = me[key]; }
+    });
+};
+
 module.exports = me;
