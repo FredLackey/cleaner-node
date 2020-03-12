@@ -260,6 +260,27 @@ const print = value => {
   });
 };
 
+// ----- remove
+const remove = (itemOrItems, keyOrKeys, isCaseSensitive = false, recursive = true) => {
+
+  const keys = [].concat(keyOrKeys).filter(isValidString).map(key => (isCaseSensitive ? key.trim() : key.toLowerCase().trim()));
+
+  [].concat(itemOrItems).filter(isValid).forEach(item => {
+    Object.keys(item).filter(key => (isValidString(key) && keys.includes((isCaseSensitive ? key : key.toLowerCase())))).forEach(key => {
+      Reflect.deleteProperty(item, key);
+    });
+  });
+
+  if (!recursive) { return; }
+
+  [].concat(itemOrItems).filter(item => (
+    (isValid(item) && Object.keys(item).filter(isValidString).length > 0) ||
+    (typeof item === 'object' && item instanceof Array)
+  )).forEach(item => {
+    remove(item, keyOrKeys, isCaseSensitive, recursive);
+  });
+};
+
 module.exports = {
   findOne,
 
@@ -281,5 +302,7 @@ module.exports = {
   toDtos,
   toPrintable,
   print,
-  reduce
+  reduce,
+
+  remove
 };
