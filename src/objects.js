@@ -261,24 +261,38 @@ const print = value => {
 };
 
 // ----- remove
-const remove = (itemOrItems, keyOrKeys, isCaseSensitive = false, recursive = true) => {
+const _remove = (itemOrItems, keyOrKeys, isCaseSensitive, recursive, cache) => {
 
-  const keys = [].concat(keyOrKeys).filter(x => (x && x.trim().length > 0)).map(key => (isCaseSensitive ? key.trim() : key.toLowerCase().trim()));
+  const keys = [].concat(keyOrKeys).filter(isValidString).map(key => (isCaseSensitive ? key.trim() : key.toLowerCase().trim()));
 
-  [].concat(itemOrItems).filter(isValid).forEach(item => {
-    Object.keys(item).filter(key => (key && key.trim().length > 0 && keys.includes((isCaseSensitive ? key : key.toLowerCase())))).forEach(key => {
-      Reflect.deleteProperty(item, key);
-    });
+  const items = [].concat(itemOrItems).filter(isValid).filter(item => (item && !cache.items.includes(item)));
+  items.forEach(item => {
+    cache.items.push(item);
+    Object.keys(item)
+      .filter(isValidString)
+      .filter(key => (keys.includes(isCaseSensitive ? key : key.toLowerCase())))
+      .forEach(key => {
+        Reflect.deleteProperty(item, key);
+      });
   });
 
   if (!recursive) { return; }
 
-  [].concat(itemOrItems).filter(item => (
-    (isValid(item) && Object.keys(item).filter(x => (x && x.trim().length > 0)).length > 0) ||
-    (typeof item === 'object' && item instanceof Array)
-  )).forEach(item => {
-    remove(item, keyOrKeys, isCaseSensitive, recursive);
+  items.forEach(item => {
+
+    Object.keys(item)
+      .filter(isValidString)
+      .filter(key => (typeof item[key] === 'object'))
+      .forEach(key => {
+        _remove(item[key], keyOrKeys, isCaseSensitive, recursive, cache);
+      });
+
   });
+  
+};
+const remove = (itemOrItems, keyOrKeys, isCaseSensitive = false, recursive = true) => {
+  const cache = { items: [] };
+  _remove(itemOrItems, keyOrKeys, isCaseSensitive, recursive, cache);
 };
 
 module.exports = {
