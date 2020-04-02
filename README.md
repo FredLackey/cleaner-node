@@ -34,3 +34,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.8.10  |  2020/01/28  |  Improve `env` logic.  |  
 |  0.8.13  |  2020/02/06  |  All `apply` to `env`.  |  
 |  0.8.14  |  2020/03/11  |  All `remove` to `objects`.  |  
+|  0.8.17  |  2020/04/02  |  Extend `errors.init` to separate error details from the message.  |  
