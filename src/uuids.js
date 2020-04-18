@@ -1,7 +1,7 @@
-const uuidV1 = require('uuid/v1');
-const uuidV3 = require('uuid/v3');
-const uuidV4 = require('uuid/v4');
-const uuidV5 = require('uuid/v5');
+const { v1: uuidV1 } = require('uuid');
+const { v3: uuidV3 } = require('uuid');
+const { v4: uuidV4 } = require('uuid');
+const { v5: uuidV5 } = require('uuid');
 
 const validate = require('uuid-validate');
 const strings = require('./strings');
