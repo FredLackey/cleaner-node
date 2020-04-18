@@ -208,7 +208,8 @@ const _prune = obj => {
     });
 };
 const prune = obj => {
-  const result = _prune({ obj });
+  const result = { obj }
+  _prune(result);
   return result.obj;
 };
 
