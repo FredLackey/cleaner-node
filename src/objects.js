@@ -163,30 +163,34 @@ function setValue(obj = {}, path, value) {
   return obj;
 }
 
-// ----- reduce
-const reduce = obj => {
-  if (typeof obj !== 'object') { return; }
-  if (obj instanceof Array) { return; }
-  if (obj instanceof Date) { return; }
+// ----- prune
+const _prune = obj => {
+  if (typeof obj !== 'object' || obj === null) { return; }
+  if (obj instanceof Array) { 
+    for (let i = 0; i < obj.length; i += 1) {
+      _prune(obj[i]);
+    }
+    return;
+  }
+  if (!isValid(obj)) { return; }
+
+  // Child Objects
+  Object.keys(obj).filter(isValidString)
+    .filter(key => (typeof obj[key] === 'object'))
+    .forEach(key => {
+      _prune(obj[key]);
+    });
 
   const keys = Object.keys(obj).filter(isValidString);
 
-  // Child Objects
-  keys.filter(key => (typeof obj[key] === 'object' && !(obj[key] instanceof Array) && !(obj[key] instanceof Date)))
-    .forEach(key => {
-      reduce(obj[key]);
-    });    
-
-  // Child Arrays
-  keys.filter(key => (typeof obj[key] === 'object' && (obj[key] instanceof Array)))
-    .forEach(key => {
-      obj[key].forEach(o => {
-        reduce(o);
-      });
-    });   
-
   // Empty Strings
-  keys.filter(key => (typeof obj[key] === 'string' && obj[key].trim().length === 0))
+  keys.filter(key => (typeof (obj[key]) === 'string' && obj[key].trim().length === 0))
+    .forEach(key => {
+      Reflect.deleteProperty(obj, key);
+    });
+
+  // Empty arrays
+  keys.filter(key => (typeof obj[key] === 'object' && (obj[key] instanceof Array) && obj[key].length === 0))
     .forEach(key => {
       Reflect.deleteProperty(obj, key);
     });
@@ -197,17 +201,15 @@ const reduce = obj => {
       Reflect.deleteProperty(obj, key);
     });
 
-  // Empty Arrays
-  keys.filter(key => (typeof obj[key] === 'object' && (obj[key] instanceof Array) && obj[key].length === 0))
-    .forEach(key => {
-      Reflect.deleteProperty(obj, key);
-    });    
-
   // Empty Objects
-  keys.filter(key => (typeof obj[key] === 'object' && !(obj[key] instanceof Array) && !(obj[key] instanceof Date) && Object.keys(obj[key]).filter(isValidString).length === 0))
+  keys.filter(key => (isValid(obj[key]) && !(obj[key] instanceof Date) && Object.keys(obj[key]).filter(isValidString).length === 0))
     .forEach(key => {
       Reflect.deleteProperty(obj, key);
     });
+};
+const prune = obj => {
+  const result = _prune({ obj });
+  return result.obj;
 };
 
 const _toPrintable = (value, valuePath, results) => {
@@ -316,7 +318,7 @@ module.exports = {
   toDtos,
   toPrintable,
   print,
-  reduce,
+  prune,
 
   remove
 };
