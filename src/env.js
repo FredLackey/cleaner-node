@@ -45,8 +45,8 @@ const _packages = (curPath, results) => {
   try {
     const nextDir = path.dirname(curDir);
     _packages(nextDir, results);
+  // eslint-disable-next-line no-empty
   } catch (ex) {
-    if (me.IS_DEV || me.IS_DEBUG) { console.error(ex); }
   }
 
 };
