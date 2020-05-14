@@ -3,7 +3,6 @@ const semver = require('semver');
 const isHTML = require('is-html');
 const htmlToText = require('html-to-text');
 
-const { first } = require('./arrays');
 const { returnValue } = require('./common');
 const { ALPHA, DIGITS, ALPHANUMERIC, BRACKETS } = require('./constants').strings;
 
@@ -143,7 +142,8 @@ const isPrefix = (prefix, values) => {
 };
 const findPrefix = values => {
   values = [].concat(values).filter(isValid);
-  const item = first(longest(values));
+  const items = longest(values);
+  const item  = (items && items instanceof Array && items.length > 0) ? items[0] : undefined;
   if (!item) { return undefined; }
 
   let test = '';
