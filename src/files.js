@@ -1,6 +1,7 @@
 const fs    = require('fs');
 const path  = require('path');
-const md5File = require('md5-file');
+const readline  = require('readline');
+const md5File   = require('md5-file');
 const { isValid: isValidString, isJSON } = require('./strings');
 
 const LOCK_SUFFIX = '.lock';
@@ -235,6 +236,25 @@ const lock = (filePath, ownerSignature) => {
   return newFile && isLocked(filePath) && verifyLockOwner(filePath, ownerSignature);
 };
 
+// --- READ LINES
+
+const readLines = async (filePath) => {
+  const lines = [];
+  try {
+    const stream  = fs.createReadStream(filePath);
+    const file    = readline.createInterface({
+      input: stream,
+      crlfDelay: Infinity
+    });
+    for await (const line of file) {
+      lines.push(line);
+    }
+    return lines;
+  } catch (ex) {
+    return undefined;
+  }
+};
+
 module.exports = {
   checksum,
   getStats,
@@ -257,5 +277,7 @@ module.exports = {
   forceUnlock,
   verifyLockOwner,
   lock,
-  unlock
+  unlock,
+  
+  readLines
 };
