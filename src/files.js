@@ -81,10 +81,11 @@ const fileContents = (filePath, options) => {
     return undefined;
   }
 };
-const writeFile = (filePath, contents = '', createPath = true, overwrite = false) => {
+const writeFile = (filePath, contents = '', overwrite = false) => {
   if (isFile(filePath) && !overwrite) { return false; }
-  if (!isFolder(path.dirname(filePath) && 
-    (!createPath || !createPath(path.dirname(filePath))))) { return false; }
+  if (!isFolder(path.dirname(filePath)) && !createPath(path.dirname(filePath))) {
+    return false;
+  }
   try {
     fs.writeFileSync(filePath, String(contents));
   } catch (ex) {
