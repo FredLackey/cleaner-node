@@ -37,3 +37,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.8.17  |  2020/04/02  |  Extend `errors.init` to separate error details from the message.  |  
 |  0.8.18  |  2020/04/18  |  Rename `objects.reduce` to `objects.prune`.  |  
 |  0.9.0  |  2020/05/14  |  Add `files.readLines`.  |  
+|  0.9.1  |  2020/05/19  |  Add `arrays.toResult`.  |  

@@ -34,6 +34,16 @@ const join = (values, delimeter = ',') => {
   return values.filter(x => (x.length > 0)).join(delimeter);
 };
 
+const toResult = (itemOrItems, resultOrResults) => {
+  if (isValid(itemOrItems, true) === isValid(resultOrResults, true)) { 
+    return resultOrResults; 
+  }
+  if (isValid(itemOrItems, true)) {
+    return toArray(resultOrResults);
+  }
+  return first(resultOrResults);
+};
+
 module.exports = {
   count,
   isValid,
@@ -44,5 +54,7 @@ module.exports = {
 
   toArray,
   init: toArray,
-  parse: toArray
+  parse: toArray,
+  
+  toResult
 };
