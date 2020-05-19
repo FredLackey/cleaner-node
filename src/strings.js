@@ -269,6 +269,13 @@ const fromHtml = value => {
   return isHTML(value) ? htmlToText.fromString(value) : undefined;
 };
 
+const toSnakeCase = value => {
+  if (!isValid(value)) { return value; }
+  return value.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .map(x => x.toLowerCase())
+    .join('_');
+};   
+
 module.exports = {
   isHtml: isHTML,
   fromHtml,
@@ -314,5 +321,6 @@ module.exports = {
   trimBrackets,
 
   isJSON,
-  getSize
+  getSize,
+  toSnakeCase
 };
