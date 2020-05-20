@@ -268,6 +268,26 @@ const moveFile = (sourcePath, targetPath, overwrite = true) => {
   return deleteFile(sourcePath);
 }
 
+
+const isEmptyFolder = folderPath => {
+  if (!isFolder(folderPath)) { return false; }
+  const children = folderContents(folderPath);
+  return (typeof children === 'object' && children instanceof Array && children.length === 0);
+};
+const pruneFolders = folderPath => {
+  if (!isFolder(folderPath)) {
+    return;
+  }
+  let children = folderContents(folderPath);
+  [].concat(children).forEach(child => {
+    pruneFolders(child);
+  });
+  children = folderContents(folderPath);
+  if (typeof children === 'object' && (children instanceof Array) && children.length === 0) {
+    fs.rmdirSync(folderPath);
+  }  
+};
+
 module.exports = {
   checksum,
   getStats,
@@ -295,5 +315,7 @@ module.exports = {
   readLines,
   
   copyFile,
-  moveFile
+  moveFile,
+  isEmptyFolder,
+  pruneFolders
 };

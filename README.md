@@ -40,3 +40,4 @@ Helpful utilities and scripts to make Node projects more legible and easier for 
 |  0.9.2  |  2020/05/19  |  Add `arrays.toResult`.  |  
 |  0.9.3  |  2020/05/19  |  Add `strings.toSnakeCase`.  |  
 |  0.9.4  |  2020/05/20  |  Add `files.copyFile` && `files.moveFile`.  |  
+|  0.9.5  |  2020/05/20  |  Add `files.isEmptyFolder` && `files.pruneFolders`.  |  
