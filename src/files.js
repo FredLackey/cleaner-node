@@ -265,8 +265,7 @@ const copyFile = (sourcePath, targetPath, overwrite = true) => {
 }
 const moveFile = (sourcePath, targetPath, overwrite = true) => {
   if (!copyFile(sourcePath, targetPath, overwrite)) { return false; }
-  fs.deleteFile(sourcePath);
-  return !isFile(targetPath);
+  return deleteFile(sourcePath);
 }
 
 module.exports = {
