@@ -274,18 +274,26 @@ const isEmptyFolder = folderPath => {
   const children = folderContents(folderPath);
   return (typeof children === 'object' && children instanceof Array && children.length === 0);
 };
-const pruneFolders = folderPath => {
-  if (!isFolder(folderPath)) {
+const pruneFolders = folder => {
+  
+  if (!fs.statSync(folder).isDirectory()) { 
+    return; 
+  }
+  
+  let files = fs.readdirSync(folder);
+  
+  if (files.length > 0) {
+    files.forEach(file => {
+      pruneFolders(path.join(folder, file));
+    });
+
+    files = fs.readdirSync(folder);
+  }
+
+  if (files.length == 0) {
+    fs.rmdirSync(folder);
     return;
   }
-  let children = folderContents(folderPath);
-  [].concat(children).forEach(child => {
-    pruneFolders(child);
-  });
-  children = folderContents(folderPath);
-  if (typeof children === 'object' && (children instanceof Array) && children.length === 0) {
-    fs.rmdirSync(folderPath);
-  }  
 };
 
 module.exports = {
