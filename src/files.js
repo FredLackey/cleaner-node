@@ -256,6 +256,19 @@ const readLines = async (filePath) => {
   }
 };
 
+const copyFile = (sourcePath, targetPath, overwrite = true) => {
+  if (!isFile(sourcePath)) { return false; }
+  if (!overwrite && isFile(targetPath)) { return false; }
+  if (!createPath(path.dirname(targetPath))) { return false; }
+  fs.copyFileSync(sourcePath, targetPath);
+  return isFile(targetPath);
+}
+const moveFile = (sourcePath, targetPath, overwrite = true) => {
+  if (!copyFile(sourcePath, targetPath, overwrite)) { return false; }
+  fs.deleteFile(sourcePath);
+  return !isFile(targetPath);
+}
+
 module.exports = {
   checksum,
   getStats,
@@ -280,5 +293,8 @@ module.exports = {
   lock,
   unlock,
   
-  readLines
+  readLines,
+  
+  copyFile,
+  moveFile
 };
