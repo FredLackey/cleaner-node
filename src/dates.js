@@ -8,8 +8,8 @@ const ifValid = (value, defaultValue) => {
   return isValid(value) ? value : defaultValue;
 };
 
-const parse = value => {
-  const date = moment(value);
+const parse = (value, format) => {
+  const date = format ? moment(value, format) : moment(value);
   if (!date.isValid()) { return undefined; }
   return date.toDate();
 };
