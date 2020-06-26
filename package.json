@@ -1,6 +1,6 @@
 {
   "name": "cleaner-node",
-  "version": "0.9.10",
+  "version": "0.10.0",
   "description": "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main": "index.js",
   "scripts": {
@@ -40,22 +40,22 @@
     "jsonwebtoken": "^8.5.1",
     "know-your-http-well": "^0.5.0",
     "md5-file": "^5.0.0",
-    "moment": "^2.26.0",
+    "moment": "^2.27.0",
     "semver": "^7.3.2",
-    "uuid": "^8.1.0",
+    "uuid": "^8.2.0",
     "uuid-validate": "0.0.3"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint": "^7.3.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^2.5.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
     "eslint-plugin-standard": "^4.0.1"
   }
 }

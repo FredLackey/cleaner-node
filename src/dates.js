@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { padLeft } = require('./strings');
+const { padLeft, isValid: isValidString, removeSuffix } = require('./strings');
 
 const isValid = value => {
   return (typeof value === 'object' && value instanceof Date && !isNaN(value.getTime()));
@@ -67,6 +67,41 @@ const isUnix = value => {
   return isValid(fromUnixDateStamp(value));
 };
 
+const isIsoDate = value => {
+  
+  if (!isValidString(value)) { return false; }
+  
+  let date = null;
+  try {
+    date = new Date(Date.parse(value));
+  } catch (ex) {
+    return false;
+  }
+
+  // Tweak the MS value without allowing the Date class to fix it.
+  const isoString     = date.toISOString();
+  const isoStringA    = isoString.substr(0, isoString.lastIndexOf('.') + 1);
+  const isoStringB    = removeSuffix(isoString.substr(isoStringA.length), 'Z');
+  const valueStringA  = value.substr(0, value.lastIndexOf('.') + 1);
+  const valueStringB  = removeSuffix(value.substr(valueStringA.length), 'Z');
+  const padLength     = isoStringB.length > valueStringB.length ? isoStringB.length : valueStringB.length;
+  const isoMs         = isoStringB.padEnd(padLength, '0');
+  const valMs         = valueStringB.padEnd(padLength, '0');
+  if (isoStringA !== valueStringA) {
+    return false;
+  }
+  if (isoMs !== valMs) {
+    return false;
+  }
+
+  // Double-check with a UTC comparison
+  const utcString = date.toUTCString();
+  return utcString === (new Date(value)).toUTCString();
+};
+const fromIsoDate = value => {
+  return isIsoDate(value) ? new Date(Date.parse(value)) : undefined;
+};
+
 module.exports = {
   isValid,
   ifValid,
@@ -81,5 +116,10 @@ module.exports = {
   fromUnixDateStamp,
   fromUnix: fromUnixDateStamp,
   min,
-  max
+  max,
+  
+  isIsoDate,
+  isIso: isIsoDate,
+  fromIsoDate,
+  fromIso : fromIsoDate
 };
