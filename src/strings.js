@@ -276,6 +276,14 @@ const toSnakeCase = value => {
     .join('_');
 };   
 
+const isEnumName = (value) => {
+  if (!isValidChars(value, `${ALPHA}_`)) { return false; }
+  if (value !== value.toUpperCase()) { return false; }
+  const parts = value.split('_');
+  const valid = parts.filter(isAlpha);
+  return (parts.length > 0 && parts.length === valid.length);
+};
+
 module.exports = {
   isHtml: isHTML,
   fromHtml,
@@ -322,5 +330,8 @@ module.exports = {
 
   isJSON,
   getSize,
-  toSnakeCase
+  toSnakeCase,
+
+  isEnum: isEnumName,
+  isEnumName
 };

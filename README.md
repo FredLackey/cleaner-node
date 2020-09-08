@@ -49,3 +49,4 @@ There are several libraries out there designed to make life easier for developer
 |  0.9.4  |  2020/05/20  |  Add `files.copyFile` && `files.moveFile`.  |  
 |  0.9.6  |  2020/05/20  |  Add `files.isEmptyFolder` && `files.pruneFolders`.  |  
 |  0.10.0  |  2020/06/26  |  Add `dates.isIso` && `dates.fromIso`.  |  
+|  0.11.0  |  2020/09/08  |  Add `strings.isEnum` && `strings.isEnumName`.  |  
