@@ -22,6 +22,22 @@ const getPackagePath = () => {
   me.PACKAGE_PATH = findPackage(getModulePath());
   return me.PACKAGE_PATH;
 };
+const getPackage = () => {
+  if (isValidObject(me.PACKAGE)) {
+    return me.PACKAGE;
+  }
+  if (!isValidString(me.PACKAGE_PATH)) {
+    return {};
+  }
+  try {
+    me.PACKAGE = require(getPackagePath())
+  } catch (ex) {
+    if (process.env.IS_DEV || process.env.IS_DEBUG) {
+      console.error(ex)
+    }
+  }
+  return me.PACKAGE;
+}
 
 const setDefaults = () => {
 
@@ -30,7 +46,7 @@ const setDefaults = () => {
   process.env.IS_PROD = (process.env.NODE_ENV || '').trim().toUpperCase().startsWith('PROD');
 
   process.env.IS_NODE_DEBUG_SET = isValidString(process.env.NODE_DEBUG);
-  process.env.IS_DEBUG = (process.env.NODE_ENV || '').trim().toUpperCase() === 'TRUE';
+  process.env.IS_DEBUG = (process.env.NODE_DEBUG || '').trim().toUpperCase() === 'TRUE';
  
   process.env.IS_MODULE_PATH_SET = isValidString(getModulePath());
   process.env.IS_PACKAGE_PATH_SET = isValidString(getPackagePath());
