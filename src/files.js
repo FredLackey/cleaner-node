@@ -3,6 +3,7 @@ const path  = require('path');
 const readline  = require('readline');
 const md5File   = require('md5-file');
 const { isValid: isValidString, isJSON } = require('./strings');
+const { min } = require('./numbers');
 
 const LOCK_SUFFIX = '.lock';
 
@@ -247,9 +248,11 @@ const readLines = async (filePath) => {
       input: stream,
       crlfDelay: Infinity
     });
+    /* eslint-disable no-restricted-syntax */
     for await (const line of file) {
       lines.push(line);
     }
+    /* eslint-enable no-restricted-syntax */
     return lines;
   } catch (ex) {
     return undefined;
@@ -262,11 +265,11 @@ const copyFile = (sourcePath, targetPath, overwrite = true) => {
   if (!createPath(path.dirname(targetPath))) { return false; }
   fs.copyFileSync(sourcePath, targetPath);
   return isFile(targetPath);
-}
+};
 const moveFile = (sourcePath, targetPath, overwrite = true) => {
   if (!copyFile(sourcePath, targetPath, overwrite)) { return false; }
   return deleteFile(sourcePath);
-}
+};
 
 
 const isEmptyFolder = folderPath => {
@@ -290,11 +293,44 @@ const pruneFolders = folder => {
     files = fs.readdirSync(folder);
   }
 
-  if (files.length == 0) {
+  if (files.length === 0) {
     fs.rmdirSync(folder);
-    return;
   }
 };
+
+// ----- PACKAGE.JSON
+const findPackage = (startingPath) => {
+
+  let lastFolder = null;
+  let curFile = null;
+
+  if (isFile(startingPath) && path.basename(startingPath) === 'package.json') {
+    curFile = startingPath;
+  }
+
+  let curFolder = isFile(startingPath)
+    ? path.dirname(startingPath)
+    : isFolder(startingPath)
+      ? startingPath
+      : null;
+
+  while (curFolder && curFolder !== lastFolder) {
+    if (isFile(path.join(curFolder, 'package.json'))) {
+      curFile = path.join(curFolder, 'package.json');
+    }
+    lastFolder = curFolder;
+    try {
+      curFolder = path.basename(lastFolder);
+    } catch (ex) {
+      if ((process.env.NODE_ENV || '').trim().toLowerCase().startsWith('dev')) {
+        console.info(ex);
+      }
+    }
+  }
+  return curFile;
+};
+
+
 
 module.exports = {
   checksum,
@@ -325,5 +361,7 @@ module.exports = {
   copyFile,
   moveFile,
   isEmptyFolder,
-  pruneFolders
+  pruneFolders,
+
+  findPackage
 };

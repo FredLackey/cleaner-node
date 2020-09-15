@@ -1,90 +1,76 @@
 const path = require('path');
+const { isValid: isValidObject, isUndefined } = require('./objects');
 const { isValid: isValidBool, ifValid: ifValidBool } = require('./booleans');
-const { isFile, isFolder } = require('./files');
+const { isFile, isFolder, findPackage } = require('./files');
 const { isNumber } = require('./numbers');
 const { ifValid: ifValidString, isValid: isValidString } = require('./strings');
 const { min } = require('./numbers');
 
 const me = { };
 
-Object.keys((process.env || {}))
-  .filter(key => (isValidString(key) && key === key.toUpperCase()))
-  .filter(key => (isValidString(process.env[key]) || isNumber(process.env[key]) || isValidBool(process.env[key])))
-  .forEach(key => {
-    if (isValidBool(process.env[key])) { me[key] = ifValidBool(process.env[key]); }
-    else if (isNumber(process.env[key])) { me[key] = Number(process.env[key]); }
-    else { me[key] = process.env[key].trim(); }
-  });
+const getModulePath = () => {
+  if (isValidString(me.MODULE_PATH)) {
+    return me.MODULE_PATH;
+  }
+  me.MODULE_PATH = (process.mainModule || {}).filename;
+  return me.MODULE_PATH;
+};
+const getPackagePath = () => {
+  if (isValidString(me.PACKAGE_PATH)) {
+    return me.PACKAGE_PATH;
+  }
+  me.PACKAGE_PATH = findPackage(getModulePath());
+  return me.PACKAGE_PATH;
+};
 
-me.NODE_ENV = ifValidString(process.env.NODE_ENV, '');
-me.IS_NODE_ENV_SET = isValidString(me.NODE_ENV);
-me.IS_DEV = me.NODE_ENV.trim().toUpperCase().startsWith('DEV');
-me.IS_PROD = me.NODE_ENV.trim().toUpperCase().startsWith('PROD');
+const setDefaults = () => {
 
-me.NODE_DEBUG = ifValidString(process.env.NODE_DEBUG, '');
-me.IS_DEBUG = me.NODE_DEBUG.trim().toUpperCase() === 'TRUE';
+  process.env.IS_NODE_ENV_SET = isValidString(process.env.NODE_ENV);
+  process.env.IS_DEV = (process.env.NODE_ENV || '').trim().toUpperCase().startsWith('DEV');
+  process.env.IS_PROD = (process.env.NODE_ENV || '').trim().toUpperCase().startsWith('PROD');
 
-me.MODULE_PATH = ifValidString((process.mainModule || {}).filename, '');
+  process.env.IS_NODE_DEBUG_SET = isValidString(process.env.NODE_DEBUG);
+  process.env.IS_DEBUG = (process.env.NODE_ENV || '').trim().toUpperCase() === 'TRUE';
+ 
+  process.env.IS_MODULE_PATH_SET = isValidString(getModulePath());
+  process.env.IS_PACKAGE_PATH_SET = isValidString(getPackagePath());
+  
+  me.PACKAGE = isFile(getPackagePath()) ? require(getPackagePath()) : undefined;
+  me.MODULE_NAME = (me.PACKAGE || {}).name;
 
-const _packages = (curPath, results) => {
+  me.MODULE_DESC = (me.PACKAGE || {}).description || (me.PACKAGE || {}).name;
+  me.MODULE_DESCRIPTION = me.MODULE_DESC;
 
-  if (!isValidString(curPath)) { return; }
+  me.MODULE_VER  = (me.PACKAGE || {}).version;
+  me.MODULE_VERSION = me.MODULE_VER;
+};
 
-  const curDir = isFolder(curPath)
-    ? curPath
-    : isFile(curPath)
-      ? path.dirname(curPath)
-      : null;
+const applyDefaults = (defaults) => {
 
-  if (!curDir) { return; }
-
-  if (isFile(path.join(curDir, 'package.json'))) {
-    results.items.push(path.join(curDir, 'package.json'));
+  if (!isValidObject(defaults)) {
+    throw new Error('Default values must be an object.'); 
   }
 
-  try {
-    const nextDir = path.dirname(curDir);
-    _packages(nextDir, results);
-  // eslint-disable-next-line no-empty
-  } catch (ex) {
-  }
-
-};
-const getPackages = () => {
-  const results = { items: [] };
-  _packages(me.MODULE_PATH, results);
-  return results.items;
-};
-
-me.PACKAGES = getPackages().filter(x => (x && x.trim().length > 0));
-
-const getPackage = () => {
-  if (me.PACKAGES.length === 0) { return undefined; }
-  const length = min(me.PACKAGES.map(x => (x.length)));
-  const result = me.PACKAGES.find(p => (p.length === length));
-  return result;
-};
-me.PACKAGE_PATH = getPackage();
-me.PACKAGE = isFile(me.PACKAGE_PATH) ? require(me.PACKAGE_PATH) : undefined;
-me.MODULE_NAME = (me.PACKAGE || {}).name;
-me.MODULE_DESC = (me.PACKAGE || {}).description || (me.PACKAGE || {}).name;
-me.MODULE_VER  = (me.PACKAGE || {}).version;
-
-me.MODULE_DESCRIPTION = me.MODULE_DESC;
-me.MODULE_VERSION = me.MODULE_VER;
-
-me.apply = (defaults, includeProcess = true) => {
-  if (typeof defaults !== 'object' || defaults instanceof Array) { return; }
   Object.keys(defaults)
     .filter(key => (isValidString(key) && key === key.toUpperCase()))
     .filter(key => (isValidString(defaults[key]) || isNumber(defaults[key]) || isValidBool(defaults[key])))
-    .filter(key => (typeof me[key] === 'undefined' && typeof process.env[key] === 'undefined'))
+    .filter(key => (isUndefined(me[key]) && isUndefined(process.env[key])))
     .forEach(key => {
-      if (isValidBool(defaults[key])) { me[key] = ifValidBool(defaults[key]); }
-      else if (isNumber(defaults[key])) { me[key] = Number(defaults[key]); }
-      else { me[key] = defaults[key].trim(); }
-      if (includeProcess) { process.env[key] = me[key]; }
+      if (isValidBool(defaults[key])) { 
+        me[key] = ifValidBool(defaults[key]); 
+      }
+      if (isNumber(defaults[key])) { 
+        me[key] = Number(defaults[key]); 
+      }
+      if (isValidString(defaults[key])) {
+        me[key] = defaults[key].trim();
+      }
     });
+
+  setDefaults();
 };
 
-module.exports = me;
+module.exports = {
+  ...me,
+  applyDefaults
+};
