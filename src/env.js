@@ -45,7 +45,7 @@ const setDefaults = () => {
   me.MODULE_VERSION = me.MODULE_VER;
 };
 
-const applyDefaults = (defaults) => {
+me.applyDefaults = defaults => {
 
   if (!isValidObject(defaults)) {
     throw new Error('Default values must be an object.'); 
@@ -70,7 +70,4 @@ const applyDefaults = (defaults) => {
   setDefaults();
 };
 
-module.exports = {
-  ...me,
-  applyDefaults
-};
+module.exports = me;
