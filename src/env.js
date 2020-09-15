@@ -1,5 +1,5 @@
 const path = require('path');
-const { isValid: isValidObject, isUndefined } = require('./objects');
+const { isValid: isValidObject, notDefined } = require('./objects');
 const { isValid: isValidBool, ifValid: ifValidBool } = require('./booleans');
 const { isFile, isFolder, findPackage } = require('./files');
 const { isNumber } = require('./numbers');
@@ -54,7 +54,7 @@ const applyDefaults = (defaults) => {
   Object.keys(defaults)
     .filter(key => (isValidString(key) && key === key.toUpperCase()))
     .filter(key => (isValidString(defaults[key]) || isNumber(defaults[key]) || isValidBool(defaults[key])))
-    .filter(key => (isUndefined(me[key]) && isUndefined(process.env[key])))
+    .filter(key => (notDefined(me[key]) && notDefined(process.env[key])))
     .forEach(key => {
       if (isValidBool(defaults[key])) { 
         me[key] = ifValidBool(defaults[key]); 
