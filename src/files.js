@@ -304,7 +304,7 @@ const findPackage = (startingPath) => {
   let lastFolder = null;
   let curFile = null;
 
-  if (isFile(startingPath) && path.basename(startingPath) === 'package.json') {
+  if (isFile(startingPath) && path.dirname(startingPath) === 'package.json') {
     curFile = startingPath;
   }
 
@@ -320,7 +320,7 @@ const findPackage = (startingPath) => {
     }
     lastFolder = curFolder;
     try {
-      curFolder = path.basename(lastFolder);
+      curFolder = path.dirname(lastFolder);
     } catch (ex) {
       if ((process.env.NODE_ENV || '').trim().toLowerCase().startsWith('dev')) {
         console.info(ex);

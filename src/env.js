@@ -30,14 +30,14 @@ const getPackage = () => {
     return {};
   }
   try {
-    me.PACKAGE = require(getPackagePath())
+    me.PACKAGE = require(getPackagePath());
   } catch (ex) {
     if (process.env.IS_DEV || process.env.IS_DEBUG) {
-      console.error(ex)
+      console.error(ex);
     }
   }
   return me.PACKAGE;
-}
+};
 
 const setDefaults = () => {
 
@@ -51,7 +51,7 @@ const setDefaults = () => {
   process.env.IS_MODULE_PATH_SET = isValidString(getModulePath());
   process.env.IS_PACKAGE_PATH_SET = isValidString(getPackagePath());
   
-  me.PACKAGE = isFile(getPackagePath()) ? require(getPackagePath()) : undefined;
+  me.PACKAGE = getPackage();
   me.MODULE_NAME = (me.PACKAGE || {}).name;
 
   me.MODULE_DESC = (me.PACKAGE || {}).description || (me.PACKAGE || {}).name;
@@ -74,11 +74,9 @@ me.applyDefaults = defaults => {
     .forEach(key => {
       if (isValidBool(defaults[key])) { 
         me[key] = ifValidBool(defaults[key]); 
-      }
-      if (isNumber(defaults[key])) { 
+      } else if (isNumber(defaults[key])) { 
         me[key] = Number(defaults[key]); 
-      }
-      if (isValidString(defaults[key])) {
+      } else if (isValidString(defaults[key])) {
         me[key] = defaults[key].trim();
       }
     });
