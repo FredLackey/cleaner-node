@@ -39,6 +39,21 @@ const getPackage = () => {
   return me.PACKAGE;
 };
 
+const importProcess = () => {
+  Object.keys(process.env)
+  .filter(key => (isValidString(key) && key === key.toUpperCase()))
+  .filter(key => (isValidString(process.env[key]) || isNumber(process.env[key]) || isValidBool(process.env[key])))
+  .forEach(key => {
+    if (isValidBool(process.env[key])) { 
+      me[key] = ifValidBool(process.env[key]); 
+    } else if (isNumber(process.env[key])) { 
+      me[key] = Number(process.env[key]); 
+    } else if (isValidString(process.env[key])) {
+      me[key] = process.env[key].trim();
+    }
+  });
+};
+
 const setDefaults = () => {
 
   me.IS_NODE_ENV_SET = isValidString(me.NODE_ENV);
@@ -61,6 +76,9 @@ const setDefaults = () => {
   me.MODULE_VERSION = me.MODULE_VER;
 };
 
+importProcess();
+setDefaults();
+
 me.applyDefaults = defaults => {
 
   if (!isValidObject(defaults)) {
@@ -70,7 +88,7 @@ me.applyDefaults = defaults => {
   Object.keys(defaults)
     .filter(key => (isValidString(key) && key === key.toUpperCase()))
     .filter(key => (isValidString(defaults[key]) || isNumber(defaults[key]) || isValidBool(defaults[key])))
-    .filter(key => (notDefined(me[key]) && notDefined(process.env[key])))
+    .filter(key => (notDefined(me[key])))
     .forEach(key => {
       if (isValidBool(defaults[key])) { 
         me[key] = ifValidBool(defaults[key]); 
