@@ -51,3 +51,4 @@ There are several libraries out there designed to make life easier for developer
 |  0.10.0  |  2020/06/26  |  Add `dates.isIso` && `dates.fromIso`.  |  
 |  0.11.0  |  2020/09/08  |  Add `strings.isEnum` && `strings.isEnumName`.  |  
 |  0.11.1  |  2020/09/14  |  Add `files.findPackage`.  Improved `env` logic.  |  
+|  0.12.0  |  2021/05/06  |  Add `objects.circular` & `objects.copy`.  |  

@@ -298,6 +298,26 @@ const remove = (itemOrItems, keyOrKeys, isCaseSensitive = false, recursive = tru
   _remove(itemOrItems, keyOrKeys, isCaseSensitive, recursive, cache);
 };
 
+// safe stringify for circular (MDN official answer)
+const getCircularReplacer = () => {
+  const seen = new WeakSet();
+  return (key, value) => {
+    if (typeof value === 'object' && value !== null) {
+      if (seen.has(value)) {
+        return;
+      }
+      seen.add(value);
+    }
+    return value;
+  };
+};
+const circular = (item) => {
+  return JSON.stringify(item, getCircularReplacer());
+};
+const copy = item => {
+  return JSON.parse(circular(item));
+};
+
 module.exports = {
   findOne,
 
@@ -321,5 +341,9 @@ module.exports = {
   print,
   prune,
 
-  remove
+  remove,
+
+  circular,
+  stringify: circular,
+  copy
 };
