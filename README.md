@@ -39,8 +39,8 @@ There are several libraries out there designed to make life easier for developer
 |  0.8.8  |  2020/01/21  |  Improve `errors` logic.  |  
 |  0.8.9  |  2020/01/27  |  Fix `.env` logic for test cases.  |  
 |  0.8.10  |  2020/01/28  |  Improve `env` logic.  |  
-|  0.8.13  |  2020/02/06  |  All `apply` to `env`.  |  
-|  0.8.14  |  2020/03/11  |  All `remove` to `objects`.  |  
+|  0.8.13  |  2020/02/06  |  Add `apply` to `env`.  |  
+|  0.8.14  |  2020/03/11  |  Add `remove` to `objects`.  |  
 |  0.8.17  |  2020/04/02  |  Extend `errors.init` to separate error details from the message.  |  
 |  0.8.18  |  2020/04/18  |  Rename `objects.reduce` to `objects.prune`.  |  
 |  0.9.0  |  2020/05/14  |  Add `files.readLines`.  |  
