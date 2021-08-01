@@ -318,6 +318,17 @@ const copy = item => {
   return JSON.parse(circular(item));
 };
 
+const getObjects = item => {
+  if (!isValid(item)) { return []; }
+  return Object.keys(item).filter(x => (isValid(item[x]))).map(x => (item[x]));
+};
+const getArrays = item => {
+  if (!isValid(item)) { return []; }
+  return Object.keys(item).filter(x => (
+    typeof item === 'object' && item instanceof Array
+  )).map(x => (item[x]));
+};
+
 module.exports = {
   findOne,
 
@@ -345,5 +356,8 @@ module.exports = {
 
   circular,
   stringify: circular,
-  copy
+  copy,
+
+  getObjects,
+  getArrays
 };
