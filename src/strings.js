@@ -133,6 +133,10 @@ const trim = (valueOrValues, toUndefined = false) => {
 const trimToUndefined = valueOrValues => {
   return trim(valueOrValues, true);
 };
+const trimToNull = valueOrValues => {
+  const value = trimToUndefined(valueOrValues);
+  return (typeof value === 'undefined') ? null : value;
+};
 
 const isPrefix = (prefix, values) => {
   if (!isValid(prefix, true)) { return false; }
@@ -333,5 +337,7 @@ module.exports = {
   toSnakeCase,
 
   isEnum: isEnumName,
-  isEnumName
+  isEnumName,
+
+  trimToNull
 };

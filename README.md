@@ -53,3 +53,4 @@ There are several libraries out there designed to make life easier for developer
 |  0.11.1  |  2020/09/14  |  Add `files.findPackage`.  Improved `env` logic.  |  
 |  0.12.0  |  2021/05/06  |  Add `objects.circular` & `objects.copy`.  |  
 |  0.13.0  |  2021/08/01  |  Add `objects.getArrays` & `objects.getObjects`.  |  
+|  0.14.0  |  2021/08/08  |  Add `strings.trimToNull`.  |  
