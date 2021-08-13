@@ -101,13 +101,13 @@ const toDto = value => {
   if (typeof value === 'undefined') { return value; }
   if (value instanceof Array) { return value; }
   const copy = JSON.parse(JSON.stringify(value));
-  const all = Object.keys(copy).filter(isValidString);
+  const keys = Object.keys(copy).filter(isValidString);
   // eslint-disable-next-line no-eq-null
-  const toRemove = all.filter(k => (copy[k] == null));
-  if (toRemove.includes('id') && !toRemove.includes('uid') && Object.keys(copy).includes('uid')) {
-    toRemove('id');
+  const targets = keys.filter(k => (copy[k] == null));
+  if (keys.includes('id') && keys.includes('uid') && !targets.includes('id') && !targets.includes('uid')) {
+    targets.push('id');
   }
-  toRemove.forEach(key => {
+  targets.forEach(key => {
     Reflect.deleteProperty(copy, key);
   });
   return copy;
