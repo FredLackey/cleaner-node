@@ -53,6 +53,9 @@ const min = values => {
   return (values.length > 0) ? values[0] : undefined;
 };
 
+const random = (max = Number.MAX_SAFE_INTEGER) => {
+  return Math.floor(Math.random() * max);
+};
 
 module.exports = {
   isNumber,
@@ -63,5 +66,7 @@ module.exports = {
   sortAscending,
   sortDescending,
   max,
-  min
+  min,
+  random,
+  randomInt: random
 };
