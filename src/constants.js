@@ -3,9 +3,7 @@ const wells = require('know-your-http-well');
 const me = {
   strings: {
     ALPHA       : 'abcdefghijklmnopqrstuvwxyz',
-    DIGITS      : '0123456789',
     ALPHANUMERIC: 'abcdefghijklmnopqrstuvwxyz0123456789',
-    CLEAR_CODE  : 'ACDEFGHJKLMNPRTVWXY0123456789',
     BRACKETS  : [
       { open: '<', close: '/>' },
       { open: '<', close: '>' },
@@ -14,7 +12,10 @@ const me = {
       { open: '(', close: ')' },
       { open: '%', close: '%' },
       { open: '_', close: '_' }
-    ]
+    ],
+    CLEAR_CODE  : 'ACDEFGHJKLMNPRTVWXY0123456789',
+    DIGITS      : '0123456789',
+    ENUM_NAMES  : 'ACDEFGHJKLMNPRTVWXY0123456789_'
   },
   durations: {
     YEAR        : 'years',
