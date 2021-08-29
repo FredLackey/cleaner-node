@@ -15,7 +15,7 @@ const me = {
     ],
     CLEAR_CODE  : 'ACDEFGHJKLMNPRTVWXY0123456789',
     DIGITS      : '0123456789',
-    ENUM_NAMES  : 'ACDEFGHJKLMNPRTVWXY0123456789_'
+    ENUM_NAME   : 'ACDEFGHJKLMNPRTVWXY0123456789_'
   },
   durations: {
     YEAR        : 'years',
@@ -49,5 +49,8 @@ const me = {
     ENUM_NAMES: '^[a-zA-Z\\d_]+$'
   }
 };
+
+// Accounting for common typos
+me.strings.ENUM_NAMES = me.strings.ENUM_NAME; 
 
 module.exports = me;
