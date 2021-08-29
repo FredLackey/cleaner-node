@@ -1,6 +1,8 @@
 const { isValid: isValidString, toCamelCase } = require('./strings');
 const { count } = require('./arrays');
 
+const isArray = value => (typeof value === 'object' && value instanceof Array);
+
 const isValid = value => (typeof value === 'object' && value !== null && !(value instanceof Array));
 const isEmpty = value => {
   if (!isValid(value)) { return false; }
@@ -12,7 +14,7 @@ const isEmpty = value => {
 };
 
 const getId = item => {
-  if (typeof item === 'object' && item instanceof Array) { return undefined; }
+  if (isArray(item)) { return undefined; }
   if (item && item.id) { return item.id; }
   const typeName = (typeof item);
   if (['number', 'string'].indexOf(typeName) >= 0) { return item; }
@@ -229,7 +231,7 @@ const _toPrintable = (value, valuePath, results) => {
       key: valuePath,
       value
     });
-  } else if (typeof value === 'object' && value instanceof Array) {
+  } else if (isArray(value)) {
     for (let i = 0; i < value.length; i += 1) {
       if (results.cache.includes(value[i])) { return; }
       results.cache.push(value[i]);
@@ -324,10 +326,82 @@ const getObjects = item => {
 };
 const getArrays = item => {
   if (!isValid(item)) { return []; }
-  return Object.keys(item).filter(x => (
-    typeof item === 'object' && item instanceof Array
-  )).map(x => (item[x]));
+  return Object.keys(item).filter(x => (x && isArray(item[x]))).map(x => (item[x]));
 };
+
+// #region - toDto
+
+const isEnum = item => {
+  if (!isValid(item)) { return false; }
+  return (item && item.id && item.name && item.enum_name && !item.uid);
+};
+const fromEnum = item => {
+  if (!isEnum(item)) { return; }
+  const result = copy(item);
+  result.id = result.enum_name;
+  Reflect.deleteProperty(result, 'enum_name');
+  return result;
+};
+const isPublic = item => {
+  if (!isValid(item)) { return false; }
+  return (item && item.id && item.uid);
+};
+const fromPublic = item => {
+  if (!isPublic(item)) { return item; }
+  const result = copy(item);
+  result.id = result.uid;
+  Reflect.deleteProperty(result, 'uid');
+  return result;
+};
+const getPrivateFields = (item, includeArrays = false, includeObjects = false) => {
+  if (!isValid(item)) { return []; }
+  const keys = Object.keys(item)
+    .filter(key => (key && key.startsWith('_')))
+    .filter(key => (key.split('_').filter(x => (x && x.trim().length > 0)).join('').length > 0))
+    .filter(key => (includeObjects || !isValid(item[key])))
+    .filter(key => (includeArrays || (typeof item[key] === 'object' && item[key] instanceof Array)));
+  return keys;
+};
+
+const hasPrivate = (item, includeArrays = false, includeObjects = false) => {
+  if (!isValid(item)) { return false; }
+  const keys = getPrivateFields(item, includeArrays, includeObjects);
+  return item && keys.length > 0;
+};
+const fromPrivate = item => {
+  if (!hasPrivate(item)) { return item; }
+  const result = copy(item);
+  getPrivateFields(result).forEach(key => {
+    Reflect.deleteProperty(result, key);
+  });
+  return result;
+};
+
+const toDto = itemOrItems => {
+
+  if (isArray(itemOrItems)) {
+    const items = copy(itemOrItems);
+    for (let i = 0; i < items.length; i += 1) {
+      items[i] = toDto(items[i]);
+    }
+    return items;
+  }
+
+  if (!isValid(itemOrItems)) { return itemOrItems; }
+
+  let item  = copy(itemOrItems);
+  item      = fromPrivate(item);
+  item      = fromPublic(item);
+  item      = fromEnum(item);
+
+  Object.keys(item).forEach(key => {
+    item[key] = toDto(item[key]);
+  });
+
+  return item;
+};
+
+// #endregion - toDto
 
 module.exports = {
   findOne,
@@ -346,8 +420,7 @@ module.exports = {
   isValid,
   notDefined,
   setValue,
-  // toDto,
-  // toDtos,
+  toDto,
   toPrintable,
   print,
   prune,
