@@ -54,4 +54,5 @@ There are several libraries out there designed to make life easier for developer
 |  0.12.0  |  2021/05/06  |  Add `objects.circular` & `objects.copy`.  |  
 |  0.13.0  |  2021/08/01  |  Add `objects.getArrays` & `objects.getObjects`.  |  
 |  0.14.0  |  2021/08/08  |  Add `strings.trimToNull`.  |  
-|  0.15.0  |  2021/08/08  |  Add `numbers.random`.  |  
+|  0.15.0  |  2021/08/23  |  Add `numbers.random`.  |  
+|  0.15.1  |  2021/08/29  |  Add `constants.regex`.  |  

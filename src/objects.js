@@ -97,26 +97,26 @@ const findOne = (obj, key, cache) => {
 const isDefined = value => (typeof value !== 'undefined');
 const notDefined = value => (typeof value === 'undefined');
 
-const toDto = value => {
-  if (typeof value === 'undefined') { return value; }
-  if (value instanceof Array) { return value; }
-  const copy = JSON.parse(JSON.stringify(value));
-  const keys = Object.keys(copy).filter(isValidString);
-  // eslint-disable-next-line no-eq-null
-  const targets = keys.filter(k => (copy[k] == null));
-  if (keys.includes('id') && keys.includes('uid') && !targets.includes('id') && !targets.includes('uid')) {
-    targets.push('id');
-  }
-  targets.forEach(key => {
-    Reflect.deleteProperty(copy, key);
-  });
-  return copy;
-};
-const toDtos = values => {
-  return [].concat(values)
-    .filter(v => (typeof v !== 'undefined'))
-    .map(v => (toDto(v)));
-};
+// const toDto = value => {
+//   if (typeof value === 'undefined') { return value; }
+//   if (value instanceof Array) { return value; }
+//   const copy = JSON.parse(JSON.stringify(value));
+//   const keys = Object.keys(copy).filter(isValidString);
+//   // eslint-disable-next-line no-eq-null
+//   const targets = keys.filter(k => (copy[k] == null));
+//   if (keys.includes('id') && keys.includes('uid') && !targets.includes('id') && !targets.includes('uid')) {
+//     targets.push('id');
+//   }
+//   targets.forEach(key => {
+//     Reflect.deleteProperty(copy, key);
+//   });
+//   return copy;
+// };
+// const toDtos = values => {
+//   return [].concat(values)
+//     .filter(v => (typeof v !== 'undefined'))
+//     .map(v => (toDto(v)));
+// };
 
 // --- getValue ... from singular property
 
@@ -346,8 +346,8 @@ module.exports = {
   isValid,
   notDefined,
   setValue,
-  toDto,
-  toDtos,
+  // toDto,
+  // toDtos,
   toPrintable,
   print,
   prune,

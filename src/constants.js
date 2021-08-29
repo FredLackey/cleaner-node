@@ -42,6 +42,10 @@ const me = {
       codes: wells.statusPhrasesToCodes,
       phrases: wells.statusPhrasesToCodes
     }
+  },
+  regex: {
+    ALPHANUMERIC_DELIMITED: '^[a-zA-Z\\d-_]+$',
+    ENUM_NAMES: '^[a-zA-Z\\d_]+$'
   }
 };
 
