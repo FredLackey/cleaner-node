@@ -12,9 +12,8 @@ const getProperty = (obj, key, isCaseSensitive = false) => {
   const keys = Object.keys(obj).filter(x => (x && 
     ((!isCaseSensitive && x.toLowerCase() === key.toLowerCase()) ||
     (isCaseSensitive && x === key))));
-  return (keys.length === 0) 
-    ? obj[keys[0]]
-    : obj[key];
+  const keyToUse = (keys.length === 0) ? keys[0] : key;
+  return obj[keyToUse];
 };
 const getValueFromBody = (req, key, isCaseSensitive = false) => {
   return getProperty(req.body, key, isCaseSensitive);
