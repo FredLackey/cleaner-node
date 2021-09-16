@@ -15,6 +15,9 @@ const getProperty = (obj, key, isCaseSensitive = false) => {
   const keyToUse = (keys.length === 1) ? keys[0] : key;
   return obj[keyToUse];
 };
+const getValueFromQuery = (req, key, isCaseSensitive = false) => {
+  return getProperty(req.query, key, isCaseSensitive);
+};
 const getValueFromBody = (req, key, isCaseSensitive = false) => {
   return getProperty(req.body, key, isCaseSensitive);
 };
@@ -22,7 +25,9 @@ const getValueFromParams = (req, key, isCaseSensitive = false) => {
   return getProperty(req.body, key, isCaseSensitive);
 };
 const getValue = (req, key, isCaseSensitive = false) => {
-  return getValueFromBody(req, key, isCaseSensitive) || getValueFromParams(req, key, isCaseSensitive);
+  return getValueFromBody(req, key, isCaseSensitive) || 
+    getValueFromParams(req, key, isCaseSensitive) ||
+    getValueFromQuery(req, key, isCaseSensitive);
 };
 
 module.exports = {
@@ -32,5 +37,6 @@ module.exports = {
 
   getValue,
   getValueFromBody,
-  getValueFromParams
+  getValueFromParams,
+  getValueFromQuery
 };
