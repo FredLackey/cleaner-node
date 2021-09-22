@@ -57,11 +57,11 @@ const importProcess = () => {
 const setDefaults = () => {
 
   me.IS_NODE_ENV_SET = isValidString(me.NODE_ENV);
-  me.IS_DEV = (me.NODE_ENV || '').trim().toUpperCase().startsWith('DEV');
-  me.IS_PROD = (me.NODE_ENV || '').trim().toUpperCase().startsWith('PROD');
+  me.IS_DEV = isValidString(me.NODE_ENV) && me.NODE_ENV.trim().toUpperCase().startsWith('DEV');
+  me.IS_PROD = isValidString(me.NODE_ENV) && me.NODE_ENV.trim().toUpperCase().startsWith('PROD');
 
   me.IS_NODE_DEBUG_SET = isValidString(me.NODE_DEBUG);
-  me.IS_DEBUG = (me.NODE_DEBUG || '').trim().toUpperCase() === 'TRUE';
+  me.IS_DEBUG = isValidString(me.NODE_DEBUG) && me.NODE_DEBUG.trim().toUpperCase() === 'TRUE';
  
   me.IS_MODULE_PATH_SET = isValidString(getModulePath());
   me.IS_PACKAGE_PATH_SET = isValidString(getPackagePath());
