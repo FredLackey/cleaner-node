@@ -1,4 +1,6 @@
+const arrays  = require('./objects');
 const objects = require('./objects');
+const strings = require('./strings');
 
 const asyncMiddleware = (fn) => {
   return (req, res, next) => {
@@ -6,28 +8,30 @@ const asyncMiddleware = (fn) => {
   };
 };
 
-
-const getProperty = (obj, key, isCaseSensitive = false) => {
+const getProperty = (obj, keyOrKeys, isCaseSensitive = false) => {
   if (!objects.isValid(obj)) { return undefined; }
-  const keys = Object.keys(obj).filter(x => (x && 
-    ((!isCaseSensitive && x.toLowerCase() === key.toLowerCase()) ||
-    (isCaseSensitive && x === key))));
-  const keyToUse = (keys.length === 1) ? keys[0] : key;
-  return obj[keyToUse];
+  const targetKeys = [].concat(keyOrKeys)
+    .filter(strings.isValid)
+    .map(key => (isCaseSensitive ? key : key.toLowerCase()));
+  const keys = Object.keys(obj).filter(key => (key && 
+    ((isCaseSensitive && targetKeys.includes(key)) ||
+    (!isCaseSensitive && targetKeys.includes(key.toLowerCase())))));
+  const key = arrays.first(keys);
+  return obj[key];
 };
-const getValueFromQuery = (req, key, isCaseSensitive = false) => {
-  return getProperty(req.query, key, isCaseSensitive);
+const getValueFromQuery = (req, keyOrKeys, isCaseSensitive = false) => {
+  return getProperty(req.query, keyOrKeys, isCaseSensitive);
 };
-const getValueFromBody = (req, key, isCaseSensitive = false) => {
-  return getProperty(req.body, key, isCaseSensitive);
+const getValueFromBody = (req, keyOrKeys, isCaseSensitive = false) => {
+  return getProperty(req.body, keyOrKeys, isCaseSensitive);
 };
-const getValueFromParams = (req, key, isCaseSensitive = false) => {
-  return getProperty(req.body, key, isCaseSensitive);
+const getValueFromParams = (req, keyOrKeys, isCaseSensitive = false) => {
+  return getProperty(req.body, keyOrKeys, isCaseSensitive);
 };
-const getValue = (req, key, isCaseSensitive = false) => {
-  return getValueFromBody(req, key, isCaseSensitive) || 
-    getValueFromParams(req, key, isCaseSensitive) ||
-    getValueFromQuery(req, key, isCaseSensitive);
+const getValue = (req, keyOrKeys, isCaseSensitive = false) => {
+  return getValueFromBody(req, keyOrKeys, isCaseSensitive) || 
+    getValueFromParams(req, keyOrKeys, isCaseSensitive) ||
+    getValueFromQuery(req, keyOrKeys, isCaseSensitive);
 };
 
 module.exports = {
