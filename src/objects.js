@@ -166,11 +166,11 @@ function setValue(obj = {}, path, value) {
 }
 
 // ----- prune
-const _prune = obj => {
+const _prune = (obj, deNull) => {
   if (typeof obj !== 'object' || obj === null) { return; }
   if (obj instanceof Array) { 
     for (let i = 0; i < obj.length; i += 1) {
-      _prune(obj[i]);
+      _prune(obj[i], deNull);
     }
     return;
   }
@@ -180,7 +180,7 @@ const _prune = obj => {
   Object.keys(obj).filter(isValidString)
     .filter(key => (typeof obj[key] === 'object'))
     .forEach(key => {
-      _prune(obj[key]);
+      _prune(obj[key], deNull);
     });
 
   const keys = Object.keys(obj).filter(isValidString);
@@ -203,15 +203,23 @@ const _prune = obj => {
       Reflect.deleteProperty(obj, key);
     });
 
+  // Null values
+  if (deNull) {
+    keys.filter(key => (obj[key] === null))
+    .forEach(key => {
+      Reflect.deleteProperty(obj, key);
+    });
+  }
+
   // Empty Objects
   keys.filter(key => (isValid(obj[key]) && !(obj[key] instanceof Date) && Object.keys(obj[key]).filter(isValidString).length === 0))
     .forEach(key => {
       Reflect.deleteProperty(obj, key);
     });
 };
-const prune = obj => {
+const prune = (obj, deNull = false) => {
   const result = { obj };
-  _prune(result);
+  _prune(result, deNull);
   return result.obj;
 };
 
