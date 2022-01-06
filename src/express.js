@@ -1,4 +1,4 @@
-const arrays  = require('./objects');
+const arrays  = require('./arrays');
 const objects = require('./objects');
 const strings = require('./strings');
 
