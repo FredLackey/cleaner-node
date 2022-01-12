@@ -3,7 +3,7 @@ const { isValid: isValidString } = require('./strings');
 const { INTERNAL_SERVER_ERROR } = require('./constants').http.status.codes;
 
 class ApiError extends Error {
-  constructor (message, number = null, status = INTERNAL_SERVER_ERROR, details) {
+  constructor (message, number = null, status = INTERNAL_SERVER_ERROR, details) { // eslint-disable-line
     super(message);
     this.name     = this.constructor.name;
     this.number   = number;

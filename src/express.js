@@ -8,39 +8,69 @@ const asyncMiddleware = (fn) => {
   };
 };
 
-const getProperty = (obj, keyOrKeys, isCaseSensitive = false) => {
-  if (!objects.isValid(obj)) { return undefined; }
+const getKeys = (obj, keyOrKeys, isCaseSensitive = false) => {
+  if (!objects.isValid(obj)) { return []; }
   const targetKeys = [].concat(keyOrKeys)
-    .filter(strings.isValid)
+    .filter(key => (strings.isValid(key)))
     .map(key => (isCaseSensitive ? key : key.toLowerCase()));
-  const keys = Object.keys(obj).filter(key => (key && 
+  return Object.keys(obj).filter(key => (key && 
     ((isCaseSensitive && targetKeys.includes(key)) ||
     (!isCaseSensitive && targetKeys.includes(key.toLowerCase())))));
-  const key = arrays.first(keys);
-  return obj[key];
 };
-const getValueFromQuery = (req, keyOrKeys, isCaseSensitive = false) => {
-  return getProperty(req.query, keyOrKeys, isCaseSensitive);
-};
-const getValueFromBody = (req, keyOrKeys, isCaseSensitive = false) => {
-  return getProperty(req.body, keyOrKeys, isCaseSensitive);
-};
-const getValueFromParams = (req, keyOrKeys, isCaseSensitive = false) => {
-  return getProperty(req.body, keyOrKeys, isCaseSensitive);
-};
-const getValue = (req, keyOrKeys, isCaseSensitive = false) => {
-  return getValueFromBody(req, keyOrKeys, isCaseSensitive) || 
-    getValueFromParams(req, keyOrKeys, isCaseSensitive) ||
-    getValueFromQuery(req, keyOrKeys, isCaseSensitive);
-};
+const getValuesFromObject = (obj, keyOrKeys, isCaseSensitive = false) => (
+  getKeys(obj, keyOrKeys, isCaseSensitive)
+    .filter(key => (strings.isValid(key)))
+    .map(key => (obj[key]))
+);
+
+// MULTIPLES
+const getValuesFromBody = (req, keyOrKeys, isCaseSensitive = false) => getValuesFromObject(req.body, keyOrKeys, isCaseSensitive);
+const getValuesFromParams = (req, keyOrKeys, isCaseSensitive = false) => getValuesFromObject(req.params, keyOrKeys, isCaseSensitive);
+const getValuesFromQuery = (req, keyOrKeys, isCaseSensitive = false) => getValuesFromObject(req.query, keyOrKeys, isCaseSensitive);
+const getValues = (req, keyOrKeys, isCaseSensitive = false) => ([
+  ...getValuesFromBody(req, keyOrKeys, isCaseSensitive),
+  ...getValuesFromParams(req, keyOrKeys, isCaseSensitive),
+  ...getValuesFromQuery(req, keyOrKeys, isCaseSensitive),
+].filter(x => (objects.isDefined(x))));
+
+// SINGULAR
+const singleValueFromBody = (req, keyOrKeys, isCaseSensitive = false) => arrays.single(getValuesFromBody(req, keyOrKeys, isCaseSensitive));
+const singleValueFromParams = (req, keyOrKeys, isCaseSensitive = false) => arrays.single(getValuesFromParams(req, keyOrKeys, isCaseSensitive));
+const singleValueFromQuery = (req, keyOrKeys, isCaseSensitive = false) => arrays.single(getValuesFromQuery(req.query, keyOrKeys, isCaseSensitive));
+const singleValue = (req, keyOrKeys, isCaseSensitive = false) => arrays.single(getValues(req, keyOrKeys, isCaseSensitive));
+
+
+// FIRST
+const firstValueFromBody = (req, keyOrKeys, isCaseSensitive = false) => arrays.first(getValuesFromBody(req, keyOrKeys, isCaseSensitive));
+const firstValueFromParams = (req, keyOrKeys, isCaseSensitive = false) => arrays.first(getValuesFromParams(req, keyOrKeys, isCaseSensitive));
+const firstValueFromQuery = (req, keyOrKeys, isCaseSensitive = false) => arrays.first(getValuesFromQuery(req.query, keyOrKeys, isCaseSensitive));
+const firstValue = (req, keyOrKeys, isCaseSensitive = false) => arrays.first(getValues(req, keyOrKeys, isCaseSensitive));
 
 module.exports = {
   asyncMiddleware,
   amw   : asyncMiddleware,
   wrap  : asyncMiddleware,
 
-  getValue,
-  getValueFromBody,
-  getValueFromParams,
-  getValueFromQuery
+  getKeys,
+  getValuesFromObject,
+
+  getValues,
+  getValuesFromBody,
+  getValuesFromParams,
+  getValuesFromQuery,
+
+  getValue: firstValue,
+  getValueFromBody: firstValueFromBody,
+  getValueFromParams: firstValueFromParams,
+  getValueFromQuery: firstValueFromQuery,
+
+  singleValue,
+  singleValueFromBody,
+  singleValueFromParams,
+  singleValueFromQuery,
+
+  firstValue,
+  firstValueFromBody,
+  firstValueFromParams,
+  firstValueFromQuery
 };

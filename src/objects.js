@@ -148,7 +148,7 @@ function getValues(items, keyOrPath, allowDuplicates) {
 
 // --- setValue
 
-function setValue(obj = {}, path, value) {
+function setValue(obj = {}, path, value) {  // eslint-disable-line
   const keys = path.split('.');
   const used = [];
   while (keys.length > 1) {
