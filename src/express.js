@@ -3,8 +3,15 @@ const objects = require('./objects');
 const strings = require('./strings');
 
 const asyncMiddleware = (fn) => {
-  return (req, res, next) => {
-    Promise.resolve(fn(req, res, next)).catch(next);
+  // return (req, res, next) => {
+  //   Promise.resolve(fn(req, res, next)).catch(next);
+  // };
+  return async (req, res, next) => {
+    try {
+      await fn(req, res, next);
+    } catch (err) {
+      next(err);
+    }
   };
 };
 
