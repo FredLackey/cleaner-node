@@ -2,7 +2,7 @@ const { isValidBoolean }  = require('./booleans');
 const { isValidString }   = require('./strings');
 const { isNumber  }       = require('./numbers');
 
-const vars = (proper = true, valid = true) => {
+const getAll = (proper = true, valid = true) => {
   const result = {};
   Object
     .keys(process.env)
@@ -20,6 +20,5 @@ const vars = (proper = true, valid = true) => {
 };
 
 module.exports = {
-  vars
+  getAll
 };
-
