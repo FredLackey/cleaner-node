@@ -2,8 +2,8 @@ const { isValidBoolean }  = require('./booleans');
 const { isValidString }   = require('./strings');
 const { isNumber  }       = require('./numbers');
 
-module.exports.getAll = (proper = true, valid = true) => {
-  const vars = {};
+const vars = (proper = true, valid = true) => {
+  const result = {};
   Object
     .keys(process.env)
     .filter(key => (key && (!proper || key === key.toUpperCase())))
@@ -14,6 +14,12 @@ module.exports.getAll = (proper = true, valid = true) => {
     ))))
     .sort()
     .forEach(key => {
-      vars[key] = process.env[key];
+      result[key] = process.env[key];
     });
+  return result;
 };
+
+module.exports = {
+  vars
+};
+
