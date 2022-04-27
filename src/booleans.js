@@ -34,5 +34,7 @@ const ifValid = (value, defaultValue, strict = true) => {
 module.exports = {
   parse,
   isValid,
-  ifValid
+  ifValid,
+  isValidBoolean: isValid,
+  isValidBool   : isValid
 };

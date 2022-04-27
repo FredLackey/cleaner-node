@@ -18,6 +18,7 @@ const sequelize     = require('./sequelize');
 const strings       = require('./strings');
 const urls          = require('./urls');
 const uuids         = require('./uuids');
+const vars          = require('./vars');
 
 module.exports = {
   arrays,
@@ -39,5 +40,6 @@ module.exports = {
   sequelize,
   strings,
   urls,
-  uuids
+  uuids,
+  vars
 };

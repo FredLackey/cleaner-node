@@ -308,6 +308,7 @@ module.exports = {
   unique,
   isPossible,
   isValid,
+  isValidString: isValid,
   isValidChars,
   isValidLength,
   ifValid,
