@@ -411,6 +411,24 @@ const toDto = itemOrItems => {
 
 // #endregion - toDto
 
+// #region - Parsing
+
+const parse = (rawJson, quiet = true) => {
+  if (!isValidString(rawJson)) { return undefined; }
+  let obj;
+  try {
+    obj = JSON.parse(rawJson);
+  } catch (ex) {
+    if (!quiet) {
+      throw ex;
+    }
+    return undefined;
+  }
+  return obj;
+};
+
+// #endregion - Parsing
+
 module.exports = {
   findOne,
 
@@ -440,5 +458,9 @@ module.exports = {
   copy,
 
   getObjects,
-  getArrays
+  getArrays,
+
+  parse,
+  fromJSON: parse,
+  fromJson: parse
 };

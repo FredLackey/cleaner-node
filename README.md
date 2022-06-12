@@ -59,3 +59,4 @@ There are several libraries out there designed to make life easier for developer
 |  0.16.0  |  2021/08/29  |  Add improved `objects.toDto`.  |  
 |  0.17.0  |  2021/09/15  |  Add `express.getValue`.  |  
 |  0.18.0  |  2022/04/27  |  Add `vars` & `vars.getAll`.  |  
+|  0.19.0  |  2022/06/12  |  Add `objects.parse`, `objects.fromJSON`.  |  
