@@ -5,6 +5,8 @@ const strings = require('./strings');
 const SALT_OPTION = 'base64';
 const HMAC_OPTION = 'sha1';
 const DIGEST_OPTION = 'hex';
+const ENCODE_FORMAT = 'base64';
+const DECODE_FORMAT = 'ascii';
 
 const createCode = (totalLength, chars = constants.strings.ALPHANUMERIC) => {
   const rnd = crypto.randomBytes(totalLength);
@@ -33,9 +35,24 @@ const hashString = value => {
   return crypto.createHash('md5').update(value).digest('hex');
 };
 
+// #region - Encoding
+const encode = (value, format = ENCODE_FORMAT) => {
+  if (!strings.isValid(value)) { return null; }
+  return Buffer.from(value).toString(format);
+}
+const decode = (value, fromFormat = ENCODE_FORMAT, toFormat = DECODE_FORMAT) => {
+  if (!strings.isValid(value)) { return null; }
+  return Buffer.from(value, fromFormat).toString(toFormat);
+}
+
+// #endregion
+
 module.exports = {
   createCode,
   createSalt,
   hash,
-  hashString
+  hashString,
+
+  encode,
+  decode
 };
