@@ -39,11 +39,11 @@ const hashString = value => {
 const encode = (value, format = ENCODE_FORMAT) => {
   if (!strings.isValid(value)) { return null; }
   return Buffer.from(value).toString(format);
-}
+};
 const decode = (value, fromFormat = ENCODE_FORMAT, toFormat = DECODE_FORMAT) => {
   if (!strings.isValid(value)) { return null; }
   return Buffer.from(value, fromFormat).toString(toFormat);
-}
+};
 
 // #endregion
 
