@@ -73,11 +73,15 @@ const folderContents = folderPath => {
     return undefined;
   }
 };
-const fileContents = (filePath, options) => {
+const fileContents = (filePath, options, convert = true, format = 'utf8') => {
   if (!isValidString(filePath)) { return undefined; }
   try {
     const contents = fs.readFileSync(filePath, options);
-    return contents;
+    if (!convert) {
+      return contents;
+    }
+    const unbuffer = contents.toString(format);
+    return unbuffer;
   } catch (ex) {
     return undefined;
   }

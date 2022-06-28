@@ -1,6 +1,6 @@
 {
   "name": "cleaner-node",
-  "version": "0.20.1",
+  "version": "0.21.0",
   "description": "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main": "index.js",
   "scripts": {
