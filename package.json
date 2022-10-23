@@ -1,6 +1,6 @@
 {
   "name"       : "cleaner-node",
-  "version"    : "0.22.0",
+  "version"    : "0.22.1",
   "description": "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main"       : "index.js",
   "scripts"    : {
@@ -32,7 +32,7 @@
   },
   "homepage"    : "https://github.com/FredLackey/cleaner-node#readme",
   "dependencies": {
-    "camelcase"          : "^7.0.0",
+    "camelcase"          : "6",
     "email-addresses"    : "^5.0.0",
     "gravatar"           : "^1.8.2",
     "html-to-text"       : "^8.2.1",
