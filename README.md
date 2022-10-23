@@ -61,3 +61,4 @@ There are several libraries out there designed to make life easier for developer
 |  0.18.0  |  2022/04/27  |  Add `vars` & `vars.getAll`.  |  
 |  0.19.0  |  2022/06/12  |  Add `objects.parse`, `objects.fromJSON`.  |  
 |  0.20.0  |  2022/06/14  |  Add `crypto.encode`, `crypto.decode`.  |  
+|  0.22.0  |  2022/10/23  |  Ensure HTTP status codes are numeric.  |  

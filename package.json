@@ -1,15 +1,15 @@
 {
-  "name": "cleaner-node",
-  "version": "0.21.0",
+  "name"       : "cleaner-node",
+  "version"    : "0.22.0",
   "description": "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
-  "main": "index.js",
-  "scripts": {
-    "lint": "eslint ./src/**/*.js",
+  "main"       : "index.js",
+  "scripts"    : {
+    "lint"    : "eslint ./src/**/*.js",
     "lint:fix": "eslint ./src/**/*.js --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FredLackey/cleaner-node.git"
+    "url" : "git+https://github.com/FredLackey/cleaner-node.git"
   },
   "keywords": [
     "node",
@@ -25,38 +25,38 @@
     "underscore",
     "alternative"
   ],
-  "author": "Fred Lackey <fred.lackey@gmail.com>",
+  "author" : "Fred Lackey <fred.lackey@gmail.com>",
   "license": "Apache-2.0",
-  "bugs": {
+  "bugs"   : {
     "url": "https://github.com/FredLackey/cleaner-node/issues"
   },
-  "homepage": "https://github.com/FredLackey/cleaner-node#readme",
+  "homepage"    : "https://github.com/FredLackey/cleaner-node#readme",
   "dependencies": {
-    "camelcase": "^6.3.0",
-    "email-addresses": "^5.0.0",
-    "gravatar": "^1.8.2",
-    "html-to-text": "^8.2.0",
-    "is-html": "2.x.x",
-    "jsonwebtoken": "^8.5.1",
+    "camelcase"          : "^7.0.0",
+    "email-addresses"    : "^5.0.0",
+    "gravatar"           : "^1.8.2",
+    "html-to-text"       : "^8.2.1",
+    "is-html"            : "3.x.x",
+    "jsonwebtoken"       : "^8.5.1",
     "know-your-http-well": "^0.5.0",
-    "md5-file": "^5.0.0",
-    "moment": "^2.29.3",
-    "node-fetch": "2.x.x",
-    "semver": "^7.3.7",
-    "uuid": "^8.3.2",
-    "uuid-validate": "0.0.3"
+    "md5-file"           : "^5.0.0",
+    "moment"             : "^2.29.4",
+    "node-fetch"         : "2.x.x",
+    "semver"             : "^7.3.8",
+    "uuid"               : "^9.0.0",
+    "uuid-validate"      : "0.0.3"
   },
   "devDependencies": {
-    "eslint": "^8.14.0",
-    "eslint-config-airbnb": "^19.0.4",
+    "eslint"                   : "^8.26.0",
+    "eslint-config-airbnb"     : "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.5.0",
-    "eslint-plugin-standard": "^4.1.0"
+    "eslint-config-standard"   : "^17.0.0",
+    "eslint-plugin-import"     : "^2.26.0",
+    "eslint-plugin-jsx-a11y"   : "^6.6.1",
+    "eslint-plugin-node"       : "^11.1.0",
+    "eslint-plugin-promise"    : "^6.1.1",
+    "eslint-plugin-react"      : "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-standard"   : "^4.1.0"
   }
 }
