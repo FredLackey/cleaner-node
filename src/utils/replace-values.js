@@ -33,7 +33,7 @@ const replace = (itemOrItems, sources, targets, cache) => {
 
   if (isValidArray(itemOrItems, EMPTY_OK)) {
     if (isValidArray(itemOrItems)) {
-      itemOrItems.forEach(item => replace(item, cache));
+      itemOrItems.forEach(item => replace(item, sources, targets, cache));
     }
     return;
   }
