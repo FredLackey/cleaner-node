@@ -476,6 +476,11 @@ NUMBERS.MS.PER.WEEK   = NUMBERS.MS.PER.DAY    * 7;
 module.exports = {
   ALPHA       : 'abcdefghijklmnopqrstuvwxyz',
   ALPHANUMERIC: 'abcdefghijklmnopqrstuvwxyz0123456789',
+  AUDIT_FIELDS : [
+    'createdBy', 'createdAt', 'updatedBy', 'updatedAt', 'deletedBy', 'deletedAt',
+    '_ac', '_av', '_ad', '_au',
+    'ac', 'av', 'ad', 'au',
+  ],
   BRACKETS    : [
     { open: '<', close: '/>' },
     { open: '<', close: '>' },

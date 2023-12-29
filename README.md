@@ -23,5 +23,5 @@ The first actual release of `cleaner-node`, this version focuses on reducing cod
 If you have any questions, comments, or concerns, please feel free to reach out to me at...
 
 **Fred Lackey**  
-[fred.lackey@gmail.com](mailto:fred.lackey@gmail.com)
-[http://fredlackey.com](http://fredlackey.com)
+[fred.lackey@gmail.com](mailto:fred.lackey@gmail.com)  
+[http://fredlackey.com](http://fredlackey.com)  
