@@ -1,45 +1,22 @@
-const arrays        = require('./arrays');
-const authorization = require('./authorization');
-const booleans      = require('./booleans');
-const common        = require('./common');
-const constants     = require('./constants');
-const crypto        = require('./crypto');
-const dates         = require('./dates');
-const email         = require('./email');
-const env           = require('./env');
-const errors        = require('./errors');
-const express       = require('./express');
-const files         = require('./files');
-const jwt           = require('./jwt');
-const numbers       = require('./numbers');
-const objects       = require('./objects');
-const phoneNumber   = require('./phone-number');
-const sequelize     = require('./sequelize');
-const strings       = require('./strings');
-const urls          = require('./urls');
-const uuids         = require('./uuids');
-const vars          = require('./vars');
+const constants = require('./constants');
+const errors    = require('./errors');
+const utils     = require('./utils');
 
-module.exports = {
-  arrays,
-  authorization,
-  booleans,
-  common,
-  constants,
-  crypto,
-  dates,
-  email,
-  env,
-  errors,
-  express,
-  files,
-  jwt,
-  numbers,
-  objects,
-  phoneNumber,
-  sequelize,
-  strings,
-  urls,
-  uuids,
-  vars
-};
+utils.errors = errors;
+
+utils.a = utils.initArray;
+
+utils.ALPHA        = constants.ALPHA;
+utils.ALPHANUMERIC = constants.ALPHANUMERIC;
+utils.BRACKETS     = constants.BRACKETS;
+utils.CLEAR_CODE   = constants.CLEAR_CODE;
+utils.DIGITS       = constants.DIGITS;
+utils.ENUM_NAME    = constants.ENUM_NAME;
+utils.EMPTY_GUID   = constants.EMPTY_GUID;
+utils.EMPTY_UID    = constants.EMPTY_UID;
+utils.HTTP         = constants.HTTP;
+utils.TYPES        = constants.TYPES;
+utils.DEFAULTS     = constants.DEFAULTS;
+utils.ZERO_DATE    = constants.ZERO_DATE;
+
+module.exports = utils;
