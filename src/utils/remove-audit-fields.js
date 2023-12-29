@@ -36,8 +36,8 @@ const removeAuditFields = (itemOrItems, makeCopy = false) => {
     items: []
   };
   const value = makeCopy ? copyObject(itemOrItems) : itemOrItems;
-  const result = remove(value, cache);
-  return result;
+  remove(value, cache);
+  return value;
 };
 
 module.exports = removeAuditFields;
