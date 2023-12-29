@@ -1,5 +1,5 @@
 const c = require('../constants');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 function getTokenizedSegments (str, brackets) {
 

@@ -1,5 +1,5 @@
 const trimString = require('./trim-string');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 const EMPTY_OK = false;
 

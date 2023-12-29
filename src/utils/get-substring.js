@@ -1,4 +1,4 @@
-const { isValidArray } = require('./is-valid-array');
+const isValidArray = require('./is-valid-array');
 
 const getSubstring = (values, isCaseSensitive = true) => {
   if (!isValidArray(values)) { return null; }

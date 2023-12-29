@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const c = require('../constants');
 
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 const trimToUndefined = require('./trim-to-undefined');
 
 const hashString = value => {

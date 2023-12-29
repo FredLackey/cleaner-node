@@ -1,6 +1,6 @@
 const readFile = require('./read-file');
 const isObject = require('./is-object');
-const { isValidArray } = require('./is-valid-array');
+const isValidArray = require('./is-valid-array');
 const parseJson = require('./parse-json');
 
 const loadJson = (filePath) => {

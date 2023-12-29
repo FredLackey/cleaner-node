@@ -1,4 +1,4 @@
-const { isValidString } = require('../is-valid-string');
+const isValidString = require('../is-valid-string');
 const isObject          = require('../is-object');
 const isDefined         = require('../is-defined');
 const getSingle         = require('../get-single');

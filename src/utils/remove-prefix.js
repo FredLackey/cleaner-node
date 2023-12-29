@@ -1,4 +1,4 @@
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 const removePrefix = (value, prefix) => {
   if (!isValidString(value, true)) { return value; }

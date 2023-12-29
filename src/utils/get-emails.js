@@ -1,4 +1,4 @@
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 const getEmails = value => {
   return isValidString(value)

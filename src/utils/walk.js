@@ -1,4 +1,4 @@
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 const getFolderContents = require('./get-folder-contents');
 const isFile = require('./is-file');
 const isFolder = require('./is-folder');

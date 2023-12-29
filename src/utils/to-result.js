@@ -1,4 +1,4 @@
-const { isValidArray } = require('./is-valid-array');
+const isValidArray = require('./is-valid-array');
 const getFirst = require('./get-first');
 
 const EMPTY_OK = true;

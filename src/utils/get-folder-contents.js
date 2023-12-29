@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 const getFolderContents = folderPath => {
   if (!isValidString(folderPath)) { return undefined; }

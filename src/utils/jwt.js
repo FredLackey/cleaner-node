@@ -1,6 +1,6 @@
 const jwt               = require('jsonwebtoken');
 const isObject          = require('./is-object');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 const isNumber          = require('./is-number');
 const fromEpoch         = require('./from-epoch');
 const toEpoch           = require('./to-epoch');

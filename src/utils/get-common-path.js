@@ -1,6 +1,6 @@
 const path = require('path');
-const { isValidArray } = require('./is-valid-array');
-const { isValidString } = require('./is-valid-string');
+const isValidArray = require('./is-valid-array');
+const isValidString = require('./is-valid-string');
 const getSubstring = require('./get-substring');
 
 const getRoot = values => {

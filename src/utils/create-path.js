@@ -1,6 +1,6 @@
 const fs = require('fs');
 const isFolder = require('./is-folder');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 const createPath = value => {
   if (!isValidString(value)) { return false; }

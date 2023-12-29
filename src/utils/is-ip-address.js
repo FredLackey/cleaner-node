@@ -1,4 +1,4 @@
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 const ACCEPTABLE_IP_ADDRESS = [
   '0.0.0.0',

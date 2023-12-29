@@ -3,7 +3,7 @@ const fs = require('fs');
 const c = require('../constants');
 
 const isFile = require('./is-file');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 const ALGORITHMS = [
   'md5', 'sha1', 'sha256'

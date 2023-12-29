@@ -1,6 +1,6 @@
 const isNumber = require('./is-number');
-const { isValidString } = require('./is-valid-string');
-const { isBoolean } = require('./is-boolean');
+const isValidString = require('./is-valid-string');
+const isBoolean = require('./is-boolean');
 
 const getVars = (proper = true, valid = true) => {
   const result = {};

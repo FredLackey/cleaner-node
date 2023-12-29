@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 const isObject          = require('./is-object');
-const { isValidArray }  = require('./is-valid-array');
-const { isValidString } = require('./is-valid-string');
+const isValidArray  = require('./is-valid-array');
+const isValidString = require('./is-valid-string');
 const isIsoDate = require('./is-iso-date');
 const isDigits = require('./is-digits');
 

@@ -1,5 +1,5 @@
-const { isValidArray }  = require('./is-valid-array');
-const { isValidString } = require('./is-valid-string');
+const isValidArray  = require('./is-valid-array');
+const isValidString = require('./is-valid-string');
 
 const uniqueString = (values, isCaseSensitive = false, trim = true) => {
   if (!isValidArray(values)) { return values; }

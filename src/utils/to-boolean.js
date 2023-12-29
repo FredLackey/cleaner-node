@@ -1,4 +1,4 @@
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 const isNumber          = require('./is-number');
 
 const toBoolean = (value, defaultValue) => {

@@ -1,6 +1,6 @@
 const { EMPTY_GUID } = require('../constants');
 const isAlphanumeric = require('./is-alphanumeric');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 const isGuidFormat = value => {
   if (!isValidString(value)) {

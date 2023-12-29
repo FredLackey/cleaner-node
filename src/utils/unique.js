@@ -1,7 +1,7 @@
-const { isValidArray }  = require('./is-valid-array');
+const isValidArray  = require('./is-valid-array');
 const isNumber          = require('./is-number');
 const isObject          = require('./is-object');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 const uniqueNumbers     = require('./unique-numbers');
 const uniqueObjects     = require('./unique-objects');
 const uniqueStrings     = require('./unique-strings');

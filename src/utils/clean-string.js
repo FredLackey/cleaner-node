@@ -1,5 +1,5 @@
 const hasString         = require('./has-string');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 const { ALPHANUMERIC }  = require('../constants');
 
 const EMPTY_OK = true;

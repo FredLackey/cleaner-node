@@ -1,7 +1,7 @@
 const fetch           = require('node-fetch');
 const removePrefix    = require('./remove-prefix');
 const removeSuffix    = require('./remove-suffix');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 const isObject        = require('./is-object');
 
 const IS_EMPTY_STRING_OKAY = true;

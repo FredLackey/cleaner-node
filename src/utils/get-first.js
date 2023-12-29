@@ -1,5 +1,5 @@
 const getArrayCount     = require('./get-array-count');
-const { isValidString } = require('./is-valid-string');
+const isValidString = require('./is-valid-string');
 
 const getFirst = (value, trim = false) => {
 

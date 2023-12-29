@@ -1,6 +1,6 @@
 # Updates
 
-## v1.0.1-v1.0.3 (12/29/2023)  
+## v1.0.1-v1.0.5 (12/29/2023)  
 
 * add `AUDIT_FIELDS`
 * add `removeAuditFields`
