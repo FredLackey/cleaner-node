@@ -14,6 +14,7 @@ const deleteDirectory      = require('./delete-directory');
 const deleteFile           = require('./delete-file');
 const descending           = require('./descending');
 const express              = require('./express');
+const findAllUids          = require('./find-all-uids');
 const fromDto              = require('./from-dto');
 const fromEpoch            = require('./from-epoch');
 const fromIsoDate          = require('./from-iso-date');
@@ -106,6 +107,7 @@ const removeAuditFields    = require('./remove-audit-fields');
 const removeDeleted        = require('./remove-deleted');
 const removePrefix         = require('./remove-prefix');
 const removeSuffix         = require('./remove-suffix');
+const replaceValues        = require('./replace-values');
 const saveJson             = require('./save-json');
 const sort                 = require('./sort');
 const stringify            = require('./stringify');
@@ -151,6 +153,7 @@ module.exports = {
   deleteFile,
   descending,
   express,
+  findAllUids,
   fromDto,
   fromEpoch,
   fromIsoDate,
@@ -247,6 +250,7 @@ module.exports = {
   removeDeleted,
   removePrefix,
   removeSuffix,
+  replaceValues,
   saveJson,
   sort,
   stringify,
