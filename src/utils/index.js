@@ -98,6 +98,7 @@ const parseJson            = require('./parse-json');
 const print                = require('./print');
 const readFile             = require('./read-file');
 const readLines            = require('./read-lines');
+const removeAuditFields    = require('./remove-audit-fields');
 const removeDeleted        = require('./remove-deleted');
 const removePrefix         = require('./remove-prefix');
 const removeSuffix         = require('./remove-suffix');
@@ -238,6 +239,7 @@ module.exports = {
   print,
   readFile,
   readLines,
+  removeAuditFields,
   removeDeleted,
   removePrefix,
   removeSuffix,
