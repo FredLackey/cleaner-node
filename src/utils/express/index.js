@@ -105,6 +105,11 @@ const getClientIp = req => {
   return req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 };
 
+const getBody = (req) => {
+  if (!req) { return null; }
+  return req.body;
+};
+
 module.exports = {
 
   middleware,
@@ -112,6 +117,8 @@ module.exports = {
   asyncMiddleware,
   amw   : asyncMiddleware,
   wrap  : asyncMiddleware,
+
+  getBody,
 
   getKeys,
   getValuesFromObject,

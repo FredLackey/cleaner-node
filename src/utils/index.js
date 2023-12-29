@@ -57,6 +57,7 @@ const isAlpha              = require('./is-alpha');
 const isAlphanumeric       = require('./is-alphanumeric');
 const isAsync              = require('./is-async');
 const isBoolean            = require('./is-boolean');
+const isBooleanIfSet       = require('./is-boolean-ifset');
 const isBracketted         = require('./is-bracketted');
 const isDate               = require('./is-date');
 const isDefined            = require('./is-defined');
@@ -79,9 +80,12 @@ const isShortDate          = require('./is-short-date');
 const isUidFormat          = require('./is-uid-format');
 const isUrl                = require('./is-url');
 const isValidArray         = require('./is-valid-array');
+const isValidArrayIfSet    = require('./is-valid-array-ifset');
 const isValidChars         = require('./is-valid-chars');
 const isValidPath          = require('./is-valid-path');
+const isValidPathIfSet     = require('./is-valid-path-ifset');
 const isValidString        = require('./is-valid-string');
+const isValidStringIfSet   = require('./is-valid-string-ifset');
 const jwt                  = require('./jwt');
 const loadJson             = require('./load-json');
 const isZeroDate           = require('./is-zero-date');
@@ -194,8 +198,8 @@ module.exports = {
   isAlpha,
   isAlphanumeric,
   isAsync,
-  isBoolean     : isBoolean.isBoolean,
-  isBooleanIfSet: isBoolean.isBooleanIfSet,
+  isBoolean,
+  isBooleanIfSet,
   isBracketted,
   isDate,
   isDefined,
@@ -217,13 +221,13 @@ module.exports = {
   isShortDate,
   isUidFormat,
   isUrl,
-  isValidArray     : isValidArray.isValidArray,
-  isValidArrayIfSet: isValidArray.isValidArrayIfSet,
+  isValidArray,
+  isValidArrayIfSet,
   isValidChars,
-  isValidPath       : isValidPath.isValidPath,
-  isValidPathIfSet  : isValidPath.isValidPathIfSet,
-  isValidString     : isValidString.isValidString,
-  isValidStringIfSet: isValidString.isValidStringIfSet,
+  isValidPath,
+  isValidPathIfSet,
+  isValidString,
+  isValidStringIfSet,
   isZeroDate,
   loadJson,
   makePath,
@@ -283,6 +287,8 @@ module.exports = {
   min: getMin,
   max: getMax,
 
-  getBody: nextjs.getBody,
+  getBody: (req) => {
+    return isAsync(req) ? nextjs.getBody(req) : express.getBody(req);
+  },
   body
 };
