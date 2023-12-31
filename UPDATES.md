@@ -12,3 +12,7 @@
 * flatten `isValidArray` & `isValidArrayIfSet`
 * flatten `isValidPath` & `isValidPathIfSet`
 * flatten `isValidString` & `isValidStringIfSet`
+
+## v1.0.10 (12/31/2023)  
+
+* add `removeProperty`  

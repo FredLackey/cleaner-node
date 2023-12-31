@@ -106,6 +106,7 @@ const readLines            = require('./read-lines');
 const removeAuditFields    = require('./remove-audit-fields');
 const removeDeleted        = require('./remove-deleted');
 const removePrefix         = require('./remove-prefix');
+const removeProperty       = require('./remove-property');
 const removeSuffix         = require('./remove-suffix');
 const replaceValues        = require('./replace-values');
 const saveJson             = require('./save-json');
@@ -249,6 +250,7 @@ module.exports = {
   removeAuditFields,
   removeDeleted,
   removePrefix,
+  removeProperty,
   removeSuffix,
   replaceValues,
   saveJson,
