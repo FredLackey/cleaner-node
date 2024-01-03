@@ -1,4 +1,4 @@
-const removeProperty = require('../src/utils/remove-property');
+const { removeProperty } = require('..');
 
 describe('removeProperty', () => {
 

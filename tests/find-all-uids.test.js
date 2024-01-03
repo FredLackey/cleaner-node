@@ -1,4 +1,4 @@
-const { findAllUids } = require('../src');
+const { findAllUids } = require('..');
 
 describe('findAllUids', () => {
 

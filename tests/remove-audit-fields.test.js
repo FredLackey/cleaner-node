@@ -1,4 +1,4 @@
-const { removeAuditFields } = require('../src');
+const { removeAuditFields } = require('..');
 
 describe('removeAuditFields', () => {
   it('removes audit fields from a single object', () => {

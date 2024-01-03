@@ -1,4 +1,4 @@
-const { replaceValues } = require('../src');
+const { replaceValues } = require('..');
 
 describe('replaceValues', () => {
 

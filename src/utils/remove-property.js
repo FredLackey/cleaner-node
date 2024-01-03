@@ -23,7 +23,7 @@ const remove = (obj, prop, cache) => {
     .filter(key => (key && isValidArray(key)))
     .forEach(key => remove(obj[key], prop, cache));
   
-}
+};
 
 const removeProperty = (obj, prop) => {
   const cache = {
@@ -31,6 +31,6 @@ const removeProperty = (obj, prop) => {
   };
   remove(obj, prop, cache);
   return obj;
-}
+};
 
 module.exports = removeProperty;

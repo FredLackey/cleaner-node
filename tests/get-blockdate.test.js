@@ -1,4 +1,4 @@
-const { getBlockDate } = require('../src');
+const { getBlockDate } = require('..');
 
 describe('getBlockDate', () => {
 
