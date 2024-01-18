@@ -17,6 +17,7 @@
 
 * add `removeProperty`  
 
-## v1.0.13 (1/18/2024)  
+## v1.0.13-14 (1/18/2024)  
 
 * improve `constants` for HTTP Status Codes
+* add `env.getVars`

@@ -13,6 +13,7 @@ const createPath           = require('./create-path');
 const deleteDirectory      = require('./delete-directory');
 const deleteFile           = require('./delete-file');
 const descending           = require('./descending');
+const env                  = require('./env');
 const express              = require('./express');
 const findAllUids          = require('./find-all-uids');
 const fromDto              = require('./from-dto');
@@ -153,6 +154,7 @@ module.exports = {
   deleteDirectory,
   deleteFile,
   descending,
+  env,
   express,
   findAllUids,
   fromDto,
