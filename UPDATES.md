@@ -16,3 +16,7 @@
 ## v1.0.10 (12/31/2023)  
 
 * add `removeProperty`  
+
+## v1.0.13 (1/18/2024)  
+
+* improve `constants` for HTTP Status Codes
