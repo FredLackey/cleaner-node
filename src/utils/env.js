@@ -10,9 +10,11 @@ const getVars = () => {
 
   const result = {};
 
-  Object.keys(process.env).filter(x => (x && x === x.toUpperCase() && 
+  const keys = Object.keys(process.env).filter(x => (x && x === x.toUpperCase() && 
     (isValidString(process.env[x]) || isNumber(process.env[x]) || isBoolean(process.env[x]))  
-  )).forEach(x => {
+  ));
+  keys.sort();
+  keys.forEach(x => {
     result[x] = process.env[x];
   });
 
