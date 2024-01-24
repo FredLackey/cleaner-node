@@ -8,7 +8,7 @@ const DEFAULT_STATUS = 200;
 const DEFAULT_CODE = -1;
 const EMPTY_OK = true;
 
-const respond = async (res, data, httpStatusCode = DEFAULT_STATUS, statusCode = DEFAULT_CODE) => {
+const respond = (res, data, httpStatusCode = DEFAULT_STATUS, statusCode = DEFAULT_CODE) => {
 
   const status = (isNumber(statusCode) || isDigits(statusCode)) && Number(statusCode) !== DEFAULT_CODE
     ? Number(statusCode)
