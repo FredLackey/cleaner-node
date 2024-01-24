@@ -1,9 +1,10 @@
 const isValidString = require('../is-valid-string');
-const isObject          = require('../is-object');
-const isDefined         = require('../is-defined');
-const getSingle         = require('../get-single');
-const getFirst          = require('../get-first');
-const middleware        = require('./middleware');
+const isObject      = require('../is-object');
+const isDefined     = require('../is-defined');
+const getSingle     = require('../get-single');
+const getFirst      = require('../get-first');
+const middleware    = require('./middleware');
+const respond       = require('./respond');
 
 const HTTP_PORT = 80;
 const HTTPS_PORT = 443;
@@ -154,5 +155,6 @@ module.exports = {
   getJwt,
   getUrl,
   fullUrl: getUrl,
-  getClientIp
+  getClientIp,
+  respond
 };
