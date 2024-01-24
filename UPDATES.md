@@ -22,6 +22,7 @@
 * improve `constants` for HTTP Status Codes
 * add `env.getVars`
 
-## v1.0.16 (1/24/2024)  
+## v1.0.16-20 (1/24/2024)  
 
 * add `express.respond`
+* add `isValidObject`

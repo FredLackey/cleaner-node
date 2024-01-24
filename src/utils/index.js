@@ -84,6 +84,7 @@ const isUrl                = require('./is-url');
 const isValidArray         = require('./is-valid-array');
 const isValidArrayIfSet    = require('./is-valid-array-ifset');
 const isValidChars         = require('./is-valid-chars');
+const isValidObject        = require('./is-valid-object');
 const isValidPath          = require('./is-valid-path');
 const isValidPathIfSet     = require('./is-valid-path-ifset');
 const isValidString        = require('./is-valid-string');
@@ -230,6 +231,7 @@ module.exports = {
   isValidArray,
   isValidArrayIfSet,
   isValidChars,
+  isValidObject,
   isValidPath,
   isValidPathIfSet,
   isValidString,
