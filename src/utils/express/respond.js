@@ -27,4 +27,4 @@ const respond = async (res, data, httpStatusCode = DEFAULT_STATUS, statusCode = 
   return res.status(httpStatus).json(response);
 };
 
-export default respond;
+module.exports = respond;
