@@ -283,6 +283,7 @@ module.exports = {
   writeFile,
 
     // CONVENIENCE
+  isAlphaNumeric   : isAlphanumeric,
   cleanAlphaNumeric: cleanAlphanumeric,
   copy             : copyObject,
   first            : getFirst,

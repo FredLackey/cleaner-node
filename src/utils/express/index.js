@@ -1,8 +1,13 @@
 const isValidString = require('../is-valid-string');
 const isObject      = require('../is-object');
 const isDefined     = require('../is-defined');
+const getHeader     = require('../get-header');
+const getHeaders    = require('../get-headers');
+const getJwt        = require('../get-jwt');
 const getSingle     = require('../get-single');
 const getFirst      = require('../get-first');
+const getUrlParam   = require('./get-url-param');
+const getUrlParams  = require('./get-url-params');
 const middleware    = require('./middleware');
 const respond       = require('./respond');
 
@@ -152,8 +157,12 @@ module.exports = {
   firstValueFromHeaders,
   firstValueFromCookies,
 
+  getHeader,
+  getHeaders,
   getJwt,
   getUrl,
+  getUrlParam,
+  getUrlParams,
   fullUrl: getUrl,
   getClientIp,
   respond

@@ -26,3 +26,11 @@
 
 * add `express.respond`
 * add `isValidObject`
+
+## v1.0.21 (1/26/2024)  
+
+* add `express.getHeader`
+* add `express.getHeaders`
+* add `express.getJwt`
+* add `express.getUrlParam`
+* add `express.getUrlParams`
