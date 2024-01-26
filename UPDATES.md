@@ -34,3 +34,4 @@
 * add `express.getJwt`
 * add `express.getUrlParam`
 * add `express.getUrlParams`
+* add `parseJwt`

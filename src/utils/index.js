@@ -102,6 +102,7 @@ const newSalt              = require('./new-salt');
 const newUid               = require('./new-uid');
 const nextjs               = require('./nextjs');
 const parseJson            = require('./parse-json');
+const parseJwt             = require('./parse-jwt');
 const print                = require('./print');
 const readFile             = require('./read-file');
 const readLines            = require('./read-lines');
@@ -248,6 +249,7 @@ module.exports = {
   newUid,
   nextjs,
   parseJson,
+  parseJwt,
   print,
   readFile,
   readLines,
