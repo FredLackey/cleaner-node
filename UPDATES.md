@@ -27,7 +27,7 @@
 * add `express.respond`
 * add `isValidObject`
 
-## v1.0.21 (1/26/2024)  
+## v1.0.21-23 (1/26/2024)  
 
 * add `express.getHeader`
 * add `express.getHeaders`
@@ -35,3 +35,4 @@
 * add `express.getUrlParam`
 * add `express.getUrlParams`
 * add `parseJwt`
+* add `isSameDate`
