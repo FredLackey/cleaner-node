@@ -36,3 +36,7 @@
 * add `express.getUrlParams`
 * add `parseJwt`
 * add `isSameDate`
+
+## v1.0.24 (2/1/2024)  
+
+* add `isSemver`

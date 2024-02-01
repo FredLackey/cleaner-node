@@ -1,6 +1,6 @@
 {
   "name"        : "cleaner-node",
-  "version"     : "1.0.23",
+  "version"     : "1.0.24",
   "description" : "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main"        : "src/index.js",
   "preferGlobal": true,
@@ -47,6 +47,7 @@
     "jsonwebtoken": "^9.0.2",
     "node-fetch"  : "2.7.0",
     "rimraf"      : "5.0.5",
+    "semver"      : "^7.5.4",
     "uuid"        : "^9.0.1"
   },
   "devDependencies": {

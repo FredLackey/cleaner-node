@@ -79,6 +79,7 @@ const isObject             = require('./is-object');
 const isPhoneNumber        = require('./is-phone-number');
 const isSameDate           = require('./is-same-date');
 const isSet                = require('./is-set');
+const isSemver             = require('./is-semver');
 const isShortDate          = require('./is-short-date');
 const isUidFormat          = require('./is-uid-format');
 const isUrl                = require('./is-url');
@@ -228,6 +229,7 @@ module.exports = {
   isPhoneNumber,
   isSameDate,
   isSet,
+  isSemver,
   isShortDate,
   isUidFormat,
   isUrl,
