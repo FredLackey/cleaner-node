@@ -41,10 +41,11 @@
 
 * add `isSemver`
 
-## v1.0.25 (4/15/2024)  
+## v1.0.25-26 (4/15/2024)  
 
 * add `toPascalCase`  
 * add `isPascalCase`  
 * add `isCamelCase`  
 * add `isSnakeCase`  
 * add `isKebabCase`  
+* add `isCaps`

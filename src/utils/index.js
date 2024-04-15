@@ -62,6 +62,7 @@ const isBoolean            = require('./is-boolean');
 const isBooleanIfSet       = require('./is-boolean-ifset');
 const isBracketted         = require('./is-bracketted');
 const isCamelCase          = require('./is-camel-case');
+const isCaps               = require('./is-caps');
 const isDate               = require('./is-date');
 const isDefined            = require('./is-defined');
 const isDeleted            = require('./is-deleted');
@@ -217,6 +218,7 @@ module.exports = {
   isBooleanIfSet,
   isBracketted,
   isCamelCase,
+  isCaps,
   isDate,
   isDefined,
   isDeleted,
