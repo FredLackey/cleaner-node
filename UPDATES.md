@@ -40,3 +40,11 @@
 ## v1.0.24 (2/1/2024)  
 
 * add `isSemver`
+
+## v1.0.25 (4/15/2024)  
+
+* add `toPascalCase`  
+* add `isPascalCase`  
+* add `isCamelCase`  
+* add `isSnakeCase`  
+* add `isKebabCase`  

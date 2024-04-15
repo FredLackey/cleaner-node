@@ -61,6 +61,7 @@ const isAsync              = require('./is-async');
 const isBoolean            = require('./is-boolean');
 const isBooleanIfSet       = require('./is-boolean-ifset');
 const isBracketted         = require('./is-bracketted');
+const isCamelCase          = require('./is-camel-case');
 const isDate               = require('./is-date');
 const isDefined            = require('./is-defined');
 const isDeleted            = require('./is-deleted');
@@ -73,14 +74,17 @@ const isFunction           = require('./is-function');
 const isGuidFormat         = require('./is-guid-format');
 const isIpAddress          = require('./is-ip-address');
 const isIsoDate            = require('./is-iso-date');
+const isKebabCase          = require('./is-kebab-case');
 const isMatch              = require('./is-match');
 const isNumber             = require('./is-number');
 const isObject             = require('./is-object');
+const isPascalCase         = require('./is-pascal-case');
 const isPhoneNumber        = require('./is-phone-number');
 const isSameDate           = require('./is-same-date');
 const isSet                = require('./is-set');
 const isSemver             = require('./is-semver');
 const isShortDate          = require('./is-short-date');
+const isSnakeCase          = require('./is-snake-case');
 const isUidFormat          = require('./is-uid-format');
 const isUrl                = require('./is-url');
 const isValidArray         = require('./is-valid-array');
@@ -122,6 +126,7 @@ const toCamelCase          = require('./to-camel-case');
 const toEpoch              = require('./to-epoch');
 const toGuidFormat         = require('./to-guid-format');
 const toKebabCase          = require('./to-kebab-case');
+const toPascalCase         = require('./to-pascal-case');
 const toRequest            = require('./to-request');
 const toResult             = require('./to-result');
 const toSnakeCase          = require('./to-snake-case');
@@ -211,6 +216,7 @@ module.exports = {
   isBoolean,
   isBooleanIfSet,
   isBracketted,
+  isCamelCase,
   isDate,
   isDefined,
   isDeleted,
@@ -223,14 +229,17 @@ module.exports = {
   isGuidFormat,
   isIpAddress,
   isIsoDate,
+  isKebabCase,
   isMatch,
   isNumber,
   isObject,
+  isPascalCase,
   isPhoneNumber,
   isSameDate,
   isSet,
   isSemver,
   isShortDate,
+  isSnakeCase,
   isUidFormat,
   isUrl,
   isValidArray,
@@ -271,6 +280,7 @@ module.exports = {
   toEpoch,
   toGuidFormat,
   toKebabCase,
+  toPascalCase,
   toRequest,
   toResult,
   toSnakeCase,
