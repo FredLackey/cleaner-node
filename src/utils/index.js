@@ -76,6 +76,7 @@ const isGuidFormat         = require('./is-guid-format');
 const isIpAddress          = require('./is-ip-address');
 const isIsoDate            = require('./is-iso-date');
 const isKebabCase          = require('./is-kebab-case');
+const isLowerCase          = require('./is-lowercase');
 const isMatch              = require('./is-match');
 const isNumber             = require('./is-number');
 const isObject             = require('./is-object');
@@ -232,6 +233,7 @@ module.exports = {
   isIpAddress,
   isIsoDate,
   isKebabCase,
+  isLowerCase,
   isMatch,
   isNumber,
   isObject,

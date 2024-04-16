@@ -49,3 +49,7 @@
 * add `isSnakeCase`  
 * add `isKebabCase`  
 * add `isCaps`
+
+## v1.0.27 (4/16/2024)  
+
+* add `isLowerCase`  
