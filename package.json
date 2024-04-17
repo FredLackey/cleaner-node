@@ -1,6 +1,6 @@
 {
   "name"        : "cleaner-node",
-  "version"     : "1.0.27",
+  "version"     : "1.0.28",
   "description" : "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main"        : "src/index.js",
   "preferGlobal": true,
@@ -25,7 +25,9 @@
     "lodash",
     "alternative",
     "underscore",
-    "alternative"
+    "alternative",
+    "terraform",
+    "hcl"
   ],
   "author": {
     "name" : "Fred Lackey",
