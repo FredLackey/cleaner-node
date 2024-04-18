@@ -9,7 +9,7 @@ const writeLines = async (filePath, lines) => {
     return false;
   }
 
-  const data = lines.filter(x => (x && isValidString(x, true))).join(os.EOL);
+  const data = lines.filter(x => (typeof x === 'string')).join(os.EOL);
   return writeFile(filePath, data);
 };
 
