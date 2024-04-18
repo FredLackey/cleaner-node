@@ -146,6 +146,7 @@ const uniqueObjects        = require('./unique-objects');
 const uniqueStrings        = require('./unique-strings');
 const walk                 = require('./walk');
 const writeFile            = require('./write-file');
+const writeLines           = require('./write-lines');
 
 // EXPERIMENTAL
 const body                 = require('./get-body');
@@ -303,6 +304,7 @@ module.exports = {
   uniqueStrings,
   walk,
   writeFile,
+  writeLines,
 
     // CONVENIENCE
   isAlphaNumeric   : isAlphanumeric,
