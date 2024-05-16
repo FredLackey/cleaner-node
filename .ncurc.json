@@ -1,5 +1,6 @@
 {
   "reject": [
-    "node-fetch"
+    "node-fetch",
+    "eslint*"
   ]
 }
