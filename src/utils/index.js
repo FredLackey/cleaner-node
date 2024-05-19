@@ -41,6 +41,8 @@ const getInnerTokens       = require('./get-inner-tokens');
 const getLast              = require('./get-last');
 const getMax               = require('./get-max');
 const getMin               = require('./get-min');
+const getPadPrefix         = require('./get-pad-prefix');
+const getPadSuffix         = require('./get-pad-suffix');
 const getPads              = require('./get-pads');
 const getSingle            = require('./get-single');
 const getStringSize        = require('./get-string-size');
@@ -199,6 +201,8 @@ module.exports = {
   getId,
   getInnerTokens,
   getLast,
+  getPadPrefix,
+  getPadSuffix,
   getPads,
   getMin,
   getMax,

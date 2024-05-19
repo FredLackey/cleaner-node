@@ -92,7 +92,7 @@ const cleanDoc = doc => {
   cleanNode(doc, cache);
 };
 
-const parseHcl = async (filePath) => {
+const loadHcl = async (filePath) => {
 
   const lines = await getLines(filePath);
 
@@ -207,4 +207,4 @@ const parseHcl = async (filePath) => {
   return doc;
 };
 
-module.exports = parseHcl;
+module.exports = loadHcl;

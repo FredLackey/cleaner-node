@@ -65,3 +65,8 @@
 ## v1.0.31 (5/16/2024)  
 
 * add `hashLines`  
+
+## v1.0.32 (5/19/2024)  
+
+* add `getPadPrefix`  
+* add `getPadSuffix`  
