@@ -199,8 +199,7 @@ const loadHcl = async (filePath) => {
       continue;
     }
 
-    curNode.children.push(newItem);
-    
+    curNode.children.push(newItem); 
   }
   
   cleanDoc(doc);

@@ -147,6 +147,7 @@ const unique               = require('./unique');
 const uniqueNumbers        = require('./unique-numbers');
 const uniqueObjects        = require('./unique-objects');
 const uniqueStrings        = require('./unique-strings');
+const unquote              = require('./unquote');
 const walk                 = require('./walk');
 const writeFile            = require('./write-file');
 const writeLines           = require('./write-lines');
@@ -308,6 +309,7 @@ module.exports = {
   uniqueNumbers,
   uniqueObjects,
   uniqueStrings,
+  unquote,
   walk,
   writeFile,
   writeLines,
@@ -320,6 +322,7 @@ module.exports = {
   last             : getLast,
   single           : getSingle,
   toReq            : toRequest,
+  unQuote          : unquote,
 
   fromBlockDate: blockdate.fromBlockDate,
   isBlockDate  : blockdate.isBlockDate,
