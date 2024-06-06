@@ -3,6 +3,7 @@
   "version"     : "1.0.34",
   "description" : "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main"        : "src/index.js",
+  "registry"   : "https://registry.npmjs.org",
   "preferGlobal": true,
   "scripts"     : {
     "lint"    : "eslint ./src/**/*.js",
