@@ -69,5 +69,14 @@
 ## v1.0.32-33 (5/19/2024)  
 
 * add `getPadPrefix`  
-* add `getPadSuffix`  
+* add `getPadSuffix`
 * add `unquote`
+
+## v1.1.0 (6/17/2024)  
+
+* add `comments` module
+* add `comments.singleLine`
+* add `comments.multiLine`
+* add `comments.singleLine.removeComment`
+* add `comments.singleLine.removeComments`
+* add `comments.multiLine.removeComments`
