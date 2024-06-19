@@ -72,7 +72,7 @@
 * add `getPadSuffix`
 * add `unquote`
 
-## v1.1.0 (6/17/2024)  
+## v1.1.2 (6/17/2024)  
 
 * add `comments` module
 * add `comments.singleLine`
@@ -80,3 +80,4 @@
 * add `comments.singleLine.removeComment`
 * add `comments.singleLine.removeComments`
 * add `comments.multiLine.removeComments`
+* remove `loadHcl`

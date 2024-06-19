@@ -102,7 +102,6 @@ const isValidString        = require('./is-valid-string');
 const isValidStringIfSet   = require('./is-valid-string-ifset');
 const jwt                  = require('./jwt');
 const loadJson             = require('./load-json');
-const loadHcl              = require('./load-hcl');
 const isZeroDate           = require('./is-zero-date');
 const makePath             = require('./make-path');
 const maxDate              = require('./max-date');
@@ -265,7 +264,6 @@ module.exports = {
   isValidStringIfSet,
   isZeroDate,
   loadJson,
-  loadHcl,
   makePath,
   maxDate,
   minDate,
