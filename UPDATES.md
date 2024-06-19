@@ -82,6 +82,7 @@
 * add `comments.multiLine.removeComments`
 * remove `loadHcl`
 
-## v1.1.3 (6/19/2024)  
+## v1.1.3-v.1.1.4 (6/19/2024)  
 
 * add `splitFirst`
+* add `count`
