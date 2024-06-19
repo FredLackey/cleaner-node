@@ -1,8 +1,8 @@
 const {
   getDelimPosition,
   hasDelimeter,
-  cleanComment,
-  cleanComments,
+  removeComment,
+  removeComments,
 } = require('../../src/utils/comments/single-line');
 
 
@@ -43,36 +43,36 @@ describe('hasDelimeter', () => {
   });
 });
 
-describe('cleanComment', () => {
+describe('removeComment', () => {
   it('should return the line without comments', () => {
     // isValidString.mockReturnValue(true);
-    expect(cleanComment('This is a #test string')).toBe('This is a ');
-    expect(cleanComment('This is a //test string')).toBe('This is a ');
+    expect(removeComment('This is a #test string')).toBe('This is a ');
+    expect(removeComment('This is a //test string')).toBe('This is a ');
   });
 
   it('should return the original line if there are no comments', () => {
     // isValidString.mockReturnValue(true);
-    expect(cleanComment('This is a test string')).toBe('This is a test string');
+    expect(removeComment('This is a test string')).toBe('This is a test string');
   });
 
   it('should ignore comments inside quotes', () => {
     // isValidString.mockReturnValue(true);
-    expect(cleanComment('This is a "quoted #test" string')).toBe('This is a "quoted #test" string');
-    expect(cleanComment("This is a 'quoted //test' string")).toBe("This is a 'quoted //test' string");
+    expect(removeComment('This is a "quoted #test" string')).toBe('This is a "quoted #test" string');
+    expect(removeComment("This is a 'quoted //test' string")).toBe("This is a 'quoted //test' string");
   });
 });
 
-describe('cleanComments', () => {
+describe('removeComments', () => {
   it('should return the line without comments if input is a string', () => {
     // isValidString.mockReturnValue(true);
-    expect(cleanComments('This is a #test string')).toBe('This is a ');
+    expect(removeComments('This is a #test string')).toBe('This is a ');
   });
 
   it('should return an array of lines without comments if input is an array of strings', () => {
     // isValidString.mockReturnValue(false);
     const lines = ['This is a #test string', 'Another //test string'];
     const expected = ['This is a ', 'Another '];
-    expect(cleanComments(lines)).toEqual(expected);
+    expect(removeComments(lines)).toEqual(expected);
   });
 
   it('should handle mixed input correctly', () => {
@@ -80,6 +80,6 @@ describe('cleanComments', () => {
     // isValidString.mockReturnValueOnce(true);
     const lines = ['This is a #test string', 'Another //test string'];
     const expected = ['This is a ', 'Another '];
-    expect(cleanComments(lines)).toEqual(expected);
+    expect(removeComments(lines)).toEqual(expected);
   });
 });

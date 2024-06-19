@@ -81,3 +81,7 @@
 * add `comments.singleLine.removeComments`
 * add `comments.multiLine.removeComments`
 * remove `loadHcl`
+
+## v1.1.3 (6/19/2024)  
+
+* add `splitFirst`

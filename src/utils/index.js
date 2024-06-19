@@ -126,6 +126,7 @@ const removeSuffix         = require('./remove-suffix');
 const replaceValues        = require('./replace-values');
 const saveJson             = require('./save-json');
 const sort                 = require('./sort');
+const splitFirst           = require('./split-first');
 const stringify            = require('./stringify');
 const toBoolean            = require('./to-boolean');
 const toCamelCase          = require('./to-camel-case');
@@ -292,6 +293,7 @@ module.exports = {
   replaceValues,
   saveJson,
   sort,
+  splitFirst,
   stringify,
   toBoolean,
   toCamelCase,
