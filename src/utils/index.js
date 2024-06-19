@@ -9,6 +9,7 @@ const cleanString          = require('./clean-string');
 const copyContents         = require('./copy-contents');
 const copyFile             = require('./copy-file');
 const copyObject           = require('./copy-object');
+const comments             = require('./comments');
 const createPath           = require('./create-path');
 const deleteDirectory      = require('./delete-directory');
 const deleteFile           = require('./delete-file');
@@ -154,6 +155,8 @@ const writeLines           = require('./write-lines');
 // EXPERIMENTAL
 const body                 = require('./get-body');
 
+const { hasComments, removeComments } = comments;
+
 module.exports = {
   ascending,
   addDays,
@@ -166,6 +169,7 @@ module.exports = {
   copyContents,
   copyFile,
   copyObject,
+  comments,
   createPath,
   deleteDirectory,
   deleteFile,
@@ -212,6 +216,7 @@ module.exports = {
   getTokenizedSegments,
   getUid,
   getVars,
+  hasComments,
   hasString,
   hashFile,
   hashFileContents,
@@ -279,6 +284,7 @@ module.exports = {
   readFile,
   readLines,
   removeAuditFields,
+  removeComments,
   removeDeleted,
   removePrefix,
   removeProperty,
