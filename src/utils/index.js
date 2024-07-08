@@ -130,6 +130,7 @@ const splitFirst           = require('./split-first');
 const stringify            = require('./stringify');
 const toBoolean            = require('./to-boolean');
 const toCamelCase          = require('./to-camel-case');
+const toColumn             = require('./to-column');
 const toEpoch              = require('./to-epoch');
 const toGuidFormat         = require('./to-guid-format');
 const toKebabCase          = require('./to-kebab-case');
@@ -297,6 +298,7 @@ module.exports = {
   stringify,
   toBoolean,
   toCamelCase,
+  toColumn,
   toEpoch,
   toGuidFormat,
   toKebabCase,
