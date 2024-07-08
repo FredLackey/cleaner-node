@@ -1,19 +1,20 @@
-const isValidString = require('./is-valid-string')
-const isNumber = require('./is-number')
-const isBoolean = require('./is-boolean')
+const isValidString = require('./is-valid-string');
+const isNumber = require('./is-number');
+const isBoolean = require('./is-boolean');
 
 const toColumn = values => {
 
   const structure = [].concat(values).filter(x => (isNumber(x) || isBoolean(x) || isValidString(x))).map(value => {
-    if (isValidString(value, true)) {
-      return value;
-    }
-    if (isNumber(value)) {
-      return `${value}`;
-    }
-    if (isBoolean(value)) {
-      return value ? 'true' : 'false';
-    }
+
+    return isValidString(value, true)
+      ? value
+      : isNumber(value)
+        ? `${value}`
+        : isBoolean(value)
+          ? value
+            ? 'true'
+            : 'false'
+          : undefined;
   }).map(value => ({
     value,
     length: value.length
