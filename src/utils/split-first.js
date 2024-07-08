@@ -15,7 +15,7 @@ const splitFirst = (str, separator) => {
   }
 
   const first = str.slice(0, pos);
-  if (str.length === first.length | separator.length === 0) {
+  if (str.length === first.length || separator.length === 0) {
     return [first];
   }
 

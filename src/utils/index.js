@@ -10,7 +10,6 @@ const copyContents         = require('./copy-contents');
 const copyFile             = require('./copy-file');
 const copyObject           = require('./copy-object');
 const comments             = require('./comments');
-const count                = require('./count');
 const createPath           = require('./create-path');
 const deleteDirectory      = require('./delete-directory');
 const deleteFile           = require('./delete-file');

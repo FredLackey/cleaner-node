@@ -86,3 +86,8 @@
 
 * add `splitFirst`
 * add `count`
+
+## v1.2.0 (7/8/2024)  
+
+* remove `node-fetch`
+* require NodeJS 18 minimum
