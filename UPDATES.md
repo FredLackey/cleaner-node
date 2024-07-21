@@ -95,3 +95,8 @@
 
 * remove `node-fetch`
 * require NodeJS 18 minimum
+
+## v1.3.0 (7/21/2024)  
+
+* add `exucution.execute`
+* add `exucution.executePromise`

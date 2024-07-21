@@ -15,6 +15,7 @@ const deleteDirectory      = require('./delete-directory');
 const deleteFile           = require('./delete-file');
 const descending           = require('./descending');
 const env                  = require('./env');
+const execution            = require('./execution');
 const express              = require('./express');
 const findAllUids          = require('./find-all-uids');
 const fromDto              = require('./from-dto');
@@ -177,6 +178,7 @@ module.exports = {
   deleteFile,
   descending,
   env,
+  execution,
   express,
   findAllUids,
   fromDto,
@@ -336,6 +338,9 @@ module.exports = {
   fromBlockDate: blockdate.fromBlockDate,
   isBlockDate  : blockdate.isBlockDate,
   isDirectory  : isFolder,
+
+  execute       : execution.execute,
+  executePromise: execution.executePromise,
 
   min: getMin,
   max: getMax,
