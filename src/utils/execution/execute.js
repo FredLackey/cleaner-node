@@ -1,13 +1,18 @@
 const executePromise = require('./execute-promise');
 
 const execute = async command => {
-  let result;
   try {
-    result = await executePromise(command);
+    const output = await executePromise(command);
+    return {
+      success: true,
+      output
+    }
   } catch (error) {
-    result = { error };
+    return {
+      success: false,
+      error
+    };
   }
-  return result;
 };
 
 module.exports = execute;
