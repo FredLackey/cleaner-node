@@ -2,8 +2,21 @@ const removePrefix  = require('./remove-prefix');
 const removeSuffix  = require('./remove-suffix');
 const isValidString = require('./is-valid-string');
 const isObject      = require('./is-object');
+const isValidObject = require('./is-valid-object');
 
 const IS_EMPTY_STRING_OKAY = true;
+const DEFAULT_HEADERS = { 'Content-Type': 'application/json' };
+
+const removeBlankContentType = headers => {
+  const keys = Object.keys(headers);
+  const key = keys.find(key => key.toLowerCase() === 'content-type');
+  if (!key) {
+    return;
+  }
+  if (!isValidString(headers[key])) {
+    delete headers[key];
+  }
+};
 
 const toUrl = (value = '/') => {
 
@@ -15,7 +28,7 @@ const toUrl = (value = '/') => {
     ? url
     : `http://${url}`;
 };
-const toBody = value => {
+const toBody = (value) => {
   if (isObject(value)) {
     return JSON.stringify(value);
   }
@@ -29,7 +42,12 @@ const addHeaders = (creds = {}, headers = {}) => {
 
   const { user, pass, password, token } = creds;
 
-  const result = { 'Content-Type': 'application/json' };
+  const result = isValidObject(headers) ? headers : DEFAULT_HEADERS;
+  removeBlankContentType(result);
+  
+  if (Object.keys(result).some(key => key.toLowerCase() === 'content-type') && !result['Content-Type']) {
+    result['Content-Type'] = 'application/json';
+  }
   if (user || pass || password) {
     result.Authorization = `Basic ${Buffer.from(`${user}:${pass || password}`).toString('base64')}`;
   }
