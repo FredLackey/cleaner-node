@@ -100,3 +100,9 @@
 
 * add `exucution.execute`
 * add `exucution.executePromise`
+
+## v1.3.3 (4/21/2025)
+
+* update `isGuidFormat`
+* update `isUidFormat`
+* update tests
