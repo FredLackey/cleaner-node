@@ -101,8 +101,9 @@
 * add `exucution.execute`
 * add `exucution.executePromise`
 
-## v1.3.3 (4/21/2025)
+## v1.3.4 (4/21/2025)
 
 * update `isGuidFormat`
 * update `isUidFormat`
 * update tests
+* upgrade uuid from `v9.0.1` to `v11.1.0`
