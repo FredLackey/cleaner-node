@@ -3,6 +3,7 @@ const errors    = require('./errors');
 const utils     = require('./utils');
 
 utils.errors = errors;
+utils.status = constants.HTTP_STATUS_CODES;
 
 utils.a = utils.initArray;
 
@@ -18,5 +19,6 @@ utils.HTTP         = constants.HTTP;
 utils.TYPES        = constants.TYPES;
 utils.DEFAULTS     = constants.DEFAULTS;
 utils.ZERO_DATE    = constants.ZERO_DATE;
+
 
 module.exports = utils;
