@@ -3,7 +3,7 @@ const errors    = require('./errors');
 const utils     = require('./utils');
 
 utils.errors = errors;
-utils.status = constants.HTTP_STATUS_CODES;
+utils.status = constants.HTTP.STATUS.CODES;
 
 utils.a = utils.initArray;
 
