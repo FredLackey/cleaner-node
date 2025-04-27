@@ -1,4 +1,4 @@
-## Functions
+## Cleaner Node Functions
 
 <dl>
 <dt><a href="#addDays">addDays(value, quantity)</a> ⇒ <code>Date</code> | <code>undefined</code></dt>
