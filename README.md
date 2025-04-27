@@ -10,6 +10,10 @@ There are several libraries out there designed to make life easier for developer
 
 `npm i cleaner-node`
 
+## Functions & Usage
+
+Please review the [`FUNCTIONS.md`](./FUNCTIONS.md) file for a complete list of functions.
+
 ## Changes  
 
 ### v0.0.1 - v0.22.2

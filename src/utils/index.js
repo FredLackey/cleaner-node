@@ -345,6 +345,12 @@ module.exports = {
   min: getMin,
   max: getMax,
 
+  /**
+   * Gets the body of a request, handling both Express and Next.js request objects.
+   * Detects the request type based on whether it's an async function (assumed Next.js) or not (assumed Express).
+   * @param {object} req The request object (either Express req or Next.js NextApiRequest).
+   * @returns {*} The parsed body of the request.
+   */
   getBody: (req) => {
     return isAsync(req) ? nextjs.getBody(req) : express.getBody(req);
   },

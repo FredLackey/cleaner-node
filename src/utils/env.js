@@ -2,6 +2,12 @@ const isValidString = require('./is-valid-string');
 const isNumber = require('./is-number');
 const isBoolean = require('./is-boolean');
 
+/**
+ * Retrieves environment variables from process.env.
+ * Filters for keys that are all uppercase and have string, number, or boolean values.
+ * Sorts the keys alphabetically.
+ * @returns {object} An object containing the filtered and sorted environment variables.
+ */
 const getVars = () => {
 
   if (!process || !process.env) {

@@ -1,5 +1,13 @@
 const toSnakeCase = require('./to-snake-case');
 
+/**
+ * Converts a string to camelCase.
+ * First converts the string to snake_case, then transforms it to camelCase.
+ * Handles single-character words and ensures the first character is lowercase.
+ *
+ * @param {string} value - The string to convert.
+ * @returns {string} The camelCase version of the string.
+ */
 const toCamelCase = value => {
   value = toSnakeCase(value);
   value = value.split('_').map(x => (x.length === 1 

@@ -3,6 +3,12 @@ const isValidArray = require('./is-valid-array');
 const isValidString = require('./is-valid-string');
 const getSubstring = require('./get-substring');
 
+/**
+ * Finds the common root path (e.g., 'C:\\' or '/') from an array of file paths.
+ * @param {string[]} values An array of file path strings.
+ * @returns {string|null} The common root path if all paths share the same root, otherwise null.
+ * @private
+ */
 const getRoot = values => {
   if (!isValidArray(values)) { 
     return null; 
@@ -21,6 +27,13 @@ const getRoot = values => {
   return (result.length === 1) ? result[0] : null;
 };
 
+/**
+ * Finds the longest common base directory path from an array of file paths.
+ * Ensures all paths share the same root directory before finding the common subdirectory path.
+ * Handles different path separators (Windows/Unix).
+ * @param {string[]} values An array of file path strings.
+ * @returns {string|null} The longest common base directory path, or null if paths don't share a common root or if the input is invalid.
+ */
 const getBaseDir = (values) => {
   
   if (!isValidArray(values)) { 

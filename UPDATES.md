@@ -108,3 +108,8 @@
 * update tests  
 * upgrade uuid from `v9.0.1` to `v11.1.0`  
 * add `.status` for HTTP status codes  
+
+## v1.3.7 (4/27/2025)
+
+* add JavaDoc comments to all functions  
+* add `FUNCTIONS.md` documentation  

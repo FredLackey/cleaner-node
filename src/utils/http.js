@@ -7,6 +7,11 @@ const isValidObject = require('./is-valid-object');
 const IS_EMPTY_STRING_OKAY = true;
 const DEFAULT_HEADERS = { 'Content-Type': 'application/json' };
 
+/**
+ * Removes the Content-Type header if its value is not a valid, non-empty string.
+ * Modifies the headers object in place.
+ * @param {object} headers The headers object.
+ */
 const removeBlankContentType = headers => {
   const keys = Object.keys(headers);
   const key = keys.find(key => key.toLowerCase() === 'content-type');
@@ -18,6 +23,12 @@ const removeBlankContentType = headers => {
   }
 };
 
+/**
+ * Converts a value into a full URL string, ensuring it starts with http:// or https://.
+ * Removes leading/trailing slashes before prefixing with http:// if necessary.
+ * @param {string} [value='/'] The value to convert to a URL. Defaults to '/'.
+ * @returns {string} The formatted URL string.
+ */
 const toUrl = (value = '/') => {
 
   let url = value;
@@ -28,6 +39,13 @@ const toUrl = (value = '/') => {
     ? url
     : `http://${url}`;
 };
+
+/**
+ * Converts a value to a string suitable for an HTTP request body.
+ * Stringifies objects, passes through strings, returns undefined otherwise.
+ * @param {*} value The value to convert.
+ * @returns {string|undefined} The stringified body or undefined.
+ */
 const toBody = (value) => {
   if (isObject(value)) {
     return JSON.stringify(value);
@@ -38,6 +56,13 @@ const toBody = (value) => {
   return undefined;
 };
 
+/**
+ * Merges default headers, provided headers, and adds Authorization headers based on credentials.
+ * Ensures Content-Type is set if not provided or blank.
+ * @param {object} [creds={}] Credentials object which may contain user, pass/password, or token.
+ * @param {object} [headers={}] Additional headers to include.
+ * @returns {object} The combined headers object.
+ */
 const addHeaders = (creds = {}, headers = {}) => {
 
   const { user, pass, password, token } = creds;
@@ -64,6 +89,17 @@ const addHeaders = (creds = {}, headers = {}) => {
   return result;
 };
 
+/**
+ * Performs a fetch request with the specified options.
+ * Handles URL formatting, body conversion, and header generation.
+ * @param {object} options The options for the fetch request.
+ * @param {string} [options.method='GET'] The HTTP method.
+ * @param {string} options.url The target URL.
+ * @param {*} [options.data] The request body data.
+ * @param {object} [options.creds={}] Credentials for Authorization header.
+ * @param {object} [options.headers={}] Additional request headers.
+ * @returns {Promise<*>} A promise that resolves with the JSON response, or logs an error on failure.
+ */
 const doPromise = ({ method = 'GET', url, data, creds = {}, headers = {} }) => {
   return fetch(toUrl(url), {
     // credentials: 'same-origin', // 'include', default: 'omit'
@@ -76,6 +112,13 @@ const doPromise = ({ method = 'GET', url, data, creds = {}, headers = {} }) => {
 };
 
 
+/**
+ * Performs a GET request.
+ * @param {string} url The target URL.
+ * @param {object} [creds={}] Credentials for Authorization header.
+ * @param {object} [headers={}] Additional request headers.
+ * @returns {Promise<*|null>} A promise that resolves with the JSON response, or null on error.
+ */
 const doGet = async (url, creds = {}, headers = {}) => {
   try {
     const response = await doPromise({ url, creds, headers });
@@ -86,6 +129,15 @@ const doGet = async (url, creds = {}, headers = {}) => {
     return null;
   }
 };
+
+/**
+ * Performs a POST request.
+ * @param {string} url The target URL.
+ * @param {*} data The request body data.
+ * @param {object} [creds={}] Credentials for Authorization header.
+ * @param {object} [headers={}] Additional request headers.
+ * @returns {Promise<*|null>} A promise that resolves with the JSON response, or null on error.
+ */
 const doPost = async (url, data, creds = {}, headers = {}) => {
   try {
     const response = await doPromise({ method: 'POST', url, data, creds, headers });
@@ -96,6 +148,15 @@ const doPost = async (url, data, creds = {}, headers = {}) => {
     return null;
   }
 };
+
+/**
+ * Performs a PUT request.
+ * @param {string} url The target URL.
+ * @param {*} data The request body data.
+ * @param {object} [creds={}] Credentials for Authorization header.
+ * @param {object} [headers={}] Additional request headers.
+ * @returns {Promise<*|null>} A promise that resolves with the JSON response, or null on error.
+ */
 const doPut = async (url, data, creds = {}, headers = {}) => {
   try {
     const response = await doPromise({ method: 'PUT', url, data, creds, headers });
@@ -106,6 +167,15 @@ const doPut = async (url, data, creds = {}, headers = {}) => {
     return null;
   }
 };
+
+/**
+ * Performs a DELETE request.
+ * @param {string} url The target URL.
+ * @param {*} [data] Optional request body data.
+ * @param {object} [creds={}] Credentials for Authorization header.
+ * @param {object} [headers={}] Additional request headers.
+ * @returns {Promise<*|null>} A promise that resolves with the JSON response, or null on error.
+ */
 const doDelete = async (url, data, creds = {}, headers = {}) => {
   try {
     const response = await doPromise({ method: 'DELETE', url, data, creds, headers });
@@ -117,6 +187,12 @@ const doDelete = async (url, data, creds = {}, headers = {}) => {
   }
 };
 
+/**
+ * Performs a GET request to the root path ('/') to check connectivity.
+ * @param {object} [creds={}] Credentials for Authorization header.
+ * @param {object} [headers={}] Additional request headers.
+ * @returns {Promise<*|string>} A promise that resolves with the response or 'FAILURE'.
+ */
 const ping = async (creds = {}, headers = {}) => {
   const response = await doGet('/', creds, headers);
   return response || 'FAILURE';

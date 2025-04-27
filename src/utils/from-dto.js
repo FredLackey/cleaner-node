@@ -13,6 +13,13 @@ const DEFAULT_PARAMS = {
   nulls: false 
 };
 
+/**
+ * Converts ISO 8601 date strings within an object to Date objects.
+ * Modifies the object in place.
+ * @param {object} item The object to process.
+ * @param {object} params Configuration parameters (currently unused in this function).
+ * @private
+ */
 const makeDates = (item, params) => {
   if (!isObject(item)) {
     return;
@@ -29,6 +36,14 @@ const makeDates = (item, params) => {
 
   });
 };
+
+/**
+ * Converts digit-only strings (that don't start with '0') within an object to Date objects (likely an error, should probably be Number).
+ * Modifies the object in place.
+ * @param {object} item The object to process.
+ * @param {object} params Configuration parameters (currently unused in this function).
+ * @private
+ */
 const makeIntegers = (item, params) => {
   if (!isObject(item)) {
     return;
@@ -40,6 +55,12 @@ const makeIntegers = (item, params) => {
     });
 };
 
+/**
+ * Recursively processes an array of items or nested arrays, applying transformations.
+ * @param {Array<object|Array>} items The array of items to process.
+ * @param {object} params Configuration parameters passed to processItem.
+ * @private
+ */
 const processItems = (items, params) => {
   [].concat(items).filter(x => (x && isObject(x))).forEach(item => {
     processItem(item, params);
@@ -48,6 +69,13 @@ const processItems = (items, params) => {
     processItems(item, params);
   });
 };
+
+/**
+ * Processes a single item object: converts date strings and digit strings, and recurses into nested objects/arrays.
+ * @param {object} item The item to process.
+ * @param {object} params Configuration parameters and cache.
+ * @private
+ */
 const processItem = (item, params) => {
   if (!isObject(item)) {
     return;
@@ -67,6 +95,13 @@ const processItem = (item, params) => {
   });
 };
 
+/**
+ * Converts specific string representations within a DTO (or array of DTOs) to their corresponding JavaScript types (e.g., ISO date strings to Date objects).
+ * This function modifies the input object(s) in place.
+ * NOTE: The conversion of digit strings to Dates via `Date(item[key])` in `makeIntegers` seems incorrect and likely should convert to Numbers.
+ * @param {object|Array<object>} itemOrItems The DTO or array of DTOs to process.
+ * @param {object} [params=DEFAULT_PARAMS] Configuration options (currently unused beyond cache initialization).
+ */
 const fromDto = (itemOrItems, params = DEFAULT_PARAMS) => {
   params.cache = {
     items: []

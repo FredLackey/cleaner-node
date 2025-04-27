@@ -1,5 +1,13 @@
 const { NODE_ENV } = process.env;
 
+/**
+ * Express middleware to log request details in development environments.
+ * Logs the request method, URL, Origin header, Referrer header, and request body.
+ * Only logs if NODE_ENV is set to 'development'.
+ * @param {Express.Request} req The Express request object.
+ * @param {Express.Response} res The Express response object.
+ * @param {Express.NextFunction} next The next middleware function.
+ */
 const logRequest = (req, res, next) => {
   
   if (NODE_ENV === 'development') {

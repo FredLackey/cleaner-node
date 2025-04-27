@@ -5,6 +5,12 @@ const isValidString = require('./is-valid-string');
 
 const EMPTY_OK = true;
 
+/**
+ * Recursively finds all UID-formatted strings within nested objects and arrays.
+ * @param {object|Array} itemOrItems The object or array to search within.
+ * @param {object} cache An object to keep track of visited items ({items: Array}) and found UIDs ({uids: Array}).
+ * @private
+ */
 const findAll = (itemOrItems, cache) => {
   if (isValidArray(itemOrItems, EMPTY_OK)) {
     if (isValidArray(itemOrItems)) {
@@ -34,6 +40,12 @@ const findAll = (itemOrItems, cache) => {
 
 };
 
+/**
+ * Finds all unique strings matching the UID format (e.g., 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx') 
+ * within an object or array, including nested structures.
+ * @param {object|Array} itemOrItems The object or array to search.
+ * @returns {string[]} An array of unique UID strings found.
+ */
 const findAllUids = itemOrItems => {
   const cache = {
     items: [],

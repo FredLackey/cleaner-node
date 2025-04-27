@@ -20,6 +20,3 @@ const isUidFormat = value => {
 };
 
 module.exports = isUidFormat;
-
-// ---------1---------2---------3-- 
-// u123e4567e89b12d3a45642661417400

@@ -1,5 +1,11 @@
 const isValidArray = require('./is-valid-array');
 
+/**
+ * Finds the longest common starting substring among an array of strings.
+ * @param {string[]} values An array of strings.
+ * @param {boolean} [isCaseSensitive=true] Determines if the comparison should be case-sensitive.
+ * @returns {string|null} The longest common starting substring, or null if the input is not a valid array.
+ */
 const getSubstring = (values, isCaseSensitive = true) => {
   if (!isValidArray(values)) { return null; }
   if (values.length === 1) { return values[0]; }

@@ -14,6 +14,11 @@ const DEFAULT_PARAMS = {
 };
 const DELIMETERS = ['-', '_'];
 
+/**
+ * Removes the ID property from an object if the UID property exists (or if force is true).
+ * @param {object} item The object to process.
+ * @param {object} params Configuration parameters (id, uid, force).
+ */
 const removeId = (item, params) => {
   if (!isObject(item) || !isValidString(params.id) || !isDefined(item[params.id])) {
     return;
@@ -29,6 +34,11 @@ const removeId = (item, params) => {
     }
   }
 };
+/**
+ * Removes audit trail properties (specified in params.audit) from an object.
+ * @param {object} item The object to process.
+ * @param {object} params Configuration parameters (audit).
+ */
 const removeAudit = (item, params) => {
   if (!isObject(item) || !isValidArray(params.audit)) {
     return;
@@ -37,6 +47,11 @@ const removeAudit = (item, params) => {
     Reflect.deleteProperty(item, key);
   });
 };
+/**
+ * Moves the value from the UID property to the ID property if the ID property is missing.
+ * @param {object} item The object to process.
+ * @param {object} params Configuration parameters (id, uid).
+ */
 const moveUid = (item, params) => {
   if (!item) { return; }
   if (!isValidString(params.uid) || !isValidString(params.id)) {
@@ -49,6 +64,11 @@ const moveUid = (item, params) => {
   Reflect.deleteProperty(item, params.uid);
 };
   
+/**
+ * Renames properties ending with '-uid' or '_uid' to the corresponding key without the suffix.
+ * @param {object} item The object to process.
+ * @param {object} params Configuration parameters (id, uid).
+ */
 const moveIds = (item, params) => {
   if (!item || !isValidString(params.uid) || !isValidString(params.id)) {
     return;
@@ -68,6 +88,11 @@ const moveIds = (item, params) => {
     }
   } 
 };
+/**
+ * Renames properties ending with '-id', '_id', '-uid', or '_uid' to the base key.
+ * @param {object} item The object to process.
+ * @param {object} params Configuration parameters (id, uid).
+ */
 const trimIds = (item, params) => {
   if (!item) { return; }
 
@@ -87,6 +112,11 @@ const trimIds = (item, params) => {
     });
   });
 };
+/**
+ * Removes properties with null values from an object unless params.nulls is true.
+ * @param {object} item The object to process.
+ * @param {object} params Configuration parameters (nulls).
+ */
 const removeNulls = (item, params) => {
   if (!isObject(item) || params.nulls === true) {
     return;
@@ -96,6 +126,11 @@ const removeNulls = (item, params) => {
   });
 };
 
+/**
+ * Recursively processes an array of items or nested arrays.
+ * @param {Array<object|Array>} items The array of items to process.
+ * @param {object} params Configuration parameters passed to processItem.
+ */
 const processItems = (items, params) => {
   [].concat(items).filter(x => (x && isObject(x))).forEach(item => {
     processItem(item, params);
@@ -104,6 +139,11 @@ const processItems = (items, params) => {
     processItems(item, params);
   });
 };
+/**
+ * Processes a single item object: removes IDs, audits, handles UIDs, trims IDs, removes nulls, and recurses into nested objects/arrays.
+ * @param {object} item The item to process.
+ * @param {object} params Configuration parameters (id, uid, audit, force, nulls, cache).
+ */
 const processItem = (item, params) => {
   if (!isObject(item)) {
     return;
@@ -127,6 +167,17 @@ const processItem = (item, params) => {
   });
 };
 
+/**
+ * Cleans a DTO (Data Transfer Object) or an array of DTOs by applying various transformations like removing audit fields, handling ID/UID properties, and removing nulls.
+ * This function modifies the input object(s) in place.
+ * @param {object|Array<object>} itemOrItems The DTO or array of DTOs to clean.
+ * @param {object} [params=DEFAULT_PARAMS] Configuration options:
+ * @param {string} [params.id=''] The name of the primary ID field.
+ * @param {string} [params.uid=''] The name of the unique ID field (often used before the primary ID is assigned).
+ * @param {string[]} [params.audit=[]] An array of property names considered audit fields to be removed.
+ * @param {boolean} [params.force=false] If true, forces removal of the `id` field even if `uid` is not present.
+ * @param {boolean} [params.nulls=false] If true, keeps properties with null values; otherwise, they are removed.
+ */
 const cleanDto = (itemOrItems, params = DEFAULT_PARAMS) => {
   params.cache = {
     items: []

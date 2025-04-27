@@ -8,6 +8,14 @@ const isObject = require('./is-object');
 
 const EMPTY_OK = true;
 
+/**
+ * Finds the position of a value within an array of source values.
+ * Handles date comparison specifically using `isEqualDate`.
+ *
+ * @param {*} value - The value to find.
+ * @param {Array<*>} sources - The array of source values to search within.
+ * @returns {number} The index of the value in the sources array, or -1 if not found.
+ */
 const findPosition = (value, sources) => {
   if (isDate(value)) {
     return sources.findIndex(source => isEqualDate(value, source));
@@ -15,6 +23,17 @@ const findPosition = (value, sources) => {
   return sources.indexOf(value);
 };
 
+/**
+ * Determines the replacement value for a given current value based on source and target arrays.
+ * If the current value is found in the sources array, its corresponding value from the targets array is returned,
+ * but only if the source and target values are of the same basic type (string, number, or date).
+ * Otherwise, the original current value is returned.
+ *
+ * @param {*} curValue - The current value to potentially replace.
+ * @param {Array<*>} sources - The array of source values.
+ * @param {Array<*>} targets - The array of target values.
+ * @returns {*} The corresponding target value if found and type-compatible, otherwise the original `curValue`.
+ */
 const getValue = (curValue, sources, targets) => {
   const posInSource = findPosition(curValue, sources);
   if (posInSource === -1) {
@@ -29,6 +48,17 @@ const getValue = (curValue, sources, targets) => {
   return sameType ? newValue : curValue;
 };
 
+/**
+ * Internal recursive function to replace values within an object or array structure.
+ * Modifies the input object/array directly unless a copy was made initially.
+ * Uses a cache to handle circular references.
+ *
+ * @param {object|Array} itemOrItems - The object or array to process.
+ * @param {Array<*>} sources - The array of source values to look for.
+ * @param {Array<*>} targets - The array of corresponding target values.
+ * @param {object} cache - An object to track processed items.
+ * @param {Array} cache.items - Array storing references to items already processed.
+ */
 const replace = (itemOrItems, sources, targets, cache) => {
 
   if (isValidArray(itemOrItems, EMPTY_OK)) {
@@ -68,6 +98,21 @@ const replace = (itemOrItems, sources, targets, cache) => {
 
 };
 
+/**
+ * Recursively replaces values within an object or array structure.
+ * Traverses the structure and replaces any primitive value (string, number, date)
+ * found in the `sources` array with the corresponding value from the `targets` array at the same index.
+ * Replacement only occurs if the source and target values are of the same type (string, number, or date).
+ * Handles nested objects, arrays, and circular references.
+ * Can operate on the original structure or a deep clone.
+ *
+ * @param {object|Array} itemOrItems - The object or array structure to process.
+ * @param {Array<*>} sources - An array of values to search for.
+ * @param {Array<*>} targets - An array of replacement values, corresponding to `sources`.
+ * @param {boolean} [clone=false] - If true, creates a deep clone of `itemOrItems` before replacing values. Otherwise, modifies the original.
+ * @throws {Error} If `sources` or `targets` are not arrays, or if they have different lengths.
+ * @returns {object|Array} The processed structure with values replaced.
+ */
 const replaceValues = (itemOrItems, sources, targets, clone) => {
   if (!isValidArray(sources)) {
     throw new Error('sources must be an array');
