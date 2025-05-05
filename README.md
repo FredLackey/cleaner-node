@@ -85,6 +85,7 @@ Please review the [`FUNCTIONS.md`](./FUNCTIONS.md) file for a complete list of f
 | Function | Description |
 |---|---|
 | `cleanDto` | Cleans DTOs by removing audit fields, handling ID/UID properties, removing nulls etc. Modifies input in place. |
+| `cleanObject` | Recursively cleans an object or array by removing properties with `undefined` values. |
 | `copyObject` | Creates a deep copy of an object using JSON stringification and parsing. |
 | `findAllUids` | Finds all unique UID strings within an object or array, including nested structures. |
 | `fromResult` | Extracts the nested 'result' property from an object recursively. |
@@ -113,6 +114,7 @@ Please review the [`FUNCTIONS.md`](./FUNCTIONS.md) file for a complete list of f
 | `sort` | Sorts an array containing numbers (or string representations), filtering non-numerics. |
 | `sortAscending` | Sorts an array of numbers in ascending order. |
 | `sortDescending` | Sorts an array of numbers in descending order. |
+| `toResponse` | Formats a response based on the structure of the original input (object/array). |
 | `toResult` | Returns a single item or an array based on the sample array. |
 | `trim` | Trims leading/trailing non-valid-string elements from an array. |
 | `trimTop` | Trims leading non-valid-string elements from an array. |

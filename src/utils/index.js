@@ -5,6 +5,7 @@ const blockdate            = require('./blockdate');
 const cleanAlphanumeric    = require('./clean-alphanumeric');
 const cleanDigits          = require('./clean-digits');
 const cleanDto             = require('./clean-dto');
+const cleanObject          = require('./clean-object');
 const cleanString          = require('./clean-string');
 const copyContents         = require('./copy-contents');
 const copyFile             = require('./copy-file');
@@ -136,6 +137,7 @@ const toEpoch              = require('./to-epoch');
 const toGuidFormat         = require('./to-guid-format');
 const toKebabCase          = require('./to-kebab-case');
 const toPascalCase         = require('./to-pascal-case');
+const toResponse           = require('./to-response');
 const toRequest            = require('./to-request');
 const toResult             = require('./to-result');
 const toSnakeCase          = require('./to-snake-case');
@@ -168,6 +170,7 @@ module.exports = {
   cleanAlphanumeric,
   cleanDigits,
   cleanDto,
+  cleanObject,
   cleanString,
   copyContents,
   copyFile,
@@ -307,6 +310,7 @@ module.exports = {
   toPascalCase,
   toRequest,
   toResult,
+  toResponse,
   toSnakeCase,
   toTable,
   toUidFormat,

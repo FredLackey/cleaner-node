@@ -113,3 +113,8 @@
 
 * add JavaDoc comments to all functions  
 * add `FUNCTIONS.md` documentation  
+
+## v1.3.9 (5/5/20325)
+
+* add `toResponse`
+* add `cleanObject`

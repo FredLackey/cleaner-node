@@ -1707,11 +1707,11 @@ Handles URL formatting, body conversion, and header generation.
 
 <a name="doGet"></a>
 
-## doGet(url, [creds], [headers]) ⇒ <code>Promise.&lt;(\*\|null)&gt;</code>
+## doGet(url, [creds], [headers]) ⇒ <code>Promise.&lt;(*|null)&gt;</code>
 Performs a GET request.
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(\*\|null)&gt;</code> - A promise that resolves with the JSON response, or null on error.  
+**Returns**: <code>Promise.&lt;(*|null)&gt;</code> - A promise that resolves with the JSON response, or null on error.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1721,11 +1721,11 @@ Performs a GET request.
 
 <a name="doPost"></a>
 
-## doPost(url, data, [creds], [headers]) ⇒ <code>Promise.&lt;(\*\|null)&gt;</code>
+## doPost(url, data, [creds], [headers]) ⇒ <code>Promise.&lt;(*|null)&gt;</code>
 Performs a POST request.
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(\*\|null)&gt;</code> - A promise that resolves with the JSON response, or null on error.  
+**Returns**: <code>Promise.&lt;(*|null)&gt;</code> - A promise that resolves with the JSON response, or null on error.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1736,11 +1736,11 @@ Performs a POST request.
 
 <a name="doPut"></a>
 
-## doPut(url, data, [creds], [headers]) ⇒ <code>Promise.&lt;(\*\|null)&gt;</code>
+## doPut(url, data, [creds], [headers]) ⇒ <code>Promise.&lt;(*|null)&gt;</code>
 Performs a PUT request.
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(\*\|null)&gt;</code> - A promise that resolves with the JSON response, or null on error.  
+**Returns**: <code>Promise.&lt;(*|null)&gt;</code> - A promise that resolves with the JSON response, or null on error.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1751,11 +1751,11 @@ Performs a PUT request.
 
 <a name="doDelete"></a>
 
-## doDelete(url, [data], [creds], [headers]) ⇒ <code>Promise.&lt;(\*\|null)&gt;</code>
+## doDelete(url, [data], [creds], [headers]) ⇒ <code>Promise.&lt;(*|null)&gt;</code>
 Performs a DELETE request.
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(\*\|null)&gt;</code> - A promise that resolves with the JSON response, or null on error.  
+**Returns**: <code>Promise.&lt;(*|null)&gt;</code> - A promise that resolves with the JSON response, or null on error.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1766,11 +1766,11 @@ Performs a DELETE request.
 
 <a name="ping"></a>
 
-## ping([creds], [headers]) ⇒ <code>Promise.&lt;(\*\|string)&gt;</code>
+## ping([creds], [headers]) ⇒ <code>Promise.&lt;(*|string)&gt;</code>
 Performs a GET request to the root path ('/') to check connectivity.
 
 **Kind**: global function  
-**Returns**: <code>Promise.&lt;(\*\|string)&gt;</code> - A promise that resolves with the response or 'FAILURE'.  
+**Returns**: <code>Promise.&lt;(*|string)&gt;</code> - A promise that resolves with the response or 'FAILURE'.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -3404,4 +3404,35 @@ Filters out non-string elements from the input array.
 | --- | --- | --- |
 | filePath | <code>string</code> | The full path of the file to write to. |
 | lines | <code>Array.&lt;(string\|any)&gt;</code> | An array of lines to write. Non-string elements will be ignored. |
+
+<a name="toResponse"></a>
+
+## toResponse(original, response) ⇒ <code>Array</code> | <code>Object</code> | <code>*</code>
+Formats a response based on the structure of the original input.
+This utility helps create consistent responses by ensuring the response format
+matches the original input structure:
+- If original was an array, returns response as an array
+- If original was an object and response is an object, returns the response object
+- If response is an array with one item, extracts that single item
+
+**Kind**: global function  
+**Returns**: <code>Array</code> | <code>Object</code> | <code>*</code> - The formatted response data  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| original | <code>Object</code> \| <code>Array</code> | The original input structure |
+| response | <code>*</code> | The processed response data to format |
+
+<a name="cleanObject"></a>
+
+## cleanObject(itemOrItems, [copyFirst]) ⇒ <code>Object</code> | <code>Array</code> | <code>*</code>
+Recursively cleans an object or array by removing properties with `undefined` values.
+
+**Kind**: global function  
+**Returns**: <code>Object</code> | <code>Array</code> | <code>*</code> - The cleaned object/array, or the original input if not a valid object/array  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| itemOrItems | <code>Object</code> \| <code>Array</code> | | The object or array to clean |
+| [copyFirst] | <code>boolean</code> | <code>false</code> | Whether to work on a copy of the input (true) or modify in place (false) |
 
