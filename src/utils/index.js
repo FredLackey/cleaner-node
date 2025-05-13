@@ -40,6 +40,7 @@ const getFirst             = require('./get-first');
 const getFolderContents    = require('./get-folder-contents');
 const getHash              = require('./get-hash');
 const getId                = require('./get-id');
+const getIds               = require('./get-ids');
 const getInnerTokens       = require('./get-inner-tokens');
 const getLast              = require('./get-last');
 const getMax               = require('./get-max');
@@ -52,6 +53,7 @@ const getStringSize        = require('./get-string-size');
 const getSubstring         = require('./get-substring');
 const getTokenizedSegments = require('./get-tokenized-segments');
 const getUid               = require('./get-uid');
+const getUids              = require('./get-uids');
 const getVars              = require('./get-vars');
 const http                 = require('./http');
 const hasString            = require('./has-string');
@@ -210,6 +212,7 @@ module.exports = {
   getFolderContents,
   getHash,
   getId,
+  getIds,
   getInnerTokens,
   getLast,
   getPadPrefix,
@@ -222,6 +225,7 @@ module.exports = {
   getSubstring,
   getTokenizedSegments,
   getUid,
+  getUids,
   getVars,
   hasComments,
   hasString,

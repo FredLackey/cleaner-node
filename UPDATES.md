@@ -118,3 +118,8 @@
 
 * add `toResponse`
 * add `cleanObject`
+
+## v1.4.0 (5/13/20325)
+
+* add `getIds`
+* add `getUids`

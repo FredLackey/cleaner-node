@@ -93,9 +93,11 @@ Please review the [`FUNCTIONS.md`](./FUNCTIONS.md) file for a complete list of f
 | `getFirst` | Gets the first element of an array or the first character of a string. |
 | `getLast` | Gets the last element of an array or the last character of a string. |
 | `getMax` | Finds the maximum numeric value in an array. |
+| `getIds` | Extracts IDs from an array of items or IDs, ensuring each item is processed by `getId`. |
 | `getMin` | Finds the minimum numeric value in an array. |
 | `getId` | Extracts an ID ('id' or '_id') from an object or returns the input if already an ID. |
 | `getSingle` | Returns the first element of an array if it contains exactly one element, otherwise undefined. |
+| `getUids` | Extracts UIDs from an array of items, ensuring each item is processed by `getUid`. |
 | `getUid` | Extracts a UID/GUID from an item or returns the input if it's already valid. |
 | `initArray` | Ensures the input value is an array and filters out undefined elements. |
 | `print` | Prints the key-value pairs of an object to the console in a formatted manner. |
