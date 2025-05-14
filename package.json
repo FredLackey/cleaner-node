@@ -1,6 +1,6 @@
 {
   "name"        : "cleaner-node",
-  "version"     : "1.4.0",
+  "version"     : "1.4.1",
   "description" : "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main"        : "src/index.js",
   "registry"    : "https://registry.npmjs.org",
@@ -52,7 +52,7 @@
   "dependencies": {
     "jsonwebtoken": "^9.0.2",
     "rimraf"      : "5.0.7",
-    "semver"      : "^7.7.1",
+    "semver": "^7.7.2",
     "uuid"        : "^11.1.0"
   },
   "devDependencies": {

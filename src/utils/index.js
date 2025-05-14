@@ -32,6 +32,8 @@ const getDayName           = require('./get-day-name');
 const getDuration          = require('./get-duration');
 const getEmail             = require('./get-email');
 const getEmails            = require('./get-emails');
+const getEnum              = require('./get-enum');
+const getEnums             = require('./get-enums');
 const getFileContents      = require('./get-file-contents');
 const getFileName          = require('./get-file-name');
 const getFileSize          = require('./get-file-size');
@@ -204,6 +206,8 @@ module.exports = {
   getDuration,
   getEmail,
   getEmails,
+  getEnum,
+  getEnums,
   getFileContents,
   getFileName,
   getFileSize,

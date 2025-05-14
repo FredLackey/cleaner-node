@@ -496,6 +496,13 @@ module.exports = {
   CLEAR_CODE,
   DIGITS   : '0123456789',
   ENUM_NAME: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_',
+  ENUM_KEYS: [
+    'enum',
+    'enum_name',
+    'ENUM',
+    'ENUM_NAME',
+    'enumName',
+  ],
   QUOTE    : '"',
   SPACE    : ' ',
   

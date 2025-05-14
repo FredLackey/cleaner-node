@@ -114,12 +114,18 @@
 * add JavaDoc comments to all functions  
 * add `FUNCTIONS.md` documentation  
 
-## v1.3.9 (5/5/20325)
+## v1.3.9 (5/5/2025)
 
 * add `toResponse`
 * add `cleanObject`
 
-## v1.4.0 (5/13/20325)
+## v1.4.0 (5/13/2025)
 
 * add `getIds`
 * add `getUids`
+
+## v1.4.1 (5/14/2025)
+
+* add `getEnum`
+* add `getEnums`
+* update `semver`

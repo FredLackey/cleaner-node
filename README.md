@@ -12,8 +12,6 @@ There are several libraries out there designed to make life easier for developer
 
 ## Functions & Usage
 
-Please review the [`FUNCTIONS.md`](./FUNCTIONS.md) file for a complete list of functions.
-
 ### String Manipulation
 
 | Function | Description |
@@ -90,6 +88,8 @@ Please review the [`FUNCTIONS.md`](./FUNCTIONS.md) file for a complete list of f
 | `findAllUids` | Finds all unique UID strings within an object or array, including nested structures. |
 | `fromResult` | Extracts the nested 'result' property from an object recursively. |
 | `getArrayCount` | Gets the length of an array, handling non-arrays gracefully. |
+| `getEnum` | Retrieves the enum value from an object. |
+| `getEnums` | Extracts enum values from a given object or array of objects. |
 | `getFirst` | Gets the first element of an array or the first character of a string. |
 | `getLast` | Gets the last element of an array or the last character of a string. |
 | `getMax` | Finds the maximum numeric value in an array. |
