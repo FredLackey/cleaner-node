@@ -129,3 +129,8 @@
 * add `getEnum`
 * add `getEnums`
 * update `semver`
+
+## v1.5.0 (5/16/2025)
+
+* add `encryptString`
+* add `decryptString`

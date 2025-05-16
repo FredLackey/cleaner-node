@@ -203,7 +203,9 @@ There are several libraries out there designed to make life easier for developer
 | Function | Description |
 |---|---|
 | `decode` | Decodes a JWT token without verifying the signature. |
+| `decryptString` | Decrypts a string that was encrypted using encryptString function with the same password. |
 | `encode` | Encodes (signs) a payload into a JWT token. |
+| `encryptString` | Encrypts a string using AES-256-CBC encryption with a password. |
 | `fromClaims` | Converts a standard JWT claims object into an application-specific payload object. |
 | `getHash` | Calculates the MD5 hash of a given string value. |
 | `hash` | Computes an HMAC hash of a value using a salt. |

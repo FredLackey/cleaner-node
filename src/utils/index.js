@@ -15,6 +15,8 @@ const createPath           = require('./create-path');
 const deleteDirectory      = require('./delete-directory');
 const deleteFile           = require('./delete-file');
 const descending           = require('./descending');
+const decryptString        = require('./decrypt-string');
+const encryptString        = require('./encrypt-string');
 const env                  = require('./env');
 const execution            = require('./execution');
 const express              = require('./express');
@@ -184,6 +186,8 @@ module.exports = {
   deleteDirectory,
   deleteFile,
   descending,
+  decryptString,
+  encryptString,
   env,
   execution,
   express,
