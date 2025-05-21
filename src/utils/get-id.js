@@ -26,6 +26,9 @@ const getId = (itemOrId) => {
   }
 
   const copy = copyObject(itemOrId);
+  if (isValidString(copy) || isNumber(copy)) {  // Some objects are just a value, such as the Mongo ObjectId
+    return copy;
+  }
 
   const key = KEYS.find(x => (
     x && (isNumber(copy[x]) || isValidString(copy[x]))
