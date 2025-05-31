@@ -134,3 +134,14 @@
 
 * add `encryptString`
 * add `decryptString`
+
+## v1.6.0 (5/21/2025)  
+
+* add `isJson`  
+* add `isJsonArray`  
+* add `isJsonObject`  
+
+## v1.6.1 (5/31/2025)  
+
+* add `isEmptyArray`
+  

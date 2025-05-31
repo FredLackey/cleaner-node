@@ -142,6 +142,7 @@ There are several libraries out there designed to make life easier for developer
 | `isDefined` | Checks if a value is defined (not `undefined`). |
 | `isDeleted` | Checks if an item is considered "deleted" based on a provided checking function. |
 | `isDigits` | Checks if a string contains only numeric digits. |
+| `isEmptyArray` | Checks if a value is an array that contains no elements. |
 | `isEmail` | Checks if a string is a valid email address format. |
 | `isEqualDate` | Checks if two values are valid Dates representing the exact same time. (Alias: `isSameDate`) |
 | `isFile` | Checks if a given path points to an existing file. |
@@ -150,6 +151,9 @@ There are several libraries out there designed to make life easier for developer
 | `isGuidFormat` | Checks if a value conforms to the standard GUID format. |
 | `isIpAddress` | Checks if a string represents a valid IPv4 address (allows 'localhost', '0.0.0.0'). |
 | `isIsoDate` | Checks if a string represents a valid ISO 8601 date format. |
+| `isJson` | Checks if a string is valid JSON (either an object or array). |
+| `isJsonArray` | Checks if a string is a valid JSON array, including whitespace handling and validation. |
+| `isJsonObject` | Checks if a string is a valid JSON object, including whitespace handling and validation. |
 | `isKebabCase` | Checks if a string is in kebab-case format. |
 | `isLowerCase` | Checks if a string is entirely lowercase. |
 | `isMatch` | Compares two strings for equality with options for case sensitivity and whitespace. |

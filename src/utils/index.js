@@ -80,6 +80,7 @@ const isDefined            = require('./is-defined');
 const isDeleted            = require('./is-deleted');
 const isDigits             = require('./is-digits');
 const isEmail              = require('./is-email');
+const isEmptyArray         = require('./is-empty-array');
 const isEqualDate          = require('./is-equal-date');
 const isFile               = require('./is-file');
 const isFolder             = require('./is-folder');
@@ -87,6 +88,9 @@ const isFunction           = require('./is-function');
 const isGuidFormat         = require('./is-guid-format');
 const isIpAddress          = require('./is-ip-address');
 const isIsoDate            = require('./is-iso-date');
+const isJsonArray          = require('./is-json-array');
+const isJsonObject         = require('./is-json-object');
+const isJson               = require('./is-json');  
 const isKebabCase          = require('./is-kebab-case');
 const isLowerCase          = require('./is-lowercase');
 const isMatch              = require('./is-match');
@@ -197,6 +201,7 @@ module.exports = {
   fromIsoDate,
   fromResult,
   fromShortDate,
+
   jwt,
   doGet   : http.doGet,
   doPost  : http.doPost,
@@ -257,6 +262,7 @@ module.exports = {
   isDeleted,
   isDigits,
   isEmail,
+  isEmptyArray,
   isEqualDate,
   isFile,
   isFolder,
@@ -264,6 +270,9 @@ module.exports = {
   isGuidFormat,
   isIpAddress,
   isIsoDate,
+  isJsonArray,
+  isJsonObject,
+  isJson,
   isKebabCase,
   isLowerCase,
   isMatch,
