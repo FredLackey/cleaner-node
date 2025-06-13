@@ -10,6 +10,26 @@ There are several libraries out there designed to make life easier for developer
 
 `npm i cleaner-node`
 
+## Documentation
+
+📚 **Comprehensive documentation is now available in the [`/docs`](./docs) directory!**
+
+Each function has its own detailed documentation file with:
+- Clear purpose and description
+- Complete parameter documentation
+- Multiple usage examples
+- Edge cases and error handling
+- Related functions and cross-references
+
+**Quick Links:**
+- [📖 Full Documentation Index](./docs/README.md) - Complete navigation to all functions
+- [🔍 String Functions](./docs/README.md#string-functions) - String manipulation utilities
+- [📊 Array Functions](./docs/README.md#array-functions) - Array processing utilities  
+- [✅ Validation Functions](./docs/README.md#validation-functions) - Type checking and validation
+- [🛠️ Utility Functions](./docs/README.md#utility-functions) - General purpose utilities
+
+**For AI Tools:** The documentation is specifically structured to help AI tools understand and generate code using the `cleaner-node` package. Each function includes comprehensive examples and clear parameter descriptions.
+
 ## Functions & Usage
 
 ### String Manipulation
