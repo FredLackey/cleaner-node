@@ -96,6 +96,7 @@ Each function has its own detailed documentation file with:
 | `getDuration` | Calculates the duration between two timestamps (or Date objects) and formats it. |
 | `maxDate` | Finds the latest date from an array of Date objects. |
 | `minDate` | Finds the earliest date from an array of Date objects. |
+| `now` | Returns the current date and time. |
 | `toEpoch` | Converts a Date object to its Unix epoch timestamp (seconds). |
 
 ### Object & Array Processing

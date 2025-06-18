@@ -125,6 +125,7 @@ const newGuid              = require('./new-guid');
 const newSalt              = require('./new-salt');
 const newUid               = require('./new-uid');
 const nextjs               = require('./nextjs');
+const now                  = require('./now');
 const parseJson            = require('./parse-json');
 const parseJwt             = require('./parse-jwt');
 const print                = require('./print');
@@ -306,6 +307,7 @@ module.exports = {
   newSalt,
   newUid,
   nextjs,
+  now,
   parseJson,
   parseJwt,
   print,
