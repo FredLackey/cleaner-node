@@ -29,7 +29,7 @@ const isJsonObject = str => {
     return false;
   }
 
-  const parsed = parseJson(cleaned);
+  const parsed = parseJson(cleaned, false);
   return isObject(parsed);
 
 }

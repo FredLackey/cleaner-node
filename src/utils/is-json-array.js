@@ -29,7 +29,7 @@ const isJsonArray = str => {
     return false;
   }
 
-  const parsed = parseJson(cleaned);
+  const parsed = parseJson(cleaned, false);
   return isValidArray(parsed, true);
 
 }
