@@ -237,6 +237,7 @@ Each function has its own detailed documentation file with:
 | `hashFile` | Computes a hash of a file's contents synchronously. |
 | `hashFileContents` | Computes a hash of the file contents asynchronously. |
 | `hashLines` | Computes a hash of an array of lines. |
+| `hashObject` | Generates a hash value for a given object by converting it to a string representation and then computing its hash. |
 | `hashString` | Computes a hash (md5/hex by default) of a string. |
 | `newSalt` | Generates a cryptographically random salt string. |
 | `parseJwt` | Parses a JWT, returning details including claims, payload, validity, and expiration status. |

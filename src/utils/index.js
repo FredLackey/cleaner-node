@@ -64,6 +64,7 @@ const hasString            = require('./has-string');
 const hashFile             = require('./hash-file');
 const hashFileContents     = require('./hash-file-contents');
 const hashLines            = require('./hash-lines');
+const hashObject           = require('./hash-object');
 const hashString           = require('./hash-string');
 const hash                 = require('./hash');
 const initArray            = require('./init-array');
@@ -246,6 +247,7 @@ module.exports = {
   hashFile,
   hashFileContents,
   hashLines,
+  hashObject,
   hashString,
   hash,
   ping: http.ping,

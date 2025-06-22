@@ -144,4 +144,7 @@
 ## v1.6.1 (5/31/2025)  
 
 * add `isEmptyArray`
-  
+
+## v1.7.0 (6/22/2025)  
+
+* add `hashObject`
