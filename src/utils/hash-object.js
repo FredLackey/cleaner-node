@@ -1,4 +1,4 @@
-const isArray    = require('./is-array');
+const isValidArray    = require('./is-valid-array');
 const isObject   = require('./is-object');
 const stringify  = require('./stringify');
 const hashString = require('./hash-string');
@@ -56,7 +56,7 @@ const hashObject = (obj, strict = false) => {
   if (strict) {
     if (!isObject(obj)) { return undefined; }
   } else {
-    if (!isObject(obj) && !isArray(obj)) { return undefined; }
+    if (!isObject(obj) && !isValidArray(obj, true)) { return undefined; }
   }
 
   const stringified = stringify(obj);
