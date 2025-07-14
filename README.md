@@ -1,14 +1,67 @@
 # Cleaner Node (`cleaner-node`)  
 
+[![npm version](https://badge.fury.io/js/cleaner-node.svg)](https://badge.fury.io/js/cleaner-node)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
+
 Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.
 
 ## Background  
 
-There are several libraries out there designed to make life easier for developers (`moment`, `lodash`, `underscore`, etc.).  However, for the most part, the goals of those utilities are to *add on* to what Node and JavaScript bring to the table.  And, as Node and JavaScript mature, developers find them to be less of a _neccessity_ and end up removing them.  While `cleaner-node` is _also_ a helper package, and completely unnecessary, it's goal is to abstract some of the more redundant and verbose syntaxes.  The end result is a codebase that still functions as it would _without_ `cleaner-node` but is easier to read *and maintain*.  Unlike those other libraries, which shrink over time, I intend on growing `cleaner-node` for as long as Node exists so that I don't have to write the same code again, and again, and again, and again, and ag....
+There are several libraries out there designed to make life easier for developers (`moment`, `lodash`, `underscore`, etc.).  However, for the most part, the goals of those utilities are to *add on* to what Node and JavaScript bring to the table.  And, as Node and JavaScript mature, developers find them to be less of a _necessity_ and end up removing them.  While `cleaner-node` is _also_ a helper package, and completely unnecessary, its goal is to abstract some of the more redundant and verbose syntaxes.  The end result is a codebase that still functions as it would _without_ `cleaner-node` but is easier to read *and maintain*.  Unlike those other libraries, which shrink over time, I intend on growing `cleaner-node` for as long as Node exists so that I don't have to write the same code again, and again, and again, and again, and ag....
+
+## Requirements
+
+- **Node.js**: >= 20.0.0
+- **Dependencies**: jsonwebtoken, uuid, semver, rimraf
 
 ## Installation  
 
-`npm i cleaner-node`
+```bash
+npm install cleaner-node
+```
+
+## Quick Start
+
+```javascript
+const _ = require('cleaner-node');
+
+// String manipulation
+const cleaned = _.cleanString('  Hello World!  '); // "Hello World!"
+const isValid = _.isValidString(cleaned); // true
+const email = _.getEmail('Contact us at support@example.com today'); // "support@example.com"
+
+// Array operations  
+const unique = _.unique([1, 2, 2, 3, 3, 3]); // [1, 2, 3]
+const first = _.getFirst(['a', 'b', 'c']); // 'a'
+const count = _.getArrayCount([1, 2, 3]); // 3
+
+// Validation
+const isEmail = _.isEmail('user@example.com'); // true
+const isGuid = _.isGuidFormat('550e8400-e29b-41d4-a716-446655440000'); // true
+const isCamel = _.isCamelCase('myVariableName'); // true
+
+// File operations (synchronous)
+const exists = _.isFile('./package.json'); // true
+const content = _.readFile('./package.json'); // file contents as string
+const files = _.getFiles('./src'); // array of file paths
+
+// Object manipulation
+const cleaned = _.cleanObject({ name: 'John', age: undefined, city: 'NYC' }); 
+// Result: { name: 'John', city: 'NYC' } (undefined removed)
+
+// Date utilities
+const tomorrow = _.addDays(new Date(), 1); // adds 1 day to current date
+const timestamp = _.toEpoch(new Date()); // converts to Unix timestamp
+
+// ID generation
+const guid = _.newGuid(); // "550e8400-e29b-41d4-a716-446655440000"
+const uid = _.newUid(); // "A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6"
+
+// HTTP requests
+const response = await _.doGet('https://api.example.com/data');
+const result = await _.doPost('https://api.example.com/users', { name: 'John' });
+```
 
 ## Documentation
 
@@ -29,6 +82,37 @@ Each function has its own detailed documentation file with:
 - [🛠️ Utility Functions](./docs/README.md#utility-functions) - General purpose utilities
 
 **For AI Tools:** The documentation is specifically structured to help AI tools understand and generate code using the `cleaner-node` package. Each function includes comprehensive examples and clear parameter descriptions.
+
+## Popular Functions
+
+Here are some of the most commonly used functions in `cleaner-node`:
+
+### 🔥 Most Popular
+- **`isValidString(value)`** - Comprehensive string validation
+- **`cleanString(value)`** - Clean and normalize strings  
+- **`isEmail(value)`** - Email address validation
+- **`newGuid()`** - Generate UUID v4
+- **`copyObject(obj)`** - Deep copy objects
+- **`readFile(path)`** - Synchronous file reading
+- **`isFile(path)`** / **`isFolder(path)`** - Path existence checking
+
+### ⚡ String Utilities  
+- **`trimToNull(str)`** - Trim string or return null if empty
+- **`getEmail(text)`** - Extract first email from text
+- **`cleanAlphanumeric(str)`** - Keep only letters and numbers
+- **`isCamelCase(str)`** / **`toCamelCase(str)`** - Case checking/conversion
+
+### 📋 Array & Object Tools
+- **`unique(array)`** - Remove duplicates intelligently
+- **`getFirst(array)`** / **`getLast(array)`** - Safe array access
+- **`removeProperty(obj, key)`** - Remove property recursively
+- **`cleanObject(obj)`** - Remove undefined values
+
+### 🛡️ Validation Suite
+- **`isGuidFormat(str)`** - GUID format validation
+- **`isValidArray(arr)`** - Array validation with options
+- **`isNumber(value)`** - Flexible number checking
+- **`isDefined(value)`** - Check if not undefined
 
 ## Functions & Usage
 
@@ -268,15 +352,85 @@ Each function has its own detailed documentation file with:
 | `newGuid` | Generates a new version 4 UUID (GUID). |
 | `newUid` | Generates a new 32-character uppercase alphanumeric UID string. |
 
-## Changes  
+## Testing
 
-### v0.0.1 - v0.22.2
+Run the test suite to ensure everything works correctly:
 
-The first iteration of `cleaner-node` proved to be very successful.  It was used in several projects and was great at reducing the noise in the codebase.  It actually lead to the development of other projects, such as [`restutils-host`](https://www.npmjs.com/package/restutils-host) and [`restutils-client`](https://www.npmjs.com/package/restutils-client); tools that allow instant API creation from any JavaScript file or Node package.  During this time there was experimentation with both CommonJS and JavaScript Modules.  It was decided that, while JavaScript Modules are the future, CommonJS is still the standard for Node projects and will be for some time.  As such, the first release of `cleaner-node` will be in CommonJS with other projects, such as [`nextjs-helpers`](https://www.npmjs.com/package/nextjs-helpers), focusing on JavaScript Modules.
+```bash
+# Run all tests
+npm test
 
-### v1.0.0  
+# Run linting
+npm run lint
 
-The first actual release of `cleaner-node`, this version focuses on reducing code complexity for common tasks within Node projects.  It is written using CommonJS and is intended to be used in Node projects.  It is not intended to be used in the browser, though it may work in some cases.  It is also not intended to be used in React projects, though it may work in some cases.  
+# Fix linting issues automatically
+npm run lint:fix
+```
+
+## Migration from Lodash/Underscore
+
+If you're migrating from lodash or underscore, here are some common equivalents:
+
+```javascript
+// Lodash/Underscore → cleaner-node
+_.isString(value)     → _.isValidString(value)
+_.isArray(value)      → _.isValidArray(value)  
+_.isEmpty(array)      → _.isEmptyArray(array)
+_.first(array)        → _.getFirst(array)
+_.last(array)         → _.getLast(array)
+_.uniq(array)         → _.unique(array)
+_.clone(object)       → _.copyObject(object)
+_.isEqual(a, b)       → _.isMatch(a, b)
+
+// Plus many additional utilities not found in lodash:
+_.isEmail(email)      → Email validation
+_.isGuidFormat(guid)  → GUID format checking
+_.cleanString(str)    → String cleaning
+_.newGuid()           → GUID generation
+_.readFile(path)      → Synchronous file reading
+```
+
+## Performance Notes
+
+- Most string and validation functions are highly optimized for performance
+- File operations are synchronous by design for simplicity
+- HTTP functions use native fetch API where available
+- Object operations use JSON serialization for deep copying (suitable for most use cases)
+
+## API Stability
+
+This package follows [Semantic Versioning](https://semver.org/). The API is stable and backward-compatible changes are guaranteed within major versions.
+
+## Contributing
+
+We welcome contributions! Please follow these guidelines:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass (`npm test`)
+6. Run linting (`npm run lint:fix`)
+7. Commit your changes (`git commit -m 'Add amazing feature'`)
+8. Push to the branch (`git push origin feature/amazing-feature`)
+9. Open a Pull Request
+
+### Development Setup
+
+```bash
+git clone https://github.com/FredLackey/cleaner-node.git
+cd cleaner-node
+npm install
+npm test
+```
+
+## Changelog
+
+See [UPDATES.md](./UPDATES.md) for a detailed changelog of all versions.
+
+## License
+
+Apache-2.0 - see [LICENSE](./LICENSE) file for details.
 
 ## Contact  
 
@@ -284,4 +438,12 @@ If you have any questions, comments, or concerns, please feel free to reach out 
 
 **Fred Lackey**  
 [fred.lackey@gmail.com](mailto:fred.lackey@gmail.com)  
-[http://fredlackey.com](http://fredlackey.com)  
+[http://fredlackey.com](http://fredlackey.com)
+
+---
+
+**Links:**
+- [GitHub Repository](https://github.com/FredLackey/cleaner-node)
+- [NPM Package](https://www.npmjs.com/package/cleaner-node)
+- [Issue Tracker](https://github.com/FredLackey/cleaner-node/issues)
+- [Full Documentation](./docs/README.md)  

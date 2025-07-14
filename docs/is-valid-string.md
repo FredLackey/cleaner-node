@@ -148,8 +148,10 @@ console.log(_.isValidString('\t', true)); // true
 ```javascript
 const _ = require('cleaner-node');
 
-// These are NOT considered valid strings
-console.log(_.isValidString(new String('hello'))); // false (String object)
+// String objects are NOT considered valid strings by this function
+console.log(_.isValidString(new String('hello'))); // false
+
+// Other array-like or object types are also invalid
 console.log(_.isValidString(['h', 'e', 'l', 'l', 'o'])); // false (array)
 console.log(_.isValidString({ toString: () => 'hello' })); // false (object)
 ```

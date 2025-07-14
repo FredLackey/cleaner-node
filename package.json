@@ -1,6 +1,6 @@
 {
   "name"        : "cleaner-node",
-  "version"     : "1.7.3",
+  "version"     : "1.7.4",
   "description" : "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main"        : "src/index.js",
   "registry"    : "https://registry.npmjs.org",
@@ -67,6 +67,6 @@
     "eslint-plugin-react"      : "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-standard"   : "^4.1.0",
-    "jest": "^30.0.2"
+    "jest": "^30.0.4"
   }
 }
