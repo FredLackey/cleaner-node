@@ -12,7 +12,9 @@ This directory contains comprehensive documentation for all functions in the `cl
 
 ### Array Functions
 - [ascending](./ascending.md) - Sort array in ascending order
+- [count](./count.md) - Count elements in array
 - [descending](./descending.md) - Sort array in descending order
+- [first](./first.md) - Get first element from array
 - [getArrayCount](./get-array-count.md) - Get count of items in array
 - [getFirst](./get-first.md) - Get first element from array
 - [getLast](./get-last.md) - Get last element from array
@@ -20,7 +22,9 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [initArray](./init-array.md) - Initialize array with default values
 - [isEmptyArray](./is-empty-array.md) - Check if array is empty
 - [isValidArray](./is-valid-array.md) - Validate array structure
-- [isValidArrayIfSet](./is-valid-array-ifset.md) - Validate array if set
+- [isValidArrayIfSet](./is-valid-array-if-set.md) - Validate array if set
+- [last](./last.md) - Get last element from array
+- [single](./single.md) - Get single element from array
 - [sort](./sort.md) - Sort array with custom comparator
 - [trimArray](./trim-array.md) - Trim whitespace from array elements
 - [unique](./unique.md) - Get unique elements from array
@@ -29,20 +33,22 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [uniqueStrings](./unique-strings.md) - Get unique strings from array
 
 ### String Functions
+- [cleanAlphaNumeric](./clean-alpha-numeric.md) - Clean string to alphanumeric only
 - [cleanAlphanumeric](./clean-alphanumeric.md) - Clean string to alphanumeric only
 - [cleanDigits](./clean-digits.md) - Extract digits from string
 - [cleanString](./clean-string.md) - Clean and normalize string
 - [hasString](./has-string.md) - Check if string contains substring
 - [isAlpha](./is-alpha.md) - Check if string contains only letters
+- [isAlphaNumeric](./is-alpha-numeric.md) - Check if string is alphanumeric
 - [isAlphanumeric](./is-alphanumeric.md) - Check if string is alphanumeric
 - [isCamelCase](./is-camel-case.md) - Check if string is camelCase
 - [isCaps](./is-caps.md) - Check if string is uppercase
 - [isKebabCase](./is-kebab-case.md) - Check if string is kebab-case
-- [isLowerCase](./is-lowercase.md) - Check if string is lowercase
+- [isLowerCase](./is-lower-case.md) - Check if string is lowercase
 - [isPascalCase](./is-pascal-case.md) - Check if string is PascalCase
 - [isSnakeCase](./is-snake-case.md) - Check if string is snake_case
 - [isValidString](./is-valid-string.md) - Validate string
-- [isValidStringIfSet](./is-valid-string-ifset.md) - Validate string if set
+- [isValidStringIfSet](./is-valid-string-if-set.md) - Validate string if set
 - [removePrefix](./remove-prefix.md) - Remove prefix from string
 - [removeSuffix](./remove-suffix.md) - Remove suffix from string
 - [toCamelCase](./to-camel-case.md) - Convert string to camelCase
@@ -53,16 +59,20 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [trimToNull](./trim-to-null.md) - Trim string or return null
 - [trimToUndefined](./trim-to-undefined.md) - Trim string or return undefined
 - [undouble](./undouble.md) - Remove double characters
+- [unQuote](./un-quote.md) - Remove quotes from string
 - [unquote](./unquote.md) - Remove quotes from string
 
 ### Date Functions
 - [addDays](./add-days.md) - Add days to date
 - [addMinutes](./add-minutes.md) - Add minutes to date
 - [blockdate](./blockdate.md) - Work with block dates
+- [fromBlockDate](./from-block-date.md) - Convert from block date format
 - [fromEpoch](./from-epoch.md) - Convert from epoch timestamp
 - [fromIsoDate](./from-iso-date.md) - Convert from ISO date string
 - [fromShortDate](./from-short-date.md) - Convert from short date format
+- [getBlockDate](./get-block-date.md) - Get block date from value
 - [getDayName](./get-day-name.md) - Get day name from date
+- [isBlockDate](./is-block-date.md) - Check if value is block date
 - [isDate](./is-date.md) - Check if value is a date
 - [isEqualDate](./is-equal-date.md) - Check if dates are equal
 - [isIsoDate](./is-iso-date.md) - Check if string is ISO date
@@ -71,6 +81,7 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [isZeroDate](./is-zero-date.md) - Check if date is zero date
 - [maxDate](./max-date.md) - Get maximum date from array
 - [minDate](./min-date.md) - Get minimum date from array
+- [now](./now.md) - Get current timestamp
 - [toEpoch](./to-epoch.md) - Convert date to epoch timestamp
 
 ### File System Functions
@@ -85,10 +96,11 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [getFileSize](./get-file-size.md) - Get file size
 - [getFiles](./get-files.md) - Get files in directory
 - [getFolderContents](./get-folder-contents.md) - Get folder contents
+- [isDirectory](./is-directory.md) - Check if path is directory
 - [isFile](./is-file.md) - Check if path is file
 - [isFolder](./is-folder.md) - Check if path is folder
 - [isValidPath](./is-valid-path.md) - Validate file path
-- [isValidPathIfSet](./is-valid-path-ifset.md) - Validate path if set
+- [isValidPathIfSet](./is-valid-path-if-set.md) - Validate path if set
 - [makePath](./make-path.md) - Create file path
 - [moveFile](./move-file.md) - Move file
 - [readFile](./read-file.md) - Read file
@@ -99,8 +111,10 @@ This directory contains comprehensive documentation for all functions in the `cl
 
 ### Validation Functions
 - [isBoolean](./is-boolean.md) - Check if value is boolean
-- [isBooleanIfSet](./is-boolean-ifset.md) - Check if boolean when set
+- [isBooleanIfSet](./is-boolean-if-set.md) - Check if boolean when set
+- [isBracketted](./is-bracketted.md) - Check if text is bracketed
 - [isDefined](./is-defined.md) - Check if value is defined
+- [isDeleted](./is-deleted.md) - Check if item is deleted
 - [isDigits](./is-digits.md) - Check if string contains only digits
 - [isEmail](./is-email.md) - Validate email address
 - [isFunction](./is-function.md) - Check if value is function
@@ -117,15 +131,19 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [isSet](./is-set.md) - Check if value is set
 - [isUidFormat](./is-uid-format.md) - Check if string is UID format
 - [isUrl](./is-url.md) - Validate URL
+- [isValidArrayIfSet](./is-valid-array-if-set.md) - Validate array if set
 - [isValidChars](./is-valid-chars.md) - Check if string has valid characters
 - [isValidObject](./is-valid-object.md) - Validate object structure
 
 ### Utility Functions
-- [copyObject](./copy-object.md) - Deep copy object
+- [body](./body.md) - Body utilities
 - [cleanDto](./clean-dto.md) - Clean data transfer object
 - [cleanObject](./clean-object.md) - Clean object properties
+- [copy](./copy.md) - Copy utilities
+- [copyObject](./copy-object.md) - Deep copy object
 - [fromDto](./from-dto.md) - Convert from DTO
 - [fromResult](./from-result.md) - Extract value from result
+- [getBody](./get-body.md) - Get body content
 - [getDuration](./get-duration.md) - Calculate duration
 - [getHash](./get-hash.md) - Generate hash
 - [getId](./get-id.md) - Extract ID from value
@@ -136,11 +154,16 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [getSubstring](./get-substring.md) - Extract substring
 - [getUid](./get-uid.md) - Extract UID from value
 - [getUids](./get-uids.md) - Extract UIDs from array
+- [hash](./hash.md) - Hash utilities
 - [hashFile](./hash-file.md) - Hash file contents
 - [hashFileContents](./hash-file-contents.md) - Hash file contents directly
 - [hashLines](./hash-lines.md) - Hash array of lines
+- [hashObject](./hash-object.md) - Hash object
 - [hashString](./hash-string.md) - Hash string value
+- [isAsync](./is-async.md) - Check if function is async
 - [loadJson](./load-json.md) - Load JSON from file
+- [max](./max.md) - Get maximum value
+- [min](./min.md) - Get minimum value
 - [newCode](./new-code.md) - Generate new code
 - [newGuid](./new-guid.md) - Generate new GUID
 - [newSalt](./new-salt.md) - Generate new salt
@@ -149,6 +172,7 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [parseJwt](./parse-jwt.md) - Parse JWT token
 - [print](./print.md) - Print formatted output
 - [removeAuditFields](./remove-audit-fields.md) - Remove audit fields
+- [removeComments](./remove-comments.md) - Remove comments
 - [removeDeleted](./remove-deleted.md) - Remove deleted items
 - [removeProperty](./remove-property.md) - Remove object property
 - [replaceValues](./replace-values.md) - Replace values in object
@@ -158,6 +182,7 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [toBoolean](./to-boolean.md) - Convert to boolean
 - [toColumn](./to-column.md) - Convert to column format
 - [toGuidFormat](./to-guid-format.md) - Convert to GUID format
+- [toReq](./to-req.md) - Convert to request format
 - [toRequest](./to-request.md) - Convert to request format
 - [toResponse](./to-response.md) - Convert to response format
 - [toResult](./to-result.md) - Convert to result format
@@ -165,10 +190,11 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [toUidFormat](./to-uid-format.md) - Convert to UID format
 
 ### HTTP Functions
+- [doDelete](./do-delete.md) - Perform HTTP DELETE request
 - [doGet](./do-get.md) - Perform HTTP GET request
 - [doPost](./do-post.md) - Perform HTTP POST request
 - [doPut](./do-put.md) - Perform HTTP PUT request
-- [doDelete](./do-delete.md) - Perform HTTP DELETE request
+- [http](./http.md) - HTTP utilities
 - [ping](./ping.md) - Ping HTTP endpoint
 
 ### Encryption Functions
@@ -182,6 +208,8 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [env](./env.md) - Environment utilities
 
 ### Execution Functions
+- [execute](./execute.md) - Execute command
+- [executePromise](./execute-promise.md) - Execute command as promise
 - [execution](./execution.md) - Command execution utilities
 
 ### Express Functions
@@ -206,9 +234,7 @@ This directory contains comprehensive documentation for all functions in the `cl
 - [getPads](./get-pads.md) - Get padding values
 - [getTokenizedSegments](./get-tokenized-segments.md) - Get tokenized segments
 - [getVars](./get-vars.md) - Get variables from text
-- [isBracketted](./is-bracketted.md) - Check if text is bracketed
-- [isDeleted](./is-deleted.md) - Check if item is deleted
-- [isAsync](./is-async.md) - Check if function is async
+- [hasComments](./has-comments.md) - Check if text has comments
 
 ## Constants
 
