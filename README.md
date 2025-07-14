@@ -87,6 +87,8 @@ Each function has its own detailed documentation file with:
 
 Here are some of the most commonly used functions in `cleaner-node`:
 
+> **Note:** This is just a small selection of popular functions. The complete library includes **194 functions** covering string manipulation, file operations, validation, HTTP requests, date handling, cryptography, and much more. See the [complete function reference](#functions--usage) below or the [full documentation](./docs/README.md) for all available functions.
+
 ### 🔥 Most Popular
 - **`isValidString(value)`** - Comprehensive string validation
 - **`cleanString(value)`** - Clean and normalize strings  
@@ -120,6 +122,7 @@ Here are some of the most commonly used functions in `cleaner-node`:
 
 | Function | Description |
 |---|---|
+| `cleanAlphaNumeric` | Convenience alias for `cleanAlphanumeric`. |
 | `cleanAlphanumeric` | Removes all characters from a string except for letters and numbers. |
 | `cleanDigits` | Removes all non-digit characters from a string. |
 | `cleanString` | Cleans a string by keeping only specified valid characters and removing specified invalid characters. |
@@ -137,12 +140,18 @@ Here are some of the most commonly used functions in `cleaner-node`:
 | `removePrefix` | Removes a specified prefix from the beginning of a string, potentially multiple times. |
 | `removeSuffix` | Removes a specified suffix from the end of a string, potentially multiple times. |
 | `splitFirst` | Splits a string at the first occurrence of a specified separator. |
-| `trimBrackets` | Recursively removes matching pairs of brackets ( (), [], {} ) from the start and end of a string. |
+| `stringify` | Converts a JavaScript value to a JSON string, safely handling circular references. |
+| `toCamelCase` | Converts a string to camelCase. |
+| `toKebabCase` | Converts a string to kebab-case. |
+| `toPascalCase` | Converts a string to PascalCase. |
+| `toReq` | Convenience alias for `toRequest`. |
+| `toSnakeCase` | Converts a string to snake_case. |
 | `trimString` | Trims leading and trailing whitespace from a string. |
 | `trimToNull` | Trims leading and trailing whitespace from a string, returning null if empty. |
 | `trimToUndefined` | Trims leading and trailing whitespace from a string, returning undefined if empty. |
 | `undouble` | Replaces consecutive occurrences of specified target characters within a string with a single instance. |
-| `unQuote` | Removes leading and trailing quote characters (") from a string. |
+| `unQuote` | Convenience alias for `unquote`. |
+| `unquote` | Removes leading and trailing quote characters (") from a string. |
 
 ### File System Operations
 
@@ -150,16 +159,24 @@ Here are some of the most commonly used functions in `cleaner-node`:
 |---|---|
 | `copyContents` | Asynchronously copies the contents of a source file to a destination file, line by line. |
 | `copyFile` | Synchronously copies a file from a source path to a target path. |
-| `createPath` | Creates a directory path recursively if it doesn't already exist. (Alias: `makePath`) |
+| `createPath` | Creates a directory path recursively if it doesn't already exist. |
 | `deleteDirectory` | Synchronously deletes a directory and its contents recursively. |
 | `deleteFile` | Synchronously deletes a file. |
-| `getBaseDir` | Finds the longest common base directory path from an array of file paths. |
-| `getFileContents` | Synchronously reads the contents of a file. (Alias: `readFile`) |
+| `getCommonPath` | Finds the longest common base directory path from an array of file paths. |
+| `getFileContents` | Synchronously reads the contents of a file. |
 | `getFileName` | Extracts the file name from a file path, optionally including or excluding the extension. |
 | `getFileSize` | Gets the size of a file in bytes. |
-| `getFiles` | Synchronously reads the contents of a directory and returns an array of full paths for its direct children (files and subdirectories). (Alias: `getFolderContents`) |
+| `getFiles` | Synchronously reads the contents of a directory and returns an array of full paths for its direct children (files and subdirectories). |
+| `getFolderContents` | Convenience alias for `getFiles`. |
+| `isFile` | Checks if a given path points to an existing file. |
+| `isFolder` | Checks if a given path points to an existing directory. |
+| `isDirectory` | Convenience alias for `isFolder`. |
+| `isValidPath` | Checks if a string appears to be a valid file/folder path based on its basename. |
+| `isValidPathIfSet` | Checks if a value is not set or is a valid path. |
 | `loadJson` | Reads a file, parses its content as JSON, and returns the resulting object or array. |
+| `makePath` | Convenience alias for `createPath`. |
 | `moveFile` | Moves a file from a source path to a destination path. |
+| `readFile` | Convenience alias for `getFileContents`. |
 | `readLines` | Asynchronously reads a file line by line and returns an array of strings. |
 | `saveJson` | Converts an object or array to a JSON string and saves it to a file. |
 | `walk` | Walks a directory recursively and returns an object containing lists of all files and folders found. |
@@ -172,6 +189,8 @@ Here are some of the most commonly used functions in `cleaner-node`:
 |---|---|
 | `addDays` | Adds a specified number of days to a date. |
 | `addMinutes` | Adds a specified number of minutes to a date. |
+| `blockdate` | Module containing blockdate utilities (`fromBlockDate`, `isBlockDate`, etc.). |
+| `fromBlockDate` | Converts a blockdate string to a JavaScript Date object. |
 | `fromEpoch` | Converts a Unix epoch timestamp (seconds) to a JavaScript Date object. |
 | `fromIsoDate` | Converts an ISO 8601 date string to a JavaScript Date object. |
 | `fromShortDate` | Converts a short date string (YYYY-MM-DD or YYYY/MM/DD) to a JavaScript Date object. |
@@ -187,57 +206,60 @@ Here are some of the most commonly used functions in `cleaner-node`:
 
 | Function | Description |
 |---|---|
+| `ascending` | Sorts an array in ascending order (convenience function). |
 | `cleanDto` | Cleans DTOs by removing audit fields, handling ID/UID properties, removing nulls etc. Modifies input in place. |
 | `cleanObject` | Recursively cleans an object or array by removing properties with `undefined` values. |
+| `copy` | Convenience alias for `copyObject`. |
 | `copyObject` | Creates a deep copy of an object using JSON stringification and parsing. |
+| `count` | Convenience alias for `getArrayCount`. |
+| `descending` | Sorts an array in descending order (convenience function). |
 | `findAllUids` | Finds all unique UID strings within an object or array, including nested structures. |
+| `first` | Convenience alias for `getFirst`. |
+| `fromDto` | Converts string representations within DTOs to JS types (e.g., ISO strings to Dates). Modifies input in place. |
 | `fromResult` | Extracts the nested 'result' property from an object recursively. |
 | `getArrayCount` | Gets the length of an array, handling non-arrays gracefully. |
 | `getEnum` | Retrieves the enum value from an object. |
 | `getEnums` | Extracts enum values from a given object or array of objects. |
 | `getFirst` | Gets the first element of an array or the first character of a string. |
+| `getId` | Extracts an ID ('id' or '_id') from an object or returns the input if already an ID. |
+| `getIds` | Extracts IDs from an array of items or IDs, ensuring each item is processed by `getId`. |
 | `getLast` | Gets the last element of an array or the last character of a string. |
 | `getMax` | Finds the maximum numeric value in an array. |
-| `getIds` | Extracts IDs from an array of items or IDs, ensuring each item is processed by `getId`. |
 | `getMin` | Finds the minimum numeric value in an array. |
-| `getId` | Extracts an ID ('id' or '_id') from an object or returns the input if already an ID. |
 | `getSingle` | Returns the first element of an array if it contains exactly one element, otherwise undefined. |
-| `getUids` | Extracts UIDs from an array of items, ensuring each item is processed by `getUid`. |
 | `getUid` | Extracts a UID/GUID from an item or returns the input if it's already valid. |
+| `getUids` | Extracts UIDs from an array of items, ensuring each item is processed by `getUid`. |
 | `initArray` | Ensures the input value is an array and filters out undefined elements. |
+| `last` | Convenience alias for `getLast`. |
+| `max` | Convenience alias for `getMax`. |
+| `min` | Convenience alias for `getMin`. |
 | `print` | Prints the key-value pairs of an object to the console in a formatted manner. |
-| `processItem` | Processes a single item object within `cleanDto`. |
-| `processItems` | Recursively processes an array of items within `cleanDto`. |
 | `removeAuditFields` | Recursively removes standard audit fields from an object or array. |
 | `removeDeleted` | Recursively removes items marked as deleted (using a checker function) from a structure. |
-| `removeId` | Removes the ID property from an object (used in `cleanDto`). |
-| `removeAudit` | Removes audit trail properties from an object (used in `cleanDto`). |
-| `moveUid` | Moves UID value to ID property if ID is missing (used in `cleanDto`). |
-| `moveIds` | Renames properties ending with '-uid' or '_uid' (used in `cleanDto`). |
-| `trimIds` | Renames properties ending with '-id', '_id', '-uid', or '_uid' to the base key (used in `cleanDto`). |
-| `removeNulls` | Removes properties with null values from an object (used in `cleanDto`). |
 | `removeProperty` | Recursively removes a specified property from an object and nested structures. |
 | `replaceValues` | Recursively replaces values within an object or array structure based on source/target arrays. |
+| `single` | Convenience alias for `getSingle`. |
 | `sort` | Sorts an array containing numbers (or string representations), filtering non-numerics. |
-| `sortAscending` | Sorts an array of numbers in ascending order. |
-| `sortDescending` | Sorts an array of numbers in descending order. |
+| `toColumn` | Formats an array of values into a single column of strings, padded to the width of the longest value. |
+| `toRequest` | Transforms a raw HTTP request object into a standardized format. |
 | `toResponse` | Formats a response based on the structure of the original input (object/array). |
 | `toResult` | Returns a single item or an array based on the sample array. |
-| `trim` | Trims leading/trailing non-valid-string elements from an array. |
-| `trimTop` | Trims leading non-valid-string elements from an array. |
-| `trimBottom` | Trims trailing non-valid-string elements from an array. |
+| `toTable` | Converts an array of delimited strings into a formatted text table with borders. |
+| `trimArray` | Trims leading/trailing non-valid-string elements from an array. |
 | `unique` | Creates a new array with unique values based on the predominant data type (numbers, objects, or strings). |
 | `uniqueNumbers` | Filters an array to contain only unique numbers or string representations of numbers. |
 | `uniqueObjects` | Filters an array to contain only unique objects (by strict equality or stringification). |
-| `uniqueString` | Filters an array to contain only unique strings (case-sensitive/trim options available). |
+| `uniqueStrings` | Filters an array to contain only unique strings (case-sensitive/trim options available). |
 
 ### Validation & Type Checking
 
 | Function | Description |
 |---|---|
 | `isAlpha` | Checks if a string contains only alphabetic characters. |
+| `isAlphaNumeric` | Convenience alias for `isAlphanumeric`. |
 | `isAlphanumeric` | Checks if a string contains only alphanumeric characters. |
 | `isAsync` | Checks if a value is an async function. |
+| `isBlockDate` | Checks if a value is a valid blockdate format. |
 | `isBoolean` | Checks if a value is strictly true or false. |
 | `isBooleanIfSet` | Checks if a value is not set (null/undefined) or is a boolean. |
 | `isBracketted` | Checks if a string starts and ends with corresponding brackets. |
@@ -249,9 +271,7 @@ Here are some of the most commonly used functions in `cleaner-node`:
 | `isDigits` | Checks if a string contains only numeric digits. |
 | `isEmptyArray` | Checks if a value is an array that contains no elements. |
 | `isEmail` | Checks if a string is a valid email address format. |
-| `isEqualDate` | Checks if two values are valid Dates representing the exact same time. (Alias: `isSameDate`) |
-| `isFile` | Checks if a given path points to an existing file. |
-| `isFolder` | Checks if a given path points to an existing directory. |
+| `isEqualDate` | Checks if two values are valid Dates representing the exact same time. |
 | `isFunction` | Checks if a value is a function. |
 | `isGuidFormat` | Checks if a value conforms to the standard GUID format. |
 | `isIpAddress` | Checks if a string represents a valid IPv4 address (allows 'localhost', '0.0.0.0'). |
@@ -266,9 +286,10 @@ Here are some of the most commonly used functions in `cleaner-node`:
 | `isObject` | Checks if a value is a plain JavaScript object (not null, not an array). |
 | `isPascalCase` | Checks if a string is in PascalCase format. |
 | `isPhoneNumber` | Checks if a string matches a common phone number format. |
+| `isSameDate` | Convenience alias for `isEqualDate`. |
 | `isSemver` | Checks if a string is a valid Semantic Versioning (SemVer) string. |
 | `isSet` | Checks if a value is neither null nor undefined. |
-| `isValidShortDate` | Checks if a string represents a valid date in YYYY/MM/DD or YYYY-MM-DD format. |
+| `isShortDate` | Checks if a string represents a valid date in YYYY/MM/DD or YYYY-MM-DD format. |
 | `isSnakeCase` | Checks if a string is in snake_case format. |
 | `isUidFormat` | Checks if a value is a valid UID format (32 alphanumeric chars). |
 | `isUrl` | Checks if a string is a valid URL (starts with http/https and is parseable). |
@@ -276,8 +297,6 @@ Here are some of the most commonly used functions in `cleaner-node`:
 | `isValidArrayIfSet` | Checks if a value is not set or is a valid array. |
 | `isValidChars` | Checks if a string contains only characters from a specified set. |
 | `isValidObject` | Checks if a value is a non-empty plain JavaScript object. |
-| `isValidPath` | Checks if a string appears to be a valid file/folder path based on its basename. |
-| `isValidPathIfSet` | Checks if a value is not set or is a valid path. |
 | `isValidString` | Checks if a value is a string and optionally if it's non-empty after trimming. |
 | `isValidStringIfSet` | Checks if a value is not set or is a valid string. |
 | `isZeroDate` | Checks if a value represents the "zero date" (epoch or constant). |
@@ -332,17 +351,59 @@ Here are some of the most commonly used functions in `cleaner-node`:
 
 | Function | Description |
 |---|---|
-| `addHeaders` | Merges default headers, provided headers, and adds Authorization headers. |
 | `doDelete` | Performs a DELETE request. |
 | `doGet` | Performs a GET request. |
 | `doPost` | Performs a POST request. |
-| `doPromise` | Performs a fetch request with specified options. |
 | `doPut` | Performs a PUT request. |
 | `getBody` | Asynchronously extracts the request body from a request object (Node/Next.js). |
 | `ping` | Performs a GET request to the root path ('/') to check connectivity. |
-| `removeBlankContentType` | Removes the Content-Type header if its value is blank. |
-| `toBody` | Converts a value to a string suitable for an HTTP request body. |
-| `toUrl` | Converts a value into a full URL string (http/https). |
+
+### Utility Modules & Framework Integration
+
+| Function | Description |
+|---|---|
+| `body` | Experimental utility for extracting request body with auto-detection. |
+| `comments` | Module containing comment utilities (`hasComments`, `removeComments`). |
+| `env` | Module containing environment variable utilities. |
+| `execute` | Convenience alias for `execution.execute`. |
+| `executePromise` | Convenience alias for `execution.executePromise`. |
+| `execution` | Module containing command execution utilities. |
+| `express` | Module containing Express.js utilities and middleware. |
+| `hasComments` | Checks if code contains comments. |
+| `jwt` | Module containing JWT utilities (`decode`, `encode`, `parseJwt`, etc.). |
+| `nextjs` | Module containing Next.js utilities. |
+| `removeComments` | Removes comments from code. |
+
+### Hashing & Cryptography
+
+| Function | Description |
+|---|---|
+| `decryptString` | Decrypts a string that was encrypted using encryptString function with the same password. |
+| `encryptString` | Encrypts a string using AES-256-CBC encryption with a password. |
+| `getHash` | Calculates the MD5 hash of a given string value. |
+| `hash` | Computes an HMAC hash of a value using a salt. |
+| `hashFile` | Computes a hash of a file's contents synchronously. |
+| `hashFileContents` | Computes a hash of the file contents asynchronously. |
+| `hashLines` | Computes a hash of an array of lines. |
+| `hashObject` | Generates a hash value for a given object or array by converting it to a string representation and then computing its hash. |
+| `hashString` | Computes a hash (md5/hex by default) of a string. |
+| `newSalt` | Generates a cryptographically random salt string. |
+| `parseJwt` | Parses a JWT, returning details including claims, payload, validity, and expiration status. |
+
+### Data Parsing & Conversion
+
+| Function | Description |
+|---|---|
+| `parseJson` | Safely parses a JSON string into a JavaScript object. |
+| `toBoolean` | Converts various input types (boolean, string, number) into a boolean value. |
+| `toGuidFormat` | Converts a UID or GUID string into the standard lowercase GUID format. |
+| `toUidFormat` | Converts a GUID or UID string into the standard 32-character uppercase UID format. |
+
+### Environment & Variables
+
+| Function | Description |
+|---|---|
+| `getVars` | Retrieves environment variables, optionally filtering and sorting. |
 
 ### Unique ID & Code Generation
 
