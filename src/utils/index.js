@@ -1,5 +1,7 @@
 const addDays              = require('./add-days');
 const addMinutes           = require('./add-minutes');
+const addMonths            = require('./add-months');
+const addYears             = require('./add-years');
 const ascending            = require('./ascending');
 const blockdate            = require('./blockdate');
 const cleanAlphanumeric    = require('./clean-alphanumeric');
@@ -178,6 +180,8 @@ module.exports = {
   ascending,
   addDays,
   addMinutes,
+  addMonths,
+  addYears,
   blockdate,
   cleanAlphanumeric,
   cleanDigits,

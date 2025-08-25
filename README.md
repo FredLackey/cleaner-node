@@ -189,6 +189,8 @@ Here are some of the most commonly used functions in `cleaner-node`:
 |---|---|
 | `addDays` | Adds a specified number of days to a date. |
 | `addMinutes` | Adds a specified number of minutes to a date. |
+| `addMonths` | Adds a specified number of months to a date. |
+| `addYears` | Adds a specified number of years to a date. |
 | `blockdate` | Module containing blockdate utilities (`fromBlockDate`, `isBlockDate`, etc.). |
 | `fromBlockDate` | Converts a blockdate string to a JavaScript Date object. |
 | `fromEpoch` | Converts a Unix epoch timestamp (seconds) to a JavaScript Date object. |

@@ -10,7 +10,7 @@ describe('replaceValues', () => {
     const sources = ['John Doe', 30];
     const targets = ['Jane Smith', 25, 'Extra Target']; // Mismatched length
 
-    expect(() => replaceValues(inputObject, sources, targets)).toThrowError('sources and targets must be the same length');
+    expect(() => replaceValues(inputObject, sources, targets)).toThrow('sources and targets must be the same length');
   });
 
   it('throws an error if sources are not an array', () => {
@@ -21,7 +21,7 @@ describe('replaceValues', () => {
     const sources = 'John Doe'; // Not an array
     const targets = ['Jane Smith', 25];
 
-    expect(() => replaceValues(inputObject, sources, targets)).toThrowError('sources must be an array');
+    expect(() => replaceValues(inputObject, sources, targets)).toThrow('sources must be an array');
   });
 
   it('throws an error if targets are not an array', () => {
@@ -32,7 +32,7 @@ describe('replaceValues', () => {
     const sources = ['John Doe', 30];
     const targets = 'Jane Smith'; // Not an array
 
-    expect(() => replaceValues(inputObject, sources, targets)).toThrowError('targets must be an array');
+    expect(() => replaceValues(inputObject, sources, targets)).toThrow('targets must be an array');
   });
 
   it('replaces values in a complex object with matching sources and targets', () => {
