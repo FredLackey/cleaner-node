@@ -1,0 +1,10 @@
+export = readFile;
+/**
+ * Reads the entire content of a file synchronously.
+ * Returns the file content as a UTF-8 string, or null if the file doesn't exist or an error occurs during reading.
+ * Logs an error to the debug console if reading fails.
+ *
+ * @param {string} filePath - The path to the file to read.
+ * @returns {string|null} The content of the file as a string, or null on failure.
+ */
+declare function readFile(filePath: string): string | null;

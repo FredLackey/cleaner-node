@@ -149,8 +149,11 @@
 
 * add `hashObject`
 
-## v1.7.6 (7/24/2024)
+## v1.7.6 (8/24/2024)
 
 * add `addMonths`
 * add `addYears`
 
+## v1.8.0 (8/26/2024)
+
+* Types added
