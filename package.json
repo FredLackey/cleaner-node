@@ -1,21 +1,21 @@
 {
-  "name": "cleaner-node",
-  "version": "1.8.7",
-  "description": "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
-  "main": "src/index.js",
-  "types": "types/index.d.ts",
-  "registry": "https://registry.npmjs.org",
+  "name"        : "cleaner-node",
+  "version"     : "1.8.7",
+  "description" : "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
+  "main"        : "src/index.js",
+  "types"       : "types/index.d.ts",
+  "registry"    : "https://registry.npmjs.org",
   "preferGlobal": true,
-  "scripts": {
-    "build:types": "tsc",
-    "lint": "eslint ./src/**/*.js",
-    "lint:fix": "eslint ./src/**/*.js --fix",
-    "test": "jest",
+  "scripts"     : {
+    "build:types"   : "tsc",
+    "lint"          : "eslint ./src/**/*.js",
+    "lint:fix"      : "eslint ./src/**/*.js --fix",
+    "test"          : "jest",
     "prepublishOnly": "npm run build:types"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FredLackey/cleaner-node.git"
+    "url" : "git+https://github.com/FredLackey/cleaner-node.git"
   },
   "keywords": [
     "node",
@@ -34,12 +34,12 @@
     "hcl"
   ],
   "author": {
-    "name": "Fred Lackey",
+    "name" : "Fred Lackey",
     "email": "fred.lackey@gmail.com",
-    "url": "http://www.fredlackey.com"
+    "url"  : "http://www.fredlackey.com"
   },
   "license": "Apache-2.0",
-  "files": [
+  "files"  : [
     "src/",
     "types/",
     "README.md",
@@ -52,31 +52,31 @@
     "url": "https://github.com/FredLackey/cleaner-node/issues"
   },
   "homepage": "https://github.com/FredLackey/cleaner-node#readme",
-  "jest": {
-    "testEnvironment": "node",
+  "jest"    : {
+    "testEnvironment"           : "node",
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ]
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.2",
-    "rimraf": "5.0.7",
-    "semver": "^7.7.2",
-    "uuid": "^11.1.0"
+    "rimraf"      : "5.0.7",
+    "semver"      : "^7.7.2",
+    "uuid"        : "^11.1.0"
   },
   "devDependencies": {
-    "eslint": "^8.57.1",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsdoc": "^50.6.11",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.33.2",
+    "eslint"                   : "^8.57.1",
+    "eslint-config-airbnb"     : "^19.0.4",
+    "eslint-config-standard"   : "^17.1.0",
+    "eslint-plugin-import"     : "^2.29.1",
+    "eslint-plugin-jsdoc"      : "^50.6.11",
+    "eslint-plugin-jsx-a11y"   : "^6.8.0",
+    "eslint-plugin-node"       : "^11.1.0",
+    "eslint-plugin-promise"    : "^6.1.1",
+    "eslint-plugin-react"      : "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-standard": "^4.1.0",
-    "jest": "^30.0.5",
-    "typescript": "^5.9.2"
+    "eslint-plugin-standard"   : "^4.1.0",
+    "jest"                     : "^30.0.5",
+    "typescript"               : "^5.9.2"
   }
 }
