@@ -154,6 +154,6 @@
 * add `addMonths`
 * add `addYears`
 
-## v1.8.0 (8/26/2024)
+## v1.8.6 (8/26/2024)
 
 * Types added
