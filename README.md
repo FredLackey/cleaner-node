@@ -1,5 +1,12 @@
 # Cleaner Node (`cleaner-node`)  
 
+[![npm version](https://badge.fury.io/js/cleaner-node.svg)](https://badge.fury.io/js/cleaner-node)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
+[![CommonJS](https://img.shields.io/badge/CommonJS-Compatible-green.svg)](https://nodejs.org/api/modules.html)
+
+Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.
+
 > **📦 TypeScript Version Now Available!**
 >
 > A new TypeScript-first version of this library has been created and is available on NPM as [`cleaner-node-ts`](https://www.npmjs.com/package/cleaner-node-ts).
@@ -16,13 +23,6 @@
 > The new TypeScript version offers the same functionality with the added benefits of full type safety, better IDE support, and modern JavaScript features while maintaining 100% API compatibility.
 
 ---
-
-[![npm version](https://badge.fury.io/js/cleaner-node.svg)](https://badge.fury.io/js/cleaner-node)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
-[![CommonJS](https://img.shields.io/badge/CommonJS-Compatible-green.svg)](https://nodejs.org/api/modules.html)
-
-Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.
 
 ## Background  
 
