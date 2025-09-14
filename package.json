@@ -1,17 +1,14 @@
 {
   "name"        : "cleaner-node",
-  "version"     : "1.8.8",
+  "version"     : "1.9.0",
   "description" : "Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.",
   "main"        : "src/index.js",
-  "types"       : "types/index.d.ts",
   "registry"    : "https://registry.npmjs.org",
   "preferGlobal": true,
   "scripts"     : {
-    "build:types"   : "tsc",
-    "lint"          : "eslint ./src/**/*.js",
-    "lint:fix"      : "eslint ./src/**/*.js --fix",
-    "test"          : "jest",
-    "prepublishOnly": "npm run build:types"
+    "lint"    : "eslint ./src/**/*.js",
+    "lint:fix": "eslint ./src/**/*.js --fix",
+    "test"    : "jest"
   },
   "repository": {
     "type": "git",
@@ -41,7 +38,6 @@
   "license": "Apache-2.0",
   "files"  : [
     "src/",
-    "types/",
     "README.md",
     "LICENSE"
   ],
@@ -76,7 +72,6 @@
     "eslint-plugin-react"      : "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-standard"   : "^4.1.0",
-    "jest"                     : "^30.0.5",
-    "typescript"               : "^5.9.2"
+    "jest"                     : "^30.0.5"
   }
 }

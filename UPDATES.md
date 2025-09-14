@@ -157,3 +157,9 @@
 ## v1.8.6 (8/26/2024)
 
 * Types added
+
+## v1.9.0 (9/14/2024)
+
+* Types removed (not fun)
+* Created dedicated TypeScript-frist [`cleaner-node-ts`](https://www.npmjs.com/package/cleaner-node-ts) package
+

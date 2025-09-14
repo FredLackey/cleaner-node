@@ -1,9 +1,26 @@
 # Cleaner Node (`cleaner-node`)  
 
+> **📦 TypeScript Version Now Available!**
+>
+> A new TypeScript-first version of this library has been created and is available on NPM as [`cleaner-node-ts`](https://www.npmjs.com/package/cleaner-node-ts).
+>
+> **Key points:**
+> - The original JavaScript package (`cleaner-node`) and TypeScript package (`cleaner-node-ts`) are currently being maintained separately
+> - The TypeScript version (`cleaner-node-ts`) is fully backwards compatible with the original API
+> - Eventually, the TypeScript codebase will replace this JavaScript version
+>
+> **Installation:**
+> - **Original JavaScript version:** `npm install cleaner-node`
+> - **New TypeScript version:** `npm install cleaner-node-ts`
+>
+> The new TypeScript version offers the same functionality with the added benefits of full type safety, better IDE support, and modern JavaScript features while maintaining 100% API compatibility.
+
+---
+
 [![npm version](https://badge.fury.io/js/cleaner-node.svg)](https://badge.fury.io/js/cleaner-node)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![CommonJS](https://img.shields.io/badge/CommonJS-Compatible-green.svg)](https://nodejs.org/api/modules.html)
 
 Helpful utilities and scripts to make Node projects more legible and easier for the next developer to take over.
 
@@ -14,7 +31,6 @@ There are several libraries out there designed to make life easier for developer
 ## Requirements
 
 - **Node.js**: >= 20.0.0
-- **TypeScript**: Full type definitions included (no `@types/` package needed)
 - **Dependencies**: jsonwebtoken, uuid, semver, rimraf
 
 ## Installation  
@@ -65,71 +81,6 @@ const response = await _.doGet('https://api.example.com/data');
 const result = await _.doPost('https://api.example.com/users', { name: 'John' });
 ```
 
-## TypeScript Usage
-
-`cleaner-node` includes comprehensive TypeScript definitions for all 194+ functions. No additional `@types/` package is required!
-
-```typescript
-import * as _ from 'cleaner-node';
-
-// Full IntelliSense and type checking
-const cleanedEmail: string | undefined = _.cleanString('user@example.com', _.ALPHANUMERIC);
-const isValidEmail: boolean = _.isEmail('user@example.com');
-
-// Proper null/undefined handling
-const fileContent: string | null = _.readFile('./data.json');
-if (fileContent) {
-  const parsed = _.parseJson(fileContent);
-  console.log('File loaded successfully');
-}
-
-// Array operations with type safety
-const uniqueItems: any[] | null = _.unique([1, 2, 2, 'a', 'b', 'b']);
-if (uniqueItems) {
-  const count: number = _.getArrayCount(uniqueItems);
-  const first: any = _.getFirst(uniqueItems);
-}
-
-// Date operations with proper typing
-const futureDate: Date | undefined = _.addDays(new Date(), 7);
-if (futureDate) {
-  const timestamp: number | undefined = _.toEpoch(futureDate);
-}
-
-// ID operations with flexible types
-const userId: string | number | undefined = _.getId({ id: 123, name: 'John' });
-const newId: string = _.newGuid();
-
-// Type-safe validation chains
-function processUserInput(input: string): { valid: boolean; data?: any } {
-  if (!_.isValidString(input)) {
-    return { valid: false };
-  }
-  
-  const email = _.getEmail(input);
-  if (email && _.isEmail(email)) {
-    return { 
-      valid: true, 
-      data: { 
-        email: email,
-        id: _.newGuid(),
-        timestamp: _.toEpoch(_.now())
-      }
-    };
-  }
-  
-  return { valid: false };
-}
-```
-
-### TypeScript Features
-
-- **Zero configuration** - Types work immediately after `npm install`
-- **Complete coverage** - All 194+ functions fully typed
-- **Accurate return types** - Includes `null`/`undefined` where functions can fail
-- **IntelliSense support** - Full autocomplete in VS Code and other editors
-- **Generic support** - Proper typing for complex operations
-- **Null safety** - Helps prevent runtime errors with proper type guards
 
 ## Documentation
 
